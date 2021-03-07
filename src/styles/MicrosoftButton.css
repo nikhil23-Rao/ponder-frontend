@@ -1,0 +1,46 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:500);
+.microsoft-btn {
+  width: 190px;
+  height: 42px;
+  background-color: #2f2f2f;
+  border-radius: 2px;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
+}
+.microsoft-btn .microsoft-icon-wrapper {
+  position: absolute;
+  margin-top: 1px;
+  margin-left: 1px;
+  width: 40px;
+  height: 40px;
+  border-radius: 2px;
+  background-color: #fff;
+}
+.microsoft-btn .microsoft-icon {
+  position: absolute;
+  margin-top: 11px;
+  margin-left: 11px;
+  width: 18px;
+  height: 18px;
+}
+.microsoft-btn .btn-text-signup {
+  float: right;
+  margin: 11px 2.5px 0 0;
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: 0.2px;
+}
+
+.microsoft-btn .btn-text-login {
+  float: right;
+  margin: 11px 3px 0 0;
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: 0.2px;
+}
+.microsoft-btn:hover {
+  box-shadow: 0 0 6px #2f2f2f;
+  cursor: pointer;
+}
+.microsoft-btn:active {
+  background: #2f2f2f;
+}
