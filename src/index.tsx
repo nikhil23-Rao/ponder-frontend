@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { ChakraProvider } from "@chakra-ui/react";
 import "react-toastify/dist/ReactToastify.css";
-// import "react-pro-sidebar/dist/css/styles.css";
+import "react-pro-sidebar/dist/css/styles.css";
 
 // Create New Apollo Client
 const client: ApolloClient<object> = new ApolloClient({

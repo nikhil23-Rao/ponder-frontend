@@ -1,31 +1,7 @@
-.dot1 {
-  height: 25px;
-  width: 25px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-}
-
-.dot2 {
-  height: 25px;
-  width: 25px;
-  background-color: #ccf;
-  border-radius: 50%;
-  display: inline-block;
-}
-
-.dot3 {
-  height: 25px;
-  width: 25px;
-  background-color: #fbd;
-  border-radius: 50%;
-  display: inline-block;
-}
-
-.dot4 {
-  height: 25px;
-  width: 25px;
-  background-color: blue;
-  border-radius: 50%;
-  display: inline-block;
+.undraggable {
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }

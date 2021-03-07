@@ -38,6 +38,7 @@ export const Login = (props: any) => {
               email: values.Email,
             },
           });
+          resetForm();
         }}
         validationSchema={LoginValidationSchema}
       >
@@ -82,12 +83,20 @@ export const Login = (props: any) => {
                       >
                         Login
                       </button>
-                      <Link
-                        className="d-block text-center mt-2 small"
-                        to="/signup"
+                      <div
+                        style={{ textAlign: "center", fontSize: "12px" }}
+                        className="mt-2"
                       >
-                        Don't Have An Account? Create One Here
-                      </Link>
+                        <p
+                          style={{
+                            display: "inline",
+                            color: "black",
+                          }}
+                        >
+                          Don't Have An Account?
+                          <Link to="/signup">Create One Here</Link>
+                        </p>
+                      </div>
                       <hr className="my-4" />
 
                       <LoginWithGoogle />
