@@ -8,12 +8,15 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { ChakraProvider } from "@chakra-ui/react";
 import "react-toastify/dist/ReactToastify.css";
 import "react-pro-sidebar/dist/css/styles.css";
+import createHistory from "history/createBrowserHistory";
 
 // Create New Apollo Client
 const client: ApolloClient<object> = new ApolloClient({
   uri: "http://localhost:4000/graphql",
   cache: new InMemoryCache(),
 });
+
+export const history = createHistory({ forceRefresh: true });
 
 // Render React DOM
 ReactDOM.render(

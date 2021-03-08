@@ -15,6 +15,7 @@ import WhatshotIcon from "@material-ui/icons/Whatshot";
 import SearchIcon from "@material-ui/icons/Search";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { history } from "../index";
 
 const drawerWidth = 240;
 
@@ -68,7 +69,23 @@ function Sidebar(props: any) {
       <List>
         {["Create A Story", "My Stories", "Search", "Today's Stories"].map(
           (text, index) => (
-            <ListItem button key={text}>
+            <ListItem
+              button
+              onClick={() => {
+                if (text === "Create A Story") {
+                  return history.push("/create-story");
+                }
+                if (text === "My Stories") {
+                  return history.push("/my-stories");
+                }
+                if (text === "Create A Story") {
+                  return history.push("/create-story");
+                }
+                if (text === "Create A Story") {
+                  return history.push("/create-story");
+                }
+              }}
+            >
               <ListItemIcon>
                 {text === "Create A Story" ? (
                   <AddCircleIcon />

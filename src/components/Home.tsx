@@ -38,7 +38,7 @@ export const Home = () => {
             id="dropdown-basic"
           >
             <img
-              className="topright rounded-circle  undraggable clickable"
+              className="topright rounded-circle undraggable clickable"
               src={user.image_url}
               alt=""
             />

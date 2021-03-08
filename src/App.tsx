@@ -5,12 +5,14 @@ import { ToastContainer } from "react-toastify";
 import { Home } from "./components/Home";
 import { Login } from "./components/Login";
 import { Signup } from "./components/Signup";
+import { CreateStory } from "./components/CreateStory";
 
 function App() {
   return (
     <React.Fragment>
       <ToastContainer draggable={true} />
       <Switch>
+        <Route path="/create-story" exact component={CreateStory} />
         <Route path="/signup" exact component={Signup} />
         <Route path="/login" exact component={Login} />
         <Route path="/home" exact component={Home} />
