@@ -8,7 +8,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { ChakraProvider } from "@chakra-ui/react";
 import "react-toastify/dist/ReactToastify.css";
 import "react-pro-sidebar/dist/css/styles.css";
-import createHistory from "history/createBrowserHistory";
+const createHistory = require("history").createBrowserHistory;
 
 // Create New Apollo Client
 const client: ApolloClient<object> = new ApolloClient({
