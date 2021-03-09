@@ -1,12 +1,22 @@
 import React, { useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import "../styles/editor.css";
+import { SAVE_DRAFT } from "../apollo/Mutations";
+import { useMutation } from "@apollo/client";
 
 export const CreateStory = () => {
   const [publish, setPublish] = useState(false);
+  const [content, setContent] = useState("");
   const handleEditorChange = (content: any, editor: any) => {
     console.log("Content was updated:", content);
+    console.log(typeof content);
   };
+
+  const [SaveDraft] = useMutation(SAVE_DRAFT, {
+    onCompleted: ({ SaveDraft: content }) => {
+      setContent(content);
+    },
+  });
 
   return (
     <React.Fragment>
@@ -54,6 +64,9 @@ export const CreateStory = () => {
                   icon: "document-properties",
                   onAction: (_) => {
                     console.log("Saved As Draft");
+                    // Save Draft To DB
+                    const content = editor.getContent();
+                    SaveDraft({ variables: { content } });
                   },
                 });
                 editor.ui.registry.addButton("Publish", {

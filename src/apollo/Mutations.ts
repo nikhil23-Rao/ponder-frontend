@@ -28,3 +28,14 @@ export const OAUTH_LOGIN_USER = gql`
     OAuthLogin(email: $email)
   }
 `;
+
+// Save Draft Mutation
+export const SAVE_DRAFT = gql`
+  mutation SaveDraft($content: String) {
+    SaveDraft(content: $content) {
+      content
+      id
+      image_url
+    }
+  }
+`;
