@@ -15,6 +15,7 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "@tinymce/tinymce-react": "^3.10.3",
     "bootstrap": "^4.6.0",
     "bootstrap-icons": "^1.4.0",
     "font-awesome": "^4.7.0",
