@@ -6,6 +6,7 @@ import { Home } from "./components/Home";
 import { Login } from "./components/Login";
 import { Signup } from "./components/Signup";
 import { CreateStory } from "./components/CreateStory";
+import { MyStories } from "./components/MyStories";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <ToastContainer draggable={true} />
       <Switch>
         <Route path="/create-story" exact component={CreateStory} />
+        <Route path="/my-stories" exact component={MyStories} />
         <Route path="/signup" exact component={Signup} />
         <Route path="/login" exact component={Login} />
         <Route path="/home" exact component={Home} />

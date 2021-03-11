@@ -30,12 +30,18 @@ export const OAUTH_LOGIN_USER = gql`
 `;
 
 // Save Draft Mutation
-export const SAVE_DRAFT = gql`
-  mutation SaveDraft($content: String) {
-    SaveDraft(content: $content) {
-      content
-      id
-      image_url
-    }
+export const SAVE_DRAFT_CONTENT = gql`
+  mutation SaveDraftContent($content: String) {
+    SaveDraftContent(content: $content)
+  }
+`;
+
+export const SAVE_DRAFT_TITLE_AND_IMAGEURL = gql`
+  mutation SaveDraftTitleAndImageUrl(
+    $id: Int!
+    $title: String
+    $image_url: String
+  ) {
+    SaveDraftTitleAndImageUrl(id: $id, title: $title, image_url: $image_url)
   }
 `;
