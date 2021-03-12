@@ -1,3 +1,4 @@
+// Modules Imported For Use
 import React, { useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import "../styles/editor.css";
@@ -5,10 +6,11 @@ import {
   SAVE_DRAFT_CONTENT,
   SAVE_DRAFT_TITLE_AND_IMAGEURL,
 } from "../apollo/Mutations";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { Formik, Form, Field } from "formik";
 import { StoryTitleTextField } from "../validation/StoryTitleTextField";
 import { StoryValidationSchema } from "../validation/StoryValidationSchema";
+import { GET_ID_QUERY } from "../apollo/Queries";
 import {
   Modal,
   ModalOverlay,
@@ -18,7 +20,9 @@ import {
   ModalCloseButton,
   Button,
 } from "@chakra-ui/react";
+import { history } from "../index";
 
+// Create Story Function
 export const CreateStory = () => {
   const [publish, setPublish] = useState(false);
   const [saveDraft, setSaveDraft] = useState(false);
@@ -33,6 +37,9 @@ export const CreateStory = () => {
     SAVE_DRAFT_TITLE_AND_IMAGEURL
   );
 
+  const { data } = useQuery(GET_ID_QUERY);
+
+  // Save Draft Modal
   const SaveDraftModal = () => {
     return (
       <>
@@ -48,12 +55,13 @@ export const CreateStory = () => {
                   console.log(values);
                   SaveDraftTitleAndImageUrl({
                     variables: {
-                      id: 1,
+                      id: data.GetStoryDraftID,
                       title: values.title,
                       image_url: values.image_url,
                     },
                   });
                   setSaveDraft(false);
+                  history.push("/my-stories");
                 }}
                 validationSchema={StoryValidationSchema}
               >
@@ -72,7 +80,7 @@ export const CreateStory = () => {
                         as={StoryTitleTextField}
                         name="image_url"
                         onChange={handleChange}
-                        placeholder="Enter Story Image"
+                        placeholder="Enter Story Thumbnail URL"
                       />
                     </div>
                     <div className="text-center">
@@ -94,12 +102,13 @@ export const CreateStory = () => {
     );
   };
 
+  // Return TinyMCE Editor
   return (
     <React.Fragment>
       {saveDraft && SaveDraftModal()}
       <div>
         <Editor
-          initialValue="<h1 style='text-align:center;'>(Once You Save Your Title Will Be Here)</h1><p style='text-align:center;'></p>"
+          initialValue=""
           init={{
             codesample_languages: [
               { text: "HTML/XML", value: "markup" },
@@ -131,7 +140,7 @@ export const CreateStory = () => {
               "alignright",
               "fontsizeselect",
             ],
-            toolbar: "Publish | SaveDraft",
+            toolbar: !publish ? "Publish | SaveDraft" : false,
             quickbars_insert_toolbar:
               "quicktable image media codesample formatselect fontsizeselect forecolor backcolor |  alignleft aligncenter alignright",
             quickbars_selection_toolbar:
