@@ -1,22 +1,26 @@
+// Modules Imported For Use
 import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
 import "../styles/MyStories.css";
 import { GET_ALL_STORIES } from "../apollo/Queries";
 import { Button } from "@chakra-ui/react";
 
+// My Stories Component
 export const MyStories = () => {
+  // Limit For Stories`
   const [limit, setLimit] = useState(3);
+
+  // Query The Stories
   const { data, loading, fetchMore } = useQuery(GET_ALL_STORIES, {
     variables: { offset: 0, limit },
   });
+
+  // If Loading Return To Client
   if (loading) {
     return <h1>LOADING...</h1>;
   }
 
-  if (typeof data !== undefined) {
-    console.log(data);
-  }
-
+  // Return MyStories Markup
   return (
     <React.Fragment>
       {data.GetAllStories.map((story: any) => (
@@ -50,26 +54,29 @@ export const MyStories = () => {
           </div>
         </article>
       ))}
-
       <div className="bottom mb-4 text-center">
         <Button
           id="btn-load"
           className=""
           isLoading={loading}
           onClick={() => {
+            // Get Data Length
             const dataLen = data.GetAllStories.length;
+
+            // Fetch More Stories (If There)
             fetchMore({
               variables: {
                 offset: dataLen,
                 limit: 2,
               },
             }).then((res: any) => {
+              // Show Stories Requested To Client
               setLimit(dataLen + res.data.GetAllStories.length);
+              // If No More Stories To Fetch Remove Load More Button
               if (res.data.GetAllStories.length === 0) {
                 const btn = document.getElementById("btn-load");
                 btn?.parentNode?.removeChild(btn);
               }
-              console.log(res);
             });
           }}
         >
