@@ -1,3 +1,4 @@
+// Modules Imported For Use
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { Formik, Form, Field } from "formik";
@@ -13,19 +14,21 @@ import { SignupWithGoogle } from "../oauth/SignupWithGoogle";
 import { SignupWithMicrosoft } from "../oauth/SignupWithMicrosoft";
 import "../styles/Register.css";
 
+// Signup Component
 export const Signup = (props: any) => {
+  const [error, setError] = useState(false);
   const [Register] = useMutation(REGISTER_USER, {
     onCompleted: ({ Register: jwt }) => {
+      // Store JWT In Local Storage
       localStorage.setItem("token", jwt);
+      // Push To Home Page
       props.history.push("/home");
     },
     onError: (err) => {
+      // Error Then SetError To True To Show In Form
       setError(true);
-      console.log(err.message);
     },
   });
-
-  const [error, setError] = useState(false);
 
   return (
     <React.Fragment>
@@ -33,6 +36,7 @@ export const Signup = (props: any) => {
         initialValues={{ Username: "", Email: "", Password: "" }}
         onSubmit={(values, { resetForm }) => {
           try {
+            // Try Registering If Error Log It
             Register({
               variables: {
                 username: values.Username,
@@ -40,6 +44,7 @@ export const Signup = (props: any) => {
                 email: values.Email,
               },
             });
+            // Reset Form When Done
             resetForm();
           } catch (err) {
             console.log(err.message);
