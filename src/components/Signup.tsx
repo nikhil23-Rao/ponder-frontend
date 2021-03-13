@@ -95,12 +95,22 @@ export const Signup = (props: any) => {
                       >
                         Register
                       </button>
-                      <Link
-                        className="d-block text-center mt-2 small"
-                        to="/login"
+                      <div
+                        style={{ textAlign: "center", fontSize: "12px" }}
+                        className="mt-2"
                       >
-                        Already Have An Account? Sign In Here
-                      </Link>
+                        <p
+                          style={{
+                            display: "inline",
+                            color: "black",
+                          }}
+                        >
+                          Already Have An Account?
+                          <Link to="/login" className="ml-1">
+                            Login Here
+                          </Link>
+                        </p>
+                      </div>
                       <br />
                       <div className="separator">OR</div>
                       <br />

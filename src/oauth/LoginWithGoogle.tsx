@@ -2,9 +2,10 @@ import React from "react";
 import { useMutation } from "@apollo/client";
 import { GoogleLogin } from "react-google-login";
 import { OAUTH_LOGIN_USER } from "../apollo/Mutations";
-import { toast } from "react-toastify";
+import { useToast } from "@chakra-ui/react";
 
 export const LoginWithGoogle = (props: any) => {
+  const toast = useToast();
   const [OAuthLogin] = useMutation(OAUTH_LOGIN_USER, {
     onCompleted: ({ OAuthLogin: jwt }) => {
       localStorage.setItem("token", jwt);
@@ -12,7 +13,12 @@ export const LoginWithGoogle = (props: any) => {
     },
     onError: (err) => {
       console.log(err.message);
-      return toast.error("Invalid Google Login.");
+      return toast({
+        title: "Invalid Google Login",
+        position: "top-right",
+        status: "error",
+        isClosable: true,
+      });
     },
   });
   const response = (res: any) => {

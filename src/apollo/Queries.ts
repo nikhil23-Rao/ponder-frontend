@@ -7,8 +7,8 @@ export const GET_ID_QUERY = gql`
 `;
 
 export const GET_ALL_STORIES = gql`
-  query GetAllStories {
-    GetAllStories {
+  query GetAllStories($limit: Int, $offset: Int) {
+    GetAllStories(limit: $limit, offset: $offset) {
       content
       image_url
       title

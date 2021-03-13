@@ -94,7 +94,9 @@ export const Login = (props: any) => {
                           }}
                         >
                           Don't Have An Account?
-                          <Link to="/signup">Create One Here</Link>
+                          <Link to="/signup" className="ml-1">
+                            Create One Here
+                          </Link>
                         </p>
                       </div>
                       <hr className="my-4" />

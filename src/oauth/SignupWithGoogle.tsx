@@ -2,9 +2,10 @@ import React from "react";
 import { useMutation } from "@apollo/client";
 import { GoogleLogin } from "react-google-login";
 import { OAUTH_REGISTER_USER } from "../apollo/Mutations";
-import { toast } from "react-toastify";
+import { useToast } from "@chakra-ui/react";
 
 export const SignupWithGoogle = (props: any) => {
+  const toast = useToast();
   const [OAuthRegister] = useMutation(OAUTH_REGISTER_USER, {
     onCompleted: ({ OAuthRegister: jwt }) => {
       localStorage.setItem("token", jwt);
@@ -12,7 +13,12 @@ export const SignupWithGoogle = (props: any) => {
       return;
     },
     onError: (err) => {
-      return toast.error(err.message);
+      return toast({
+        title: err.message,
+        position: "top-right",
+        status: "error",
+        isClosable: true,
+      });
     },
   });
   const response = (res: any) => {
