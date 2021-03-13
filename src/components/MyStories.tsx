@@ -27,38 +27,59 @@ export const MyStories = () => {
   // Return MyStories Markup
   return (
     <React.Fragment>
-      {data.GetAllStories.map((story: any) => (
-        <div key={story.id} className="grid-container ml-5 mr-5">
-          <article className="articles__article-card mr-5 mt-5 ml-5">
-            <div className="articles__article-card__top">
-              <img src={story.image_url} alt="" />
-            </div>
-            <Divider />
-            <div className="articles__article-card__bottom">
-              <div className="articles__article-card__bottom__date-title mt-3">
-                <h1 className="articles__article-card__bottom__date-title__title font-weight-bold">
-                  {" "}
-                  {story.title}
-                </h1>
-                <time
-                  className="articles__article-card__bottom__date-title__date letter-spacing font-weight-bold"
-                  dateTime="2019-02-02"
-                >
-                  {story.date_created}
-                </time>
-
-                <time
-                  className="articles__article-card__bottom__date-title__date letter-spacing font-weight-bold"
-                  dateTime="2019-02-02"
-                  style={{ marginTop: "18%", marginLeft: "55%" }}
-                >
-                  By: {story.author.username}
-                </time>
+      {data.GetAllStories.map((story: any) => {
+        const previewText = story.content.replace(/<[^>]+>/g, "");
+        return (
+          <div key={story.id} className="grid-container ml-5 mr-5">
+            <article className="articles__article-card mr-5 mt-5 ml-5">
+              <div className="articles__article-card__top">
+                <img src={story.image_url} alt="" />
               </div>
-            </div>
-          </article>
-        </div>
-      ))}
+              <Divider />
+              <div className="articles__article-card__bottom">
+                <div className="articles__article-card__bottom__date-title">
+                  <h1
+                    className="articles__article-card__bottom__date-title__title font-weight-bold"
+                    style={{
+                      fontSize: "30px",
+                      fontFamily: "Playfair Display",
+                    }}
+                  >
+                    {" "}
+                    {story.title}
+                  </h1>
+                  <time
+                    className="articles__article-card__bottom__date-title__date letter-spacing font-weight-bold"
+                    dateTime="2019-02-02"
+                  >
+                    Created: {story.date_created}
+                  </time>
+                  <br />
+                  <Divider />
+                  <br />
+                  <p
+                    className="articles__article-card__bottom__date-title__date letter-spacing font-weight-bold text-center"
+                    // style={{ overflowY: "auto" }}
+                  >
+                    Preview: {previewText.substring(0, 10)}...
+                  </p>
+                  <time
+                    className="articles__article-card__bottom__date-title__date letter-spacing font-weight-bold"
+                    dateTime="2019-02-02"
+                    style={{
+                      marginTop: "38%",
+                      marginLeft: "60%",
+                      overflowY: "auto",
+                    }}
+                  >
+                    By: {story.author.username}
+                  </time>
+                </div>
+              </div>
+            </article>
+          </div>
+        );
+      })}
       <div className="bottom mb-4 text-center">
         <Button
           id="btn-load"

@@ -9,8 +9,8 @@
 /* ARTICLE CARDS */
 
 .articles__article-card {
-  height: 400px;
-  width: 325px;
+  height: 500px;
+  width: 300px;
   cursor: pointer;
   margin-bottom: 40px;
   transition: transform 0.2s;
@@ -35,7 +35,7 @@
 
 .articles__article-card__top {
   background-size: cover;
-  height: 60%;
+  height: 45%;
   position: relative;
 }
 
@@ -47,11 +47,8 @@
   position: absolute;
   border: 2px solid;
   border-color: cornflowerblue;
-  font-family: "Libre Franklin", sans-serif;
+  font-family: "Playfair Display";
   font-weight: 200;
-  bottom: 90px;
-  margin-left: 35px;
-  left: 16px;
 }
 
 /* ARTICLE CARDS - BOTTOM */
@@ -72,7 +69,7 @@
 
 .articles__article-card__bottom__date-title__title {
   margin-top: 6px;
-  font-family: "Libre Franklin", sans-serif;
+  font-family: "Playfair Display", sans-serif;
   color: #283d4a;
   align-items: center;
   justify-content: center;

@@ -61,7 +61,19 @@ function Sidebar(props: any) {
 
   const drawer = (
     <div>
-      <div className={classes.toolbar}></div>
+      <div className={classes.toolbar}>
+        <img
+          src="https://www.freelogodesign.org/file/app/client/thumb/09839970-8b55-4c6a-ac20-28d609e20871_200x200.png?1615604135722"
+          className="undraggable"
+          style={{
+            width: "30%",
+            marginLeft: "30%",
+            marginTop: "5%",
+            marginBottom: "5%",
+          }}
+          alt=""
+        />
+      </div>
       <Divider />
       <List>
         {["Create A Story", "My Stories", "Search", "Today's Stories"].map(
