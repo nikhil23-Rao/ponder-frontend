@@ -1,3 +1,4 @@
+// Modules Imported For Use
 import React from "react";
 import PropTypes from "prop-types";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -17,8 +18,10 @@ import AddCircleIcon from "@material-ui/icons/AddCircle";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { history } from "../index";
 
+// SideBar Width
 const drawerWidth = 240;
 
+// Styles For Sidebar
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -27,12 +30,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("sm")]: {
       width: drawerWidth,
       flexShrink: 0,
-    },
-  },
-  appBar: {
-    [theme.breakpoints.up("sm")]: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
     },
   },
   menuButton: {
