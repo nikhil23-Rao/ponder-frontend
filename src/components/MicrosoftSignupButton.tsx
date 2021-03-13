@@ -1,6 +1,8 @@
+// Modules Imported For Use
 import React from "react";
 import "../styles/Register.css";
 
+// Microsoft Signup Button
 export const MicrosoftSignupButton = () => {
   return (
     <button
