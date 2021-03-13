@@ -13,6 +13,13 @@ export const GET_ALL_STORIES = gql`
       image_url
       title
       id
+      author {
+        id
+        username
+        email
+      }
+      category
+      date_created
     }
   }
 `;

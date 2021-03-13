@@ -9,18 +9,25 @@
 /* ARTICLE CARDS */
 
 .articles__article-card {
-  height: 375px;
+  height: 400px;
   width: 325px;
   cursor: pointer;
   margin-bottom: 40px;
   transition: transform 0.2s;
   display: inline-block;
+  -webkit-box-shadow: 3px 3px 5px 6px #ccc; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow: 3px 3px 5px 6px #ccc; /* Firefox 3.5 - 3.6 */
+  box-shadow: 3px 3px 5px 6px #ccc;
 }
 
 .articles__article-card:hover {
   box-sizing: border-box;
   transform: scale(1.1);
-  transition: transform 0.5s;
+  box-shadow: 50px black;
+  transition: transform 0.7s;
+  -webkit-box-shadow: 3px 3px 5px 6px #ccc; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow: 3px 3px 5px 6px #ccc; /* Firefox 3.5 - 3.6 */
+  box-shadow: 3px 3px 5px 6px #ccc;
 }
 
 /* ARTICLE CARDS - TOP */
@@ -35,20 +42,18 @@
   background: white;
   padding: 5px 10px;
   border-radius: 6px;
-  color: #fc6c03;
+  color: black;
   position: absolute;
-  top: 10px;
-  right: 10px;
+  border: 2px solid;
+  border-color: cornflowerblue;
   font-family: "Libre Franklin", sans-serif;
   font-weight: 200;
+  bottom: 90px;
+  margin-left: 35px;
+  left: 16px;
 }
 
 /* ARTICLE CARDS - BOTTOM */
-
-.articles__article-card__bottom {
-  background: rgba(234, 239, 242, 0.7);
-  height: 40%;
-}
 
 .articles__article-card__bottom__date-title {
   padding: 15px;

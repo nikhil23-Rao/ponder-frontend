@@ -4,6 +4,7 @@ import { useQuery } from "@apollo/client";
 import "../styles/MyStories.css";
 import { GET_ALL_STORIES } from "../apollo/Queries";
 import { Button } from "@chakra-ui/react";
+import Divider from "@material-ui/core/Divider";
 
 // My Stories Component
 export const MyStories = () => {
@@ -27,28 +28,27 @@ export const MyStories = () => {
         <article className="articles__article-card mr-5 mt-5 ml-5">
           <div className="articles__article-card__top">
             <img src={story.image_url} alt="" />
-            <span className="articles__article-card__top__article-cat letter-spacing">
-              (TOPIC NAME)
-            </span>
           </div>
+          <Divider />
           <div className="articles__article-card__bottom">
             <div className="articles__article-card__bottom__date-title mt-3">
               <time
-                className="articles__article-card__bottom__date-title__date letter-spacing"
+                className="articles__article-card__bottom__date-title__date letter-spacing font-weight-bold"
                 dateTime="2019-02-02"
               >
-                FEBRUARY 2ND, 2019
+                {story.date_created}
               </time>
               <h2 className="articles__article-card__bottom__date-title__title font-weight-bold">
                 {" "}
                 {story.title}
               </h2>
+
               <time
                 className="articles__article-card__bottom__date-title__date letter-spacing font-weight-bold"
                 dateTime="2019-02-02"
                 style={{ marginTop: "18%", marginLeft: "55%" }}
               >
-                By: Fattness Rules
+                By: {story.author.username}
               </time>
             </div>
           </div>

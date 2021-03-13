@@ -21,12 +21,21 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { history } from "../index";
+import { useEffect } from "react";
+import { getCurrentUser } from "../utils/getCurrentUser";
+import { GetDate } from "../utils/GetDate";
 
 // Create Story Function
 export const CreateStory = () => {
   // States
   const [publish, setPublish] = useState(false);
   const [saveDraft, setSaveDraft] = useState(false);
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    const currentUser: any = getCurrentUser();
+    setUser(currentUser);
+  }, []);
 
   // Log Content (ONLY IN DEV)
   const handleEditorChange = (content: any) => {
@@ -53,7 +62,7 @@ export const CreateStory = () => {
             <ModalCloseButton />
             <ModalBody>
               <Formik
-                initialValues={{ title: "", image_url: "" }}
+                initialValues={{ title: "", image_url: "", category: "" }}
                 onSubmit={(values) => {
                   // Save Title And Image Url To Draft
                   SaveDraftTitleAndImageUrl({
@@ -61,6 +70,7 @@ export const CreateStory = () => {
                       id: data.GetStoryDraftID,
                       title: values.title,
                       image_url: values.image_url,
+                      category: values.category,
                     },
                   });
                   // Close Modal
@@ -86,6 +96,14 @@ export const CreateStory = () => {
                         name="image_url"
                         onChange={handleChange}
                         placeholder="Enter Story Thumbnail URL"
+                      />
+                    </div>
+                    <div className="text-center mt-4">
+                      <Field
+                        as={StoryTitleTextField}
+                        name="category"
+                        onChange={handleChange}
+                        placeholder="Enter Category"
                       />
                     </div>
                     <div className="text-center">
@@ -162,8 +180,15 @@ export const CreateStory = () => {
                       setSaveDraft(true);
                     }
                     // Save Draft To DB
+                    const date_created = GetDate();
                     const content = editor.getContent();
-                    SaveDraftContent({ variables: { content } });
+                    SaveDraftContent({
+                      variables: {
+                        content,
+                        author: user,
+                        date_created,
+                      },
+                    });
                   },
                 });
                 editor.ui.registry.addButton("Publish", {
