@@ -5,6 +5,9 @@ import "../styles/MyStories.css";
 import { GET_ALL_STORIES } from "../apollo/Queries";
 import { Button } from "@chakra-ui/react";
 import Divider from "@material-ui/core/Divider";
+import { Link } from "react-router-dom";
+import AddCircleIcon from "@material-ui/icons/AddCircle";
+import "../styles/Grid.css";
 
 // My Stories Component
 export const MyStories = () => {
@@ -25,39 +28,40 @@ export const MyStories = () => {
   return (
     <React.Fragment>
       {data.GetAllStories.map((story: any) => (
-        <article className="articles__article-card mr-5 mt-5 ml-5">
-          <div className="articles__article-card__top">
-            <img src={story.image_url} alt="" />
-          </div>
-          <Divider />
-          <div className="articles__article-card__bottom">
-            <div className="articles__article-card__bottom__date-title mt-3">
-              <time
-                className="articles__article-card__bottom__date-title__date letter-spacing font-weight-bold"
-                dateTime="2019-02-02"
-              >
-                {story.date_created}
-              </time>
-              <h2 className="articles__article-card__bottom__date-title__title font-weight-bold">
-                {" "}
-                {story.title}
-              </h2>
-
-              <time
-                className="articles__article-card__bottom__date-title__date letter-spacing font-weight-bold"
-                dateTime="2019-02-02"
-                style={{ marginTop: "18%", marginLeft: "55%" }}
-              >
-                By: {story.author.username}
-              </time>
+        <div key={story.id} className="grid-container ml-5 mr-5">
+          <article className="articles__article-card mr-5 mt-5 ml-5">
+            <div className="articles__article-card__top">
+              <img src={story.image_url} alt="" />
             </div>
-          </div>
-        </article>
+            <Divider />
+            <div className="articles__article-card__bottom">
+              <div className="articles__article-card__bottom__date-title mt-3">
+                <h1 className="articles__article-card__bottom__date-title__title font-weight-bold">
+                  {" "}
+                  {story.title}
+                </h1>
+                <time
+                  className="articles__article-card__bottom__date-title__date letter-spacing font-weight-bold"
+                  dateTime="2019-02-02"
+                >
+                  {story.date_created}
+                </time>
+
+                <time
+                  className="articles__article-card__bottom__date-title__date letter-spacing font-weight-bold"
+                  dateTime="2019-02-02"
+                  style={{ marginTop: "18%", marginLeft: "55%" }}
+                >
+                  By: {story.author.username}
+                </time>
+              </div>
+            </div>
+          </article>
+        </div>
       ))}
       <div className="bottom mb-4 text-center">
         <Button
           id="btn-load"
-          className=""
           isLoading={loading}
           onClick={() => {
             // Get Data Length
@@ -82,6 +86,19 @@ export const MyStories = () => {
         >
           Load More...
         </Button>
+      </div>
+      <div>
+        <Link
+          to="/create-story"
+          style={{
+            top: 0,
+            right: 5,
+            position: "absolute",
+            textDecoration: "none",
+          }}
+        >
+          <AddCircleIcon />
+        </Link>
       </div>
     </React.Fragment>
   );

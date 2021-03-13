@@ -4,7 +4,7 @@ import { getCurrentUser } from "../utils/getCurrentUser";
 import "../styles/HomePage.css";
 import "../styles/Positions.css";
 import "../styles/logo.css";
-import Sidebar from "./Sidebar";
+import Sidebar from "./HomeSidebar";
 import { Dropdown } from "react-bootstrap";
 import { logout } from "../utils/logout";
 
