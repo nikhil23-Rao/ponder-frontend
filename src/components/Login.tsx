@@ -1,3 +1,4 @@
+// Modules Imported For Use
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { Formik, Form, Field } from "formik";
@@ -12,37 +13,40 @@ import { InvalidTextField } from "../validation/InvalidTextField";
 import { LoginWithGoogle } from "../oauth/LoginWithGoogle";
 import { LoginWithMicrosoft } from "../oauth/LoginWithMicrosoft";
 
+// Login Component
 export const Login = (props: any) => {
+  const [error, setError] = useState(false);
   const [Login] = useMutation(LOGIN_USER, {
     onCompleted: ({ Login: jwt }) => {
+      // If Valid Credentials Stor JWT In Local Storage
       localStorage.setItem("token", jwt);
+      // Push To Home Page
       props.history.push("/home");
     },
-    onError: (err) => {
+    onError: (_) => {
+      // If Error setError To True To Show In Form
       setError(true);
     },
   });
-
-  const [error, setError] = useState(false);
 
   return (
     <React.Fragment>
       <Formik
         initialValues={{ Email: "", Password: "" }}
         onSubmit={(values, { resetForm, setSubmitting }) => {
-          console.log(values);
-          setSubmitting(true);
+          // Login User
           Login({
             variables: {
               password: values.Password,
               email: values.Email,
             },
           });
+          // Reset Form When Done
           resetForm();
         }}
         validationSchema={LoginValidationSchema}
       >
-        {({ handleSubmit, isSubmitting }) => (
+        {({ handleSubmit }) => (
           <div className="container">
             <div className="row">
               <div className="col-lg-10 col-xl-9 mx-auto">
