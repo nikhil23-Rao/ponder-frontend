@@ -24,19 +24,22 @@ import { history } from "../index";
 
 // Create Story Function
 export const CreateStory = () => {
+  // States
   const [publish, setPublish] = useState(false);
   const [saveDraft, setSaveDraft] = useState(false);
 
-  const handleEditorChange = (content: any, editor: any) => {
+  // Log Content (ONLY IN DEV)
+  const handleEditorChange = (content: any) => {
     console.log("Content was updated:", content);
-    console.log(typeof content);
   };
 
+  // Save Draft
   const [SaveDraftContent] = useMutation(SAVE_DRAFT_CONTENT);
   const [SaveDraftTitleAndImageUrl] = useMutation(
     SAVE_DRAFT_TITLE_AND_IMAGEURL
   );
 
+  // Get Id To Update Title
   const { data } = useQuery(GET_ID_QUERY);
 
   // Save Draft Modal
@@ -52,7 +55,7 @@ export const CreateStory = () => {
               <Formik
                 initialValues={{ title: "", image_url: "" }}
                 onSubmit={(values) => {
-                  console.log(values);
+                  // Save Title And Image Url To Draft
                   SaveDraftTitleAndImageUrl({
                     variables: {
                       id: data.GetStoryDraftID,
@@ -60,7 +63,9 @@ export const CreateStory = () => {
                       image_url: values.image_url,
                     },
                   });
+                  // Close Modal
                   setSaveDraft(false);
+                  // Push To My Stories Page
                   history.push("/my-stories");
                 }}
                 validationSchema={StoryValidationSchema}
@@ -147,11 +152,12 @@ export const CreateStory = () => {
               "bold underline italic link fontsizeselect |  alignleft aligncenter alignright",
             setup: (editor) => {
               if (!publish) {
+                // When Not Published Show ToolBar
                 editor.ui.registry.addButton("SaveDraft", {
                   text: "Save As Draft",
                   icon: "document-properties",
                   onAction: (_) => {
-                    console.log("Saved As Draft");
+                    // If Draft Not Saved Save It And Show Modal
                     if (saveDraft === false) {
                       setSaveDraft(true);
                     }
@@ -164,6 +170,7 @@ export const CreateStory = () => {
                   text: "Publish Story",
                   icon: "plus",
                   onAction: (_) => {
+                    // Publish Story Logic
                     console.log("Saved As Draft");
                     setPublish(true);
                   },
