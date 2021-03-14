@@ -32,6 +32,7 @@ export const CreateStory = () => {
   const [saveDraft, setSaveDraft] = useState(false);
   const [user, setUser] = useState({});
 
+  // Set User On Page Load
   useEffect(() => {
     const currentUser: any = getCurrentUser();
     setUser(currentUser);
