@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import "../styles/MyStories.css";
 import { GET_ALL_STORIES } from "../apollo/Queries";
-import { Button } from "@chakra-ui/react";
 import Divider from "@material-ui/core/Divider";
 import { Link } from "react-router-dom";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
@@ -12,10 +11,7 @@ import { getCurrentUser } from "../utils/getCurrentUser";
 
 // My Stories Component
 export const MyStories = () => {
-  // Limit For Stories
-  const [limit, setLimit] = useState(3);
-
-  // Current User Id
+  // Current User Id State
   const [user, setUser] = useState({});
 
   // On Page Load Set User
@@ -25,17 +21,13 @@ export const MyStories = () => {
   }, []);
 
   // Query The Stories
-  const { data, loading, fetchMore } = useQuery(GET_ALL_STORIES, {
+  const { data, loading } = useQuery(GET_ALL_STORIES, {
     variables: { authorid: (user as any).id },
   });
 
   // If Loading Return To Client
   if (loading) {
     return <h1>LOADING...</h1>;
-  }
-
-  if (data) {
-    console.log(data);
   }
 
   // Return MyStories Markup
@@ -62,7 +54,6 @@ export const MyStories = () => {
                       fontFamily: "Playfair Display",
                     }}
                   >
-                    {" "}
                     {story.title}
                   </h1>
                   <time
@@ -76,7 +67,7 @@ export const MyStories = () => {
                   <br />
                   <p
                     className="articles__article-card__bottom__date-title__date letter-spacing font-weight-bold text-center"
-                    // style={{ overflowY: "auto" }}
+                    style={{ overflowY: "auto" }}
                   >
                     Preview: {previewText.substring(0, 10)}...
                   </p>
