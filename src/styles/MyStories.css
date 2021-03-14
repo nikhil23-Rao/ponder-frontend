@@ -1,83 +1,156 @@
-.articles {
-  width: 95%;
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
-/* ARTICLE CARDS */
-
-.articles__article-card {
-  height: 500px;
-  width: 300px;
-  cursor: pointer;
-  margin-bottom: 40px;
-  transition: transform 0.2s;
-  display: inline-block;
-  -webkit-box-shadow: 3px 3px 5px 6px #ccc; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
-  -moz-box-shadow: 3px 3px 5px 6px #ccc; /* Firefox 3.5 - 3.6 */
-  box-shadow: 3px 3px 5px 6px #ccc;
-  grid-column-start: 1;
-}
-
-.articles__article-card:hover {
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
-  transform: scale(1.1);
-  box-shadow: 50px black;
-  transition: transform 0.7s;
-  -webkit-box-shadow: 3px 3px 5px 6px #ccc; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
-  -moz-box-shadow: 3px 3px 5px 6px #ccc; /* Firefox 3.5 - 3.6 */
-  box-shadow: 3px 3px 5px 6px #ccc;
 }
-
-/* ARTICLE CARDS - TOP */
-
-.articles__article-card__top {
-  background-size: cover;
-  height: 45%;
+body {
+  background: #f2f2f2;
+  font-family: "proxima-soft", san-serif;
+  font-size: 14px;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+a {
+  text-decoration: none;
+  font-weight: 600;
+  color: #000;
+  font-weight: 500;
+}
+.container {
+  margin: 0 auto;
+}
+header {
+  height: 53px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 50px 0;
+}
+header h1 {
+  font-size: 24px;
+  font-weight: 400;
+  color: #333;
+  padding: 0;
+  margin: 0 0 15px;
+}
+header span i.fa {
+  color: #e74c3c;
+}
+header span {
+  font-size: 12px;
+  color: #333;
+}
+main {
+  display: flex;
+}
+.normal,
+.hover {
+  flex: 1;
+  padding: 0 25px;
+}
+.demo-title {
+  color: #666;
+  margin: 0 0 15px;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.module {
+  min-width: 270px;
+  height: 470px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+  transition: all 0.3s linear 0s;
+  overflow: hidden;
   position: relative;
 }
+.module:hover {
+  box-shadow: 0 1px 35px 0 rgba(0, 0, 0, 0.3);
+}
+.thumbnail {
+  position: relative;
+  overflow: hidden;
+  background: black;
+}
+.thumbnail img {
+  width: 120%;
+  transition: all 0.3s;
+}
+.module:hover .thumbnail img {
+  transform: scale(1.1);
+  opacity: 0.6;
+}
 
-.articles__article-card__top__article-cat {
-  background: white;
-  padding: 5px 10px;
-  border-radius: 6px;
-  color: black;
+.thumbnail .date {
   position: absolute;
-  border: 2px solid;
-  border-color: cornflowerblue;
-  font-family: "Playfair Display";
-  font-weight: 200;
-}
-
-/* ARTICLE CARDS - BOTTOM */
-
-.articles__article-card__bottom__date-title {
-  padding: 15px;
-}
-
-.articles__article-card__bottom__date-title__date {
-  font-size: 13px;
-  color: #99a7b0;
-  font-family: "Libre Franklin", sans-serif;
-  align-items: center;
-  justify-content: center;
+  top: 20px;
+  right: 20px;
+  background: #e74c3c;
+  padding-top: 10px;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 100%;
+  height: 55px;
+  width: 55px;
   display: flex;
-  font-weight: 200;
-}
-
-.articles__article-card__bottom__date-title__title {
-  margin-top: 6px;
-  font-family: "Playfair Display", sans-serif;
-  color: #283d4a;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  display: flex;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+.date div:first-child {
+  font-size: 18px;
+  line-height: 1.2;
+}
+.content {
+  position: absolute;
+  width: 100%;
+  height: 178px;
+  bottom: 0;
+  background: #fff;
+  padding: 30px;
+  transition: all 0.3s cubic-bezier(0.37, 0.75, 0.61, 1.05) 0s;
+}
+.module:hover .content {
+  height: 278px;
 }
 
-/* UTILITY CLASSES */
-
-.letter-spacing {
-  letter-spacing: 0.05em;
+.content .category {
+  position: absolute;
+  top: -34px;
+  left: 0;
+  color: #fff;
+  text-transform: uppercase;
+  background: #e74c3c;
+  padding: 10px 15px;
+  font-weight: bold;
+}
+.title {
+  margin: 0;
+  padding: 0 0 10px;
+  color: #333333;
+  font-size: 24px;
+  font-weight: 700;
+}
+.sub-title {
+  margin: 0;
+  padding: 0 0 20px;
+  color: #e74c3c;
+  font-size: 20px;
+  font-weight: 400;
+}
+.description {
+  color: #666666;
+  font-size: 14px;
+  line-height: 1.8em;
+  height: 0;
+  opacity: 1;
+  transition: all 0.3s cubic-bezier(0.37, 0.75, 0.61, 1.05) 0s;
+  overflow: hidden;
+}
+.module:hover .description {
+  height: 100px;
+}
+.meta {
+  margin: 30px 0 0;
+  color: #999999;
 }

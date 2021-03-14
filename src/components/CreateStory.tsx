@@ -1,7 +1,6 @@
 // Modules Imported For Use
 import React, { useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
-import "../styles/editor.css";
 import {
   SAVE_DRAFT_CONTENT,
   SAVE_DRAFT_TITLE_AND_IMAGEURL,
@@ -134,6 +133,7 @@ export const CreateStory = () => {
         <Editor
           initialValue=""
           init={{
+            mode: "exact",
             codesample_languages: [
               { text: "HTML/XML", value: "markup" },
               { text: "JavaScript", value: "javascript" },
@@ -159,9 +159,6 @@ export const CreateStory = () => {
               "codesample",
               "formatselect",
               "textcolor",
-              "alignleft",
-              "aligncenter",
-              "alignright",
               "fontsizeselect",
             ],
             toolbar: !publish ? "Publish | SaveDraft" : false,
