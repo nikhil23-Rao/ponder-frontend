@@ -1,5 +1,5 @@
 // Modules Imported For Use
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import "../styles/MyStories.css";
 import { GET_ALL_STORIES } from "../apollo/Queries";
@@ -8,15 +8,25 @@ import Divider from "@material-ui/core/Divider";
 import { Link } from "react-router-dom";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import "../styles/Grid.css";
+import { getCurrentUser } from "../utils/getCurrentUser";
 
 // My Stories Component
 export const MyStories = () => {
-  // Limit For Stories`
+  // Limit For Stories
   const [limit, setLimit] = useState(3);
+
+  // Current User Id
+  const [user, setUser] = useState({});
+
+  // On Page Load Set User
+  useEffect(() => {
+    const currentUser: any = getCurrentUser();
+    setUser(currentUser);
+  }, []);
 
   // Query The Stories
   const { data, loading, fetchMore } = useQuery(GET_ALL_STORIES, {
-    variables: { offset: 0, limit },
+    variables: { authorid: (user as any).id },
   });
 
   // If Loading Return To Client
@@ -24,13 +34,20 @@ export const MyStories = () => {
     return <h1>LOADING...</h1>;
   }
 
+  if (data) {
+    console.log(data);
+  }
+
   // Return MyStories Markup
   return (
     <React.Fragment>
       {data.GetAllStories.map((story: any) => {
+        // Preview Text
         const previewText = story.content.replace(/<[^>]+>/g, "");
+
+        // Return Article Cards
         return (
-          <div key={story.id} className="grid-container ml-5 mr-5">
+          <div key={story.id} className="grid-container ml-5 mr-4">
             <article className="articles__article-card mr-5 mt-5 ml-5">
               <div className="articles__article-card__top">
                 <img src={story.image_url} alt="" />
@@ -72,7 +89,7 @@ export const MyStories = () => {
                       overflowY: "auto",
                     }}
                   >
-                    By: {story.author.username}
+                    By: {(user as any).username}
                   </time>
                 </div>
               </div>
@@ -80,34 +97,6 @@ export const MyStories = () => {
           </div>
         );
       })}
-      <div className="bottom mb-4 text-center">
-        <Button
-          id="btn-load"
-          isLoading={loading}
-          onClick={() => {
-            // Get Data Length
-            const dataLen = data.GetAllStories.length;
-
-            // Fetch More Stories (If There)
-            fetchMore({
-              variables: {
-                offset: dataLen,
-                limit: 2,
-              },
-            }).then((res: any) => {
-              // Show Stories Requested To Client
-              setLimit(dataLen + res.data.GetAllStories.length);
-              // If No More Stories To Fetch Remove Load More Button
-              if (res.data.GetAllStories.length === 0) {
-                const btn = document.getElementById("btn-load");
-                btn?.parentNode?.removeChild(btn);
-              }
-            });
-          }}
-        >
-          Load More...
-        </Button>
-      </div>
       <div>
         <Link
           to="/create-story"

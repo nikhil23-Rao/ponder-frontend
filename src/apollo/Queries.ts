@@ -7,17 +7,13 @@ export const GET_ID_QUERY = gql`
 `;
 
 export const GET_ALL_STORIES = gql`
-  query GetAllStories($limit: Int, $offset: Int) {
-    GetAllStories(limit: $limit, offset: $offset) {
+  query GetAllStories($authorid: Int) {
+    GetAllStories(authorid: $authorid) {
       content
       image_url
       title
       id
-      author {
-        id
-        username
-        email
-      }
+      authorid
       category
       date_created
     }

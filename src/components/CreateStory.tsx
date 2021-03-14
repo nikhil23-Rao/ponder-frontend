@@ -75,8 +75,8 @@ export const CreateStory = () => {
                   });
                   // Close Modal
                   setSaveDraft(false);
-                  // Push To My Stories Page
-                  history.push("/my-stories");
+                  // Replace Route To My Stories Page
+                  history.replace("/my-stories");
                 }}
                 validationSchema={StoryValidationSchema}
               >
@@ -185,7 +185,7 @@ export const CreateStory = () => {
                     SaveDraftContent({
                       variables: {
                         content,
-                        author: user,
+                        authorid: (user as any).id,
                         date_created,
                       },
                     });

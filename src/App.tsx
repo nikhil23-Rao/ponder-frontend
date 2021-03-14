@@ -8,6 +8,7 @@ import { Signup } from "./components/Signup";
 import { CreateStory } from "./components/CreateStory";
 import { MyStories } from "./components/MyStories";
 import { NotFound } from "./components/Not-Found";
+import { LandingPage } from "./components/LandingPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/signup" exact component={Signup} />
         <Route path="/login" exact component={Login} />
         <Route path="/home" exact component={Home} />
+        <Route path="/" exact component={LandingPage} />
         <Redirect to="/404-not-found" />
       </Switch>
     </React.Fragment>

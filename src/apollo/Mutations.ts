@@ -33,12 +33,12 @@ export const OAUTH_LOGIN_USER = gql`
 export const SAVE_DRAFT_CONTENT = gql`
   mutation SaveDraftContent(
     $content: String
-    $author: UserInput
+    $authorid: Int
     $date_created: String
   ) {
     SaveDraftContent(
       content: $content
-      author: $author
+      authorid: $authorid
       date_created: $date_created
     )
   }
