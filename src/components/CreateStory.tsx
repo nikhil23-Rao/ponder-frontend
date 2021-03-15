@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 import { DraftailEditor } from "draftail";
 import { EditorState, convertToRaw } from "draft-js";
@@ -6,6 +7,11 @@ import createSideToolbarPlugin from "@draft-js-plugins/side-toolbar";
 import createImagePlugin from "@draft-js-plugins/image";
 import createLinkifyPlugin from "@draft-js-plugins/linkify";
 import createAlignmentPlugin from "@draft-js-plugins/alignment";
+=======
+// Modules Imported For Use
+import React, { useState } from "react";
+import { Editor } from "@tinymce/tinymce-react";
+>>>>>>> parent of 40279a5 (New UI For Cards.)
 import "../styles/editor.css";
 import {
   ItalicButton,
@@ -63,6 +69,7 @@ export class CreateStory extends React.Component<Props, State> {
     console.log("Content:", convertToRaw(contentState));
   };
 
+<<<<<<< HEAD
   render() {
     return (
       <React.Fragment>
@@ -105,3 +112,93 @@ export class CreateStory extends React.Component<Props, State> {
     );
   }
 }
+=======
+  // Return TinyMCE Editor
+  return (
+    <React.Fragment>
+      {saveDraft && SaveDraftModal()}
+      <div>
+        <Editor
+          initialValue=""
+          init={{
+            codesample_languages: [
+              { text: "HTML/XML", value: "markup" },
+              { text: "JavaScript", value: "javascript" },
+              { text: "CSS", value: "css" },
+              { text: "PHP", value: "php" },
+              { text: "Ruby", value: "ruby" },
+              { text: "Python", value: "python" },
+              { text: "Java", value: "java" },
+              { text: "C", value: "c" },
+              { text: "C#", value: "csharp" },
+              { text: "C++", value: "cpp" },
+            ],
+            placeholder: "Write your story...",
+            height: "100vh",
+            menubar: false,
+            automatic_uploads: true,
+            plugins: [
+              "quickbars",
+              "link",
+              "image",
+              "media",
+              "print",
+              "codesample",
+              "formatselect",
+              "textcolor",
+              "alignleft",
+              "aligncenter",
+              "alignright",
+              "fontsizeselect",
+            ],
+            toolbar: !publish ? "Publish | SaveDraft" : false,
+            quickbars_insert_toolbar:
+              "quicktable image media codesample formatselect fontsizeselect forecolor backcolor |  alignleft aligncenter alignright",
+            quickbars_selection_toolbar:
+              "bold underline italic link fontsizeselect |  alignleft aligncenter alignright",
+            setup: (editor) => {
+              if (!publish) {
+                // When Not Published Show ToolBar
+                editor.ui.registry.addButton("SaveDraft", {
+                  text: "Save As Draft",
+                  icon: "document-properties",
+                  onAction: (_) => {
+                    // If Draft Not Saved Save It And Show Modal
+                    if (saveDraft === false) {
+                      setSaveDraft(true);
+                    }
+                    // Save Draft To DB
+                    const date_created = GetDate();
+                    const content = editor.getContent();
+                    SaveDraftContent({
+                      variables: {
+                        content,
+                        authorid: (user as any).id,
+                        date_created,
+                      },
+                    });
+                  },
+                });
+                editor.ui.registry.addButton("Publish", {
+                  text: "Publish Story",
+                  icon: "plus",
+                  onAction: (_) => {
+                    // Publish Story Logic
+                    console.log("Saved As Draft");
+                    setPublish(true);
+                  },
+                });
+              } else {
+                return null;
+              }
+            },
+          }}
+          apiKey={"ilz513cziydz1sp6f5za1c1ggtokkpr0txis91czgb6tvtx2"}
+          onEditorChange={handleEditorChange}
+          disabled={publish}
+        />
+      </div>
+    </React.Fragment>
+  );
+};
+>>>>>>> parent of 40279a5 (New UI For Cards.)

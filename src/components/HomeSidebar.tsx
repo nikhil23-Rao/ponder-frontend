@@ -80,7 +80,6 @@ function Sidebar(props: any) {
           (text, index) => (
             <ListItem
               button
-              key={text}
               onClick={() => {
                 if (text === "Create A Story") {
                   return history.push("/create-story");
