@@ -1,13 +1,12 @@
 import React from "react";
 import { DraftailEditor } from "draftail";
-import { EditorState } from "draft-js";
+import { EditorState, convertToRaw } from "draft-js";
 import createInlineToolbarPlugin from "draft-js-inline-toolbar-plugin";
 import createSideToolbarPlugin from "draft-js-side-toolbar-plugin";
 import createImagePlugin from "@draft-js-plugins/image";
 import createLinkifyPlugin from "@draft-js-plugins/linkify";
 import "../styles/editor.css";
-
-import { Button } from "@chakra-ui/react";
+import { TextField } from "@material-ui/core";
 import {
   ItalicButton,
   BoldButton,
@@ -21,6 +20,7 @@ import {
   BlockquoteButton,
   CodeBlockButton,
 } from "draft-js-buttons";
+import { Flex } from "@chakra-ui/layout";
 
 const linkifyPlugin = createLinkifyPlugin({
   component: (props: any) => {
@@ -72,22 +72,32 @@ export interface State {
 
 export class CreateStory extends React.Component<Props, State> {
   state = { editorState: EditorState.createEmpty() };
-  changeState = (editorState: EditorState) => {
+  handleChange = (editorState: EditorState) => {
+    const contentState = editorState.getCurrentContent();
     this.setState({ editorState });
-    console.log("Content:", editorState);
+    console.log("Content:", convertToRaw(contentState));
   };
 
   render() {
     return (
       <React.Fragment>
-        <div className="topright">
-          <Button>SAVE DRAFT</Button>
+        <div className="mt-5">
+          <input
+            style={{
+              width: "1000px",
+              outline: "none",
+              fontSize: "30pt",
+              marginLeft: "20.4%",
+              fontWeight: "bold",
+            }}
+            placeholder="Your Title Here"
+          />
         </div>
         <div className="editor">
           <DraftailEditor
             autoComplete={true}
             editorState={this.state.editorState}
-            onChange={this.changeState}
+            onChange={this.handleChange}
             placeholder="Write your story..."
             plugins={plugins}
           />
