@@ -9,10 +9,11 @@ import { ChakraProvider } from "@chakra-ui/react";
 import "react-toastify/dist/ReactToastify.css";
 import "draft-js/dist/Draft.css";
 import "draftail/dist/draftail.css";
-import "draft-js-inline-toolbar-plugin/lib/plugin.css";
-import "draft-js-side-toolbar-plugin/lib/plugin.css";
+import "@draft-js-plugins/inline-toolbar/lib/plugin.css";
+import "@draft-js-plugins/side-toolbar/lib/plugin.css";
 import "@draft-js-plugins/image/lib/plugin.css";
 import "@draft-js-plugins/linkify/lib/plugin.css";
+import "@draft-js-plugins/alignment/lib/plugin.css";
 
 const createHistory = require("history").createBrowserHistory;
 

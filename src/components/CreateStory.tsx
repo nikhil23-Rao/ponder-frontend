@@ -1,26 +1,26 @@
 import React from "react";
 import { DraftailEditor } from "draftail";
 import { EditorState, convertToRaw } from "draft-js";
-import createInlineToolbarPlugin from "draft-js-inline-toolbar-plugin";
-import createSideToolbarPlugin from "draft-js-side-toolbar-plugin";
+import createInlineToolbarPlugin from "@draft-js-plugins/inline-toolbar";
+import createSideToolbarPlugin from "@draft-js-plugins/side-toolbar";
 import createImagePlugin from "@draft-js-plugins/image";
 import createLinkifyPlugin from "@draft-js-plugins/linkify";
+import createAlignmentPlugin from "@draft-js-plugins/alignment";
 import "../styles/editor.css";
-import { TextField } from "@material-ui/core";
 import {
   ItalicButton,
   BoldButton,
   UnderlineButton,
   CodeButton,
-  HeadlineOneButton,
-  HeadlineTwoButton,
-  HeadlineThreeButton,
   UnorderedListButton,
   OrderedListButton,
   BlockquoteButton,
   CodeBlockButton,
 } from "draft-js-buttons";
-import { Flex } from "@chakra-ui/layout";
+import { Button } from "@material-ui/core";
+
+const alignmentPlugin = createAlignmentPlugin();
+const { AlignmentTool } = alignmentPlugin;
 
 const linkifyPlugin = createLinkifyPlugin({
   component: (props: any) => {
@@ -38,22 +38,7 @@ const linkifyPlugin = createLinkifyPlugin({
   },
 });
 const imagePlugin = createImagePlugin();
-const inlineToolbarPlugin = createInlineToolbarPlugin({
-  structure: [
-    ItalicButton,
-    BoldButton,
-    UnderlineButton,
-    CodeButton,
-    HeadlineOneButton,
-    HeadlineTwoButton,
-    HeadlineThreeButton,
-    UnorderedListButton,
-    OrderedListButton,
-    BlockquoteButton,
-    CodeBlockButton,
-  ],
-});
-const { InlineToolbar } = inlineToolbarPlugin;
+const inlineToolbarPlugin = createInlineToolbarPlugin();
 const sideToolbarPlugin = createSideToolbarPlugin();
 const { SideToolbar } = sideToolbarPlugin;
 
@@ -95,29 +80,26 @@ export class CreateStory extends React.Component<Props, State> {
         </div>
         <div className="editor">
           <DraftailEditor
-            autoComplete={true}
             editorState={this.state.editorState}
             onChange={this.handleChange}
             placeholder="Write your story..."
             plugins={plugins}
           />
-          <InlineToolbar>
-            {(externalProps: any) => (
-              <>
-                <ItalicButton {...externalProps} />
-                <BoldButton {...externalProps} />
-                <UnderlineButton {...externalProps} />
-                <UnorderedListButton {...externalProps} />
-                <HeadlineOneButton {...externalProps} />
-                <HeadlineTwoButton {...externalProps} />
-                <HeadlineThreeButton {...externalProps} />
-                <OrderedListButton {...externalProps} />
-                <CodeBlockButton {...externalProps} />
-                <BlockquoteButton {...externalProps} />
-              </>
-            )}
-          </InlineToolbar>
           <SideToolbar />
+          <inlineToolbarPlugin.InlineToolbar>
+            {(externalProps: any) => (
+              <div>
+                <BoldButton {...externalProps} />
+                <ItalicButton {...externalProps} />
+                <UnderlineButton {...externalProps} />
+                <CodeButton {...externalProps} />
+                <UnorderedListButton {...externalProps} />
+                <OrderedListButton {...externalProps} />
+                <BlockquoteButton {...externalProps} />
+                <CodeBlockButton {...externalProps} />
+              </div>
+            )}
+          </inlineToolbarPlugin.InlineToolbar>
         </div>
       </React.Fragment>
     );

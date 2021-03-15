@@ -1673,6 +1673,14 @@
   resolved "https://registry.yarnpkg.com/@csstools/normalize.css/-/normalize.css-10.1.0.tgz#f0950bba18819512d42f7197e56c518aa491cf18"
   integrity sha512-ij4wRiunFfaJxjB0BdrYHIH8FxBJpOwNPhhAcunlmPdXudL1WQV1qoP9un6JsEBAgQH+7UXyyjh0g7jTxXK6tg==
 
+"@draft-js-plugins/alignment@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@draft-js-plugins/alignment/-/alignment-4.1.0.tgz#5285389d03bde78d9dd3eaf5cbc0ce4f75c9d664"
+  integrity sha512-pGdW7noIfBIxeFTt8PmQFGS7R5l/Bbxt/8KcZK1gb3CPKOYu9xaFdj9o1eIPBCx9UOfoIz2ccGICiuOANhMSWg==
+  dependencies:
+    "@draft-js-plugins/buttons" "^4.0.0"
+    "@draft-js-plugins/utils" "^4.0.0"
+
 "@draft-js-plugins/anchor@^4.1.2":
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/@draft-js-plugins/anchor/-/anchor-4.1.2.tgz#63d6c246c5b530e1dff4f4efae41e265aa1900f8"
@@ -1683,6 +1691,13 @@
     prepend-http "3"
     prop-types "^15.5.8"
     tlds "^1.218.0"
+
+"@draft-js-plugins/buttons@^4.0.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@draft-js-plugins/buttons/-/buttons-4.1.0.tgz#8a330fc93aa302caac9df9f888821ddacc975459"
+  integrity sha512-sGt5mSo6TwX53EYCHgF7KnwTJCT0OBHbWlvB0UG7aUSK2oiT2QD+z51o3d/BvM7105m/rdLA8WCeWW23tw771Q==
+  dependencies:
+    clsx "^1.0.4"
 
 "@draft-js-plugins/editor@^4.1.0":
   version "4.1.0"
@@ -1699,6 +1714,14 @@
   dependencies:
     clsx "^1.0.4"
 
+"@draft-js-plugins/inline-toolbar@^4.1.1":
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/@draft-js-plugins/inline-toolbar/-/inline-toolbar-4.1.1.tgz#c697fea474e391bfc167b03229f2c23ab03aeb11"
+  integrity sha512-YS3aN5d262j1eYSUctIcsWb1GYyoWn4sZdszbsf9+kJP7+jlTknp0D2s7ShBRKF2UNLrC2i8D3Z8lHyXEJkByw==
+  dependencies:
+    "@draft-js-plugins/buttons" "^4.0.0"
+    "@draft-js-plugins/utils" "^4.0.0"
+
 "@draft-js-plugins/linkify@^4.1.0":
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/@draft-js-plugins/linkify/-/linkify-4.1.0.tgz#b95033d7995d935e4439fb36ec0c3d9634799cad"
@@ -1707,6 +1730,15 @@
     clsx "^1.0.4"
     linkify-it "^3.0.2"
     tlds "^1.216.0"
+
+"@draft-js-plugins/side-toolbar@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@draft-js-plugins/side-toolbar/-/side-toolbar-4.1.0.tgz#7650601775948faebf374b17f1b12474a95a89d0"
+  integrity sha512-HVZ9XMVQtpL2vmqwqtxDSY7IryjK3Vd0dBakhc7+Rax47DadTctgbJG59eF6w/C8pcQTqOCHANuyJvOLUihm2g==
+  dependencies:
+    "@draft-js-plugins/buttons" "^4.0.0"
+    "@draft-js-plugins/utils" "^4.0.0"
+    prop-types "^15.5.8"
 
 "@draft-js-plugins/utils@^4.0.0":
   version "4.1.0"
@@ -5232,13 +5264,6 @@ draft-js-buttons@^2.0.1:
   integrity sha512-qC3vkZ4ZvKe86Uskf5CsZxgo4Rt6ITAE51sbiI5YCMasanXdMVRwbF4fQonMyahds1tgj9EeBNePOBnlKTz9gQ==
   dependencies:
     clsx "^1.0.4"
-
-draft-js-inline-toolbar-plugin@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/draft-js-inline-toolbar-plugin/-/draft-js-inline-toolbar-plugin-3.0.1.tgz#2fc9da3d64c4b932c1edcccf6e32ace85de7c983"
-  integrity sha512-x3DyHKOnjTWHTn73Cb8ahfncKZvNECU+uuUOCq5LYCekCR7PFoHQnYIWXjoM6Mo+b7MBAsEY0uatW1N/KxinMw==
-  dependencies:
-    draft-js-buttons "^2.0.1"
 
 draft-js-plugins-editor@^2.1.1:
   version "2.1.1"
