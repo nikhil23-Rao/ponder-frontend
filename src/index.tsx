@@ -7,7 +7,14 @@ import "bootstrap/dist/css/bootstrap.css";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { ChakraProvider } from "@chakra-ui/react";
 import "react-toastify/dist/ReactToastify.css";
-import "react-pro-sidebar/dist/css/styles.css";
+import "draft-js/dist/Draft.css";
+import "draftail/dist/draftail.css";
+import "@draft-js-plugins/inline-toolbar/lib/plugin.css";
+import "@draft-js-plugins/side-toolbar/lib/plugin.css";
+import "@draft-js-plugins/image/lib/plugin.css";
+import "@draft-js-plugins/linkify/lib/plugin.css";
+import "@draft-js-plugins/alignment/lib/plugin.css";
+
 const createHistory = require("history").createBrowserHistory;
 
 // Create New Apollo Client
@@ -20,7 +27,7 @@ export const history = createHistory({ forceRefresh: true });
 
 // Render React DOM
 ReactDOM.render(
-  <React.StrictMode>
+  <React.Fragment>
     <ApolloProvider client={client}>
       <ChakraProvider>
         <Router>
@@ -28,6 +35,6 @@ ReactDOM.render(
         </Router>
       </ChakraProvider>
     </ApolloProvider>
-  </React.StrictMode>,
+  </React.Fragment>,
   document.getElementById("root")
 );

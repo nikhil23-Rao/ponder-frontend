@@ -1,5 +1,22 @@
-.topright-editor {
-  position: absolute;
-  top: 3px;
-  right: 7px;
+.editor {
+  font-family: sans-serif;
+  text-align: center;
+  display: block;
+}/* Override default */
+.Draftail-Toolbar {
+  background: transparent !important;
+  border: none !important;
+}/* Override default */
+.Draftail-Editor {
+  border: none !important;
+  width: 60% !important;
+  margin-top: 15px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}/* Override default */
+.public-DraftEditor-content {
+  font-family: Georgia, "Times New Roman", Times, serif !important;
+}/* Override default */
+.public-DraftEditorPlaceholder-inner {
+  font-family: Georgia, "Times New Roman", Times, serif !important;
 }

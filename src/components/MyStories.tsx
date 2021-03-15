@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import "../styles/MyStories.css";
 import { GET_ALL_STORIES } from "../apollo/Queries";
-import Divider from "@material-ui/core/Divider";
 import { Link } from "react-router-dom";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import "../styles/Grid.css";
@@ -12,7 +11,7 @@ import { getCurrentUser } from "../utils/getCurrentUser";
 // My Stories Component
 export const MyStories = () => {
   // Current User Id State
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({ username: "" });
 
   // On Page Load Set User
   useEffect(() => {
@@ -39,52 +38,38 @@ export const MyStories = () => {
 
         // Return Article Cards
         return (
-          <div key={story.id} className="grid-container ml-5 mr-4">
-            <article className="articles__article-card mr-5 mt-5 ml-5">
-              <div className="articles__article-card__top">
-                <img src={story.image_url} alt="" />
-              </div>
-              <Divider />
-              <div className="articles__article-card__bottom">
-                <div className="articles__article-card__bottom__date-title">
-                  <h1
-                    className="articles__article-card__bottom__date-title__title font-weight-bold"
-                    style={{
-                      fontSize: "30px",
-                      fontFamily: "Playfair Display",
-                    }}
-                  >
-                    {story.title}
-                  </h1>
-                  <time
-                    className="articles__article-card__bottom__date-title__date letter-spacing font-weight-bold"
-                    dateTime="2019-02-02"
-                  >
-                    Created: {story.date_created}
-                  </time>
-                  <br />
-                  <Divider />
-                  <br />
-                  <p
-                    className="articles__article-card__bottom__date-title__date letter-spacing font-weight-bold text-center"
-                    style={{ overflowY: "auto" }}
-                  >
-                    Preview: {previewText.substring(0, 10)}...
-                  </p>
-                  <time
-                    className="articles__article-card__bottom__date-title__date letter-spacing font-weight-bold"
-                    dateTime="2019-02-02"
-                    style={{
-                      marginTop: "38%",
-                      marginLeft: "60%",
-                      overflowY: "auto",
-                    }}
-                  >
-                    By: {(user as any).username}
-                  </time>
+          <div
+            className="container mt-5"
+            style={{ width: "600px", height: "400px", display: "inline-grid" }}
+          >
+            <div>
+              <div className="normal">
+                <div className="module">
+                  <div className="thumbnail">
+                    <img src={story.image_url} alt="" />
+                    <div className="date">
+                      <div>27</div>
+                      <div>Mar</div>
+                    </div>
+                  </div>
+                  <div className="content">
+                    <div className="category">{story.category}</div>
+                    <h1 className="title">{story.title}</h1>
+                    <h2 className="sub-title">By: {user.username}</h2>
+                    <div className="description">{previewText}</div>
+                    <div className="meta">
+                      <span className="timestamp">
+                        <i className="fa fa-clock-o"></i> 6 mins ago
+                      </span>
+                      <span className="comments">
+                        <i className="fa fa-comments"></i>
+                        <a href="/"> 39 comments</a>
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </article>
+            </div>
           </div>
         );
       })}
