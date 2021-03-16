@@ -18,12 +18,13 @@ export const CreateStory = () => {
             outline: "none",
             fontSize: "30pt",
             marginLeft: "13.8%",
+            whiteSpace: "normal",
             fontWeight: "bold",
           }}
           placeholder="Your Title Here"
         />
       </div>
-      <div style={{ marginLeft: "13%" }}>
+      <div style={{ marginLeft: "13%", overflow: "hidden" }}>
         <Editor
           initialValue=""
           init={{
@@ -64,7 +65,7 @@ export const CreateStory = () => {
             ],
             toolbar: false,
             quickbars_insert_toolbar:
-              "quicktable image media codesample formatselect fontsizeselect forecolor backcolor |  alignleft aligncenter alignright",
+              "quicktable image link media codesample formatselect fontsizeselect forecolor backcolor |  alignleft aligncenter alignright",
             quickbars_selection_toolbar:
               "bold underline italic link fontsizeselect |  alignleft aligncenter alignright",
           }}
