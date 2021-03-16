@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import "../styles/editor.css";
+import SaveDraftModal from "./SaveDraft";
 
 export const CreateStory = () => {
   const handleEditorChange = () => {
@@ -11,6 +12,7 @@ export const CreateStory = () => {
   // Return TinyMCE Editor
   return (
     <React.Fragment>
+      <SaveDraftModal />
       <div className="mt-5">
         <input
           style={{
