@@ -8,6 +8,8 @@ import { TextField } from "@material-ui/core";
 import { useMutation } from "@apollo/client";
 import { getCurrentUser } from "../utils/getCurrentUser";
 import "../styles/Modal.css";
+import { Prompt } from "react-router-dom";
+import { history } from "../index";
 import {
   Modal,
   ModalOverlay,
@@ -25,15 +27,20 @@ export const CreateStory = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [user, setUser] = useState({});
+  const [draftSaved, setDraftSaved] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
     const currentUser: any = getCurrentUser();
     setUser(currentUser);
-  }, []);
+    if (!draftSaved) {
+      window.onbeforeunload = () => true;
+    } else {
+      (window.onbeforeunload as any) = undefined;
+    }
+  }, [draftSaved]);
 
   const [SaveDraft] = useMutation(SAVE_DRAFT);
-
   const handleEditorChange = (content: string, editor: any) => {
     console.log("Content was updated:", content);
     setContent(content);
@@ -50,15 +57,25 @@ export const CreateStory = () => {
         authorid: (user as any).id,
       },
     });
+
     onClose();
+    history.replace("my-stories");
   };
 
   // Return TinyMCE Editor
   return (
     <React.Fragment>
+      <Prompt when={!draftSaved} message="Are You Sure You Want To Leave" />
       <div>
         <div style={{ top: -40, right: 8, position: "absolute" }}>
-          <Button variant="outlined" color="primary" onClick={onOpen}>
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={() => {
+              onOpen();
+              setDraftSaved(true);
+            }}
+          >
             Save As Draft
           </Button>
         </div>

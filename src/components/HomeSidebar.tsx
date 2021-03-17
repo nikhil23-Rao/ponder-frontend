@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Sidebar(props: any) {
-  const { window } = props;
+  const { window: screenWindow } = props;
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -83,7 +83,7 @@ function Sidebar(props: any) {
               button
               onClick={() => {
                 if (text === "Create A Story") {
-                  return history.push("/create-story");
+                  window.location.href = "/create-story";
                 }
                 if (text === "My Stories") {
                   return history.push("/my-stories");
@@ -116,7 +116,7 @@ function Sidebar(props: any) {
   );
 
   const container =
-    window !== undefined ? () => window().document.body : undefined;
+    screenWindow !== undefined ? () => screenWindow().document.body : undefined;
 
   return (
     <div className={classes.root}>
