@@ -2,7 +2,7 @@ import React from "react";
 import { FieldAttributes, useField } from "formik";
 import { TextField } from "@material-ui/core";
 
-export const StoryTitleTextField: React.FC<FieldAttributes<{}>> = ({
+export const StoryTextField: React.FC<FieldAttributes<{}>> = ({
   placeholder,
   ...props
 }) => {

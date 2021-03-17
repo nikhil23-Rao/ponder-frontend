@@ -1,18 +1,107 @@
 // Modules Imported For Use
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import "../styles/editor.css";
-import SaveDraftModal from "./SaveDraft";
+import Button from "@material-ui/core/Button";
+import { SAVE_DRAFT } from "../apollo/Mutations";
+import { TextField } from "@material-ui/core";
+import { useMutation } from "@apollo/client";
+import { getCurrentUser } from "../utils/getCurrentUser";
+import "../styles/Modal.css";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+} from "@chakra-ui/react";
 
 export const CreateStory = () => {
-  const handleEditorChange = () => {
-    console.log("object");
+  const [imageUrl, setImageUrl] = useState("");
+  const [category, setCategory] = useState("");
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [user, setUser] = useState({});
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  useEffect(() => {
+    const currentUser: any = getCurrentUser();
+    setUser(currentUser);
+  }, []);
+
+  const [SaveDraft] = useMutation(SAVE_DRAFT);
+
+  const handleEditorChange = (content: string, editor: any) => {
+    console.log("Content was updated:", content);
+    setContent(content);
+  };
+
+  const handleSaveDraft = () => {
+    SaveDraft({
+      variables: {
+        title,
+        content,
+        image_url: imageUrl,
+        date_created: "March 16th 2021",
+        category,
+        authorid: (user as any).id,
+      },
+    });
+    onClose();
   };
 
   // Return TinyMCE Editor
   return (
     <React.Fragment>
-      <SaveDraftModal />
+      <div>
+        <div style={{ top: -40, right: 8, position: "absolute" }}>
+          <Button variant="outlined" color="primary" onClick={onOpen}>
+            Save As Draft
+          </Button>
+        </div>
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Save Draft</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <div className="text-center mt-2">
+                <TextField
+                  style={{ width: "400px" }}
+                  value={imageUrl}
+                  variant="outlined"
+                  placeholder="Enter An Image URL To Represent Your Story"
+                  onChange={(e) => setImageUrl(e.currentTarget.value)}
+                />
+              </div>
+              <div className="text-center mt-3">
+                <TextField
+                  style={{ width: "400px" }}
+                  value={category}
+                  variant="outlined"
+                  placeholder="Enter Story Category"
+                  onChange={(e) => setCategory(e.currentTarget.value)}
+                />
+              </div>
+            </ModalBody>
+
+            <ModalFooter>
+              <div className="mx-auto">
+                <Button
+                  onClick={handleSaveDraft}
+                  variant="outlined"
+                  color="secondary"
+                >
+                  Save Draft
+                </Button>
+              </div>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+      </div>
       <div className="mt-5">
         <input
           style={{
@@ -22,6 +111,10 @@ export const CreateStory = () => {
             marginLeft: "13.8%",
             whiteSpace: "normal",
             fontWeight: "bold",
+          }}
+          value={title}
+          onChange={(e: any) => {
+            setTitle(e.currentTarget.value);
           }}
           placeholder="Your Title Here"
         />
@@ -59,7 +152,6 @@ export const CreateStory = () => {
               "print",
               "codesample",
               "formatselect",
-              "textcolor",
               "alignleft",
               "aligncenter",
               "alignright",

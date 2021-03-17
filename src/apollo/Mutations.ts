@@ -59,3 +59,23 @@ export const SAVE_DRAFT_TITLE_AND_IMAGEURL = gql`
     )
   }
 `;
+
+export const SAVE_DRAFT = gql`
+  mutation SaveDraft(
+    $title: String!
+    $authorid: Int!
+    $content: String!
+    $image_url: String
+    $category: String
+    $date_created: String
+  ) {
+    SaveDraft(
+      title: $title
+      authorid: $authorid
+      image_url: $image_url
+      content: $content
+      category: $category
+      date_created: $date_created
+    )
+  }
+`;
