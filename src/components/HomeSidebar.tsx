@@ -16,6 +16,7 @@ import WhatshotIcon from "@material-ui/icons/Whatshot";
 import SearchIcon from "@material-ui/icons/Search";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import logo from "../../src/img/litelogo.png";
 import { history } from "../index";
 
 // SideBar Width
@@ -63,7 +64,7 @@ function Sidebar(props: any) {
     <div>
       <div className={classes.toolbar}>
         <img
-          src="https://www.freelogodesign.org/file/app/client/thumb/09839970-8b55-4c6a-ac20-28d609e20871_200x200.png?1615604135722"
+          src={logo}
           className="undraggable"
           style={{
             width: "30%",
