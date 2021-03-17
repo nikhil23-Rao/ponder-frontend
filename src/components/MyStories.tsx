@@ -39,52 +39,48 @@ export const MyStories = () => {
 
         // Return Article Cards
         return (
-          <div key={story.id} className="grid-container ml-5 mr-4">
-            <article className="articles__article-card mr-5 mt-5 ml-5">
-              <div className="articles__article-card__top">
-                <img src={story.image_url} alt="" />
-              </div>
-              <Divider />
-              <div className="articles__article-card__bottom">
-                <div className="articles__article-card__bottom__date-title">
-                  <h1
-                    className="articles__article-card__bottom__date-title__title font-weight-bold"
-                    style={{
-                      fontSize: "30px",
-                      fontFamily: "Playfair Display",
-                    }}
-                  >
-                    {story.title}
-                  </h1>
-                  <time
-                    className="articles__article-card__bottom__date-title__date letter-spacing font-weight-bold"
-                    dateTime="2019-02-02"
-                  >
-                    Created: {story.date_created}
-                  </time>
-                  <br />
-                  <Divider />
-                  <br />
-                  <p
-                    className="articles__article-card__bottom__date-title__date letter-spacing font-weight-bold text-center"
-                    style={{ overflowY: "auto" }}
-                  >
-                    Preview: {previewText.substring(0, 10)}...
-                  </p>
-                  <time
-                    className="articles__article-card__bottom__date-title__date letter-spacing font-weight-bold"
-                    dateTime="2019-02-02"
-                    style={{
-                      marginTop: "38%",
-                      marginLeft: "60%",
-                      overflowY: "auto",
-                    }}
-                  >
-                    By: {(user as any).username}
-                  </time>
+          <div
+            className="container mt-5"
+            style={{ width: "400px", display: "inline-grid" }}
+          >
+            <main>
+              <div className="hover">
+                <div className="module">
+                  <div className="thumbnail">
+                    <img src={story.image_url} alt="" />
+                    <div className="date">
+                      <div>27</div>
+                      <div>Mar</div>
+                    </div>
+                  </div>
+                  <div className="content">
+                    <div
+                      className="category"
+                      style={{ fontFamily: "sans-serif" }}
+                    >
+                      {story.category}
+                    </div>
+                    <h1 className="title" style={{ fontFamily: "sans-serif" }}>
+                      {story.title}
+                    </h1>
+                    <p className="description">
+                      New York, the largest city in the U.S., is an
+                      architectural marvel with plenty of historic monuments,
+                      magnificent buildings and countless dazzling skyscrapers.
+                    </p>
+                    <div className="meta">
+                      <span className="timestamp">
+                        <i className="fa fa-clock-o"></i> 6 mins ago
+                      </span>
+                      <span className="comments">
+                        <i className="fa fa-comments"></i>
+                        <a href="#"> 39 comments</a>
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </article>
+            </main>
           </div>
         );
       })}
@@ -92,7 +88,7 @@ export const MyStories = () => {
         <Link
           to="/create-story"
           style={{
-            top: 0,
+            top: -45,
             right: 5,
             position: "absolute",
             textDecoration: "none",
