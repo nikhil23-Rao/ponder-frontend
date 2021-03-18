@@ -29,6 +29,10 @@ export const MyStories = () => {
     return <h1>LOADING...</h1>;
   }
 
+  if (data && data.GetAllStories.length === 0) {
+    return <h1>You Currently Have No Drafts</h1>;
+  }
+
   // Return MyStories Markup
   return (
     <React.Fragment>
