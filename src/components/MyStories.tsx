@@ -38,55 +38,63 @@ export const MyStories = () => {
 
         // Return Article Cards
         return (
-          <div
-            className="container mt-5"
-            key={story.id}
-            style={{ width: "20%", display: "inline-grid" }}
-          >
-            <main>
-              <div className="hover">
-                <div className="module">
-                  <div className="thumbnail">
-                    <img src={story.image_url} alt="" />
-                    <div className="date" style={{ fontFamily: "sans-serif" }}>
-                      <div>{story.date_created[1]}</div>
-                      <div>{story.date_created[0]}</div>
+          <React.Fragment>
+            <div
+              className="container mt-5"
+              key={story.id}
+              style={{ width: "20%", display: "inline-grid" }}
+            >
+              <main>
+                <div className="hover">
+                  <div className="module">
+                    <div className="thumbnail">
+                      <img src={story.image_url} alt="" />
+                      <div
+                        className="date"
+                        style={{ fontFamily: "sans-serif" }}
+                      >
+                        <div>{story.date_created[1]}</div>
+                        <div>{story.date_created[0]}</div>
+                      </div>
                     </div>
-                  </div>
-                  <div className="content">
-                    <div
-                      className="category"
-                      style={{ fontFamily: "sans-serif" }}
-                    >
-                      {story.category}
+                    <div className="content">
+                      <div
+                        className="category"
+                        style={{ fontFamily: "sans-serif" }}
+                      >
+                        {story.category}
+                      </div>
+                      <h1
+                        className="title"
+                        style={{ fontFamily: "sans-serif" }}
+                      >
+                        {story.title}
+                      </h1>
+                      <h2
+                        className="sub-title"
+                        style={{ fontFamily: "sans-serif", color: "#232B2B" }}
+                      >
+                        By: {(user as any).username}
+                      </h2>
+                      <p
+                        className="description"
+                        style={{ fontFamily: "sans-serif" }}
+                      >
+                        {previewText}
+                      </p>
                     </div>
-                    <h1 className="title" style={{ fontFamily: "sans-serif" }}>
-                      {story.title}
-                    </h1>
-                    <h2
-                      className="sub-title"
-                      style={{ fontFamily: "sans-serif", color: "#232B2B" }}
-                    >
-                      By: {(user as any).username}
-                    </h2>
-                    <p
-                      className="description"
-                      style={{ fontFamily: "sans-serif" }}
-                    >
-                      {previewText}
-                    </p>
                   </div>
                 </div>
-              </div>
-            </main>
-          </div>
+              </main>
+            </div>
+          </React.Fragment>
         );
       })}
       <div>
         <Link
           to="/create-story"
           style={{
-            top: -45,
+            top: 0,
             right: 5,
             position: "absolute",
             textDecoration: "none",
