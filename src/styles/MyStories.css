@@ -17,8 +17,9 @@ a {
   font-weight: 500;
 }
 .container {
-  max-width: 800px;
-  min-width: 640px;
+  max-width: 500px;
+  min-width: 510px;
+  cursor: pointer;
   margin: 0 auto;
 }
 header span i.fa {

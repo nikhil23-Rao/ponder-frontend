@@ -67,7 +67,7 @@ export const SAVE_DRAFT = gql`
     $content: String!
     $image_url: String
     $category: String
-    $date_created: String
+    $date_created: [String]
   ) {
     SaveDraft(
       title: $title

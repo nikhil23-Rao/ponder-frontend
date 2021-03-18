@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import "../styles/MyStories.css";
 import { GET_ALL_STORIES } from "../apollo/Queries";
-import Divider from "@material-ui/core/Divider";
 import { Link } from "react-router-dom";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import "../styles/Grid.css";
@@ -41,16 +40,17 @@ export const MyStories = () => {
         return (
           <div
             className="container mt-5"
-            style={{ width: "400px", display: "inline-grid" }}
+            key={story.id}
+            style={{ width: "20%", display: "inline-grid" }}
           >
             <main>
               <div className="hover">
                 <div className="module">
                   <div className="thumbnail">
                     <img src={story.image_url} alt="" />
-                    <div className="date">
-                      <div>27</div>
-                      <div>Mar</div>
+                    <div className="date" style={{ fontFamily: "sans-serif" }}>
+                      <div>{story.date_created[1]}</div>
+                      <div>{story.date_created[0]}</div>
                     </div>
                   </div>
                   <div className="content">
@@ -63,20 +63,18 @@ export const MyStories = () => {
                     <h1 className="title" style={{ fontFamily: "sans-serif" }}>
                       {story.title}
                     </h1>
-                    <p className="description">
-                      New York, the largest city in the U.S., is an
-                      architectural marvel with plenty of historic monuments,
-                      magnificent buildings and countless dazzling skyscrapers.
+                    <h2
+                      className="sub-title"
+                      style={{ fontFamily: "sans-serif", color: "#232B2B" }}
+                    >
+                      By: {(user as any).username}
+                    </h2>
+                    <p
+                      className="description"
+                      style={{ fontFamily: "sans-serif" }}
+                    >
+                      {previewText}
                     </p>
-                    <div className="meta">
-                      <span className="timestamp">
-                        <i className="fa fa-clock-o"></i> 6 mins ago
-                      </span>
-                      <span className="comments">
-                        <i className="fa fa-comments"></i>
-                        <a href="#"> 39 comments</a>
-                      </span>
-                    </div>
                   </div>
                 </div>
               </div>

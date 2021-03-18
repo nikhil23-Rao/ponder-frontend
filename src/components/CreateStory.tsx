@@ -7,6 +7,7 @@ import { SAVE_DRAFT } from "../apollo/Mutations";
 import { TextField } from "@material-ui/core";
 import { useMutation } from "@apollo/client";
 import { getCurrentUser } from "../utils/getCurrentUser";
+import { GetDate } from "../utils/GetDate";
 import "../styles/Modal.css";
 import { Prompt } from "react-router-dom";
 import { history } from "../index";
@@ -47,12 +48,14 @@ export const CreateStory = () => {
   };
 
   const handleSaveDraft = () => {
+    const date_created = GetDate();
+    console.log(date_created);
     SaveDraft({
       variables: {
         title,
         content,
         image_url: imageUrl,
-        date_created: "March 16th 2021",
+        date_created,
         category,
         authorid: (user as any).id,
       },

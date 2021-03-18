@@ -1,18 +1,18 @@
 export const GetDate = () => {
   const months = [
-    "Janurary",
-    "Feburary",
-    "March",
-    "April",
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
     "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
   ];
   const date = new Date();
-  return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+  return [months[date.getMonth()], `${date.getDate()}`];
 };
