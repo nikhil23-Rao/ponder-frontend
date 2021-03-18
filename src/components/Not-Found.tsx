@@ -1,4 +1,3 @@
-import { Button } from "@chakra-ui/react";
 import * as React from "react";
 import "../styles/NotFound.css";
 

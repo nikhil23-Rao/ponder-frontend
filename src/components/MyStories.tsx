@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import "../styles/Grid.css";
 import { getCurrentUser } from "../utils/getCurrentUser";
+import { Heading } from "@chakra-ui/layout";
 
 // My Stories Component
 export const MyStories = () => {
@@ -30,7 +31,25 @@ export const MyStories = () => {
   }
 
   if (data && data.GetAllStories.length === 0) {
-    return <h1>You Currently Have No Drafts</h1>;
+    return (
+      <React.Fragment>
+        <div className="text-center">
+          <Heading>You Currently Have No Stories</Heading>
+        </div>
+        <div
+          style={{
+            position: "fixed",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            cursor: "pointer",
+          }}
+          onClick={() => (window.location.href = "/create-story")}
+        >
+          <AddCircleIcon />
+        </div>
+      </React.Fragment>
+    );
   }
 
   // Return MyStories Markup
@@ -42,10 +61,9 @@ export const MyStories = () => {
 
         // Return Article Cards
         return (
-          <React.Fragment>
+          <React.Fragment key={story.id}>
             <div
               className="container mt-5"
-              key={story.id}
               style={{ width: "20%", display: "inline-grid" }}
             >
               <main>
