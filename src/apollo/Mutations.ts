@@ -79,3 +79,23 @@ export const SAVE_DRAFT = gql`
     )
   }
 `;
+
+export const PUBLISH_STORY = gql`
+  mutation SaveDraft(
+    $title: String!
+    $authorid: Int!
+    $content: String!
+    $image_url: String
+    $category: String
+    $date_created: [String]
+  ) {
+    PublishStory(
+      title: $title
+      authorid: $authorid
+      image_url: $image_url
+      content: $content
+      category: $category
+      date_created: $date_created
+    )
+  }
+`;

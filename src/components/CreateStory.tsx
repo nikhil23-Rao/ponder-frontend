@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import "../styles/editor.css";
 import Button from "@material-ui/core/Button";
-import { SAVE_DRAFT } from "../apollo/Mutations";
+import { PUBLISH_STORY, SAVE_DRAFT } from "../apollo/Mutations";
 import { TextField } from "@material-ui/core";
 import { useMutation } from "@apollo/client";
 import { getCurrentUser } from "../utils/getCurrentUser";
@@ -29,7 +29,16 @@ export const CreateStory = () => {
   const [content, setContent] = useState("");
   const [user, setUser] = useState({});
   const [draftSaved, setDraftSaved] = useState(false);
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: draftIsOpen,
+    onOpen: draftOnOpen,
+    onClose: draftOnClose,
+  } = useDisclosure();
+  const {
+    isOpen: publishStoryIsOpen,
+    onOpen: publishStoryOnOpen,
+    onClose: publishStoryOnClose,
+  } = useDisclosure();
 
   useEffect(() => {
     const currentUser: any = getCurrentUser();
@@ -42,6 +51,8 @@ export const CreateStory = () => {
   }, [draftSaved]);
 
   const [SaveDraft] = useMutation(SAVE_DRAFT);
+  const [PublishStory] = useMutation(PUBLISH_STORY);
+
   const handleEditorChange = (content: string, editor: any) => {
     console.log("Content was updated:", content);
     setContent(content);
@@ -61,10 +72,25 @@ export const CreateStory = () => {
       },
     });
 
-    onClose();
+    draftOnClose();
     history.replace("my-stories");
   };
 
+  const handlePublishStory = () => {
+    const date_created = GetDate();
+    console.log(date_created);
+    PublishStory({
+      variables: {
+        title,
+        content,
+        image_url: imageUrl,
+        date_created,
+        category,
+        authorid: (user as any).id,
+      },
+    });
+    publishStoryOnClose();
+  };
   // Return TinyMCE Editor
   return (
     <React.Fragment>
@@ -75,14 +101,26 @@ export const CreateStory = () => {
             variant="outlined"
             color="primary"
             onClick={() => {
-              onOpen();
+              publishStoryOnOpen();
               setDraftSaved(true);
             }}
           >
-            Save As Draft
+            Publish Story{" "}
           </Button>
         </div>
-        <Modal isOpen={isOpen} onClose={onClose}>
+        <div style={{ top: -40, right: 160, position: "absolute" }}>
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={() => {
+              draftOnOpen();
+              setDraftSaved(true);
+            }}
+          >
+            Save As Draft{" "}
+          </Button>
+        </div>
+        <Modal isOpen={draftIsOpen} onClose={draftOnClose}>
           <ModalOverlay />
           <ModalContent>
             <ModalHeader>Save Draft</ModalHeader>
@@ -116,6 +154,45 @@ export const CreateStory = () => {
                   color="secondary"
                 >
                   Save Draft
+                </Button>
+              </div>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+        <Modal isOpen={publishStoryIsOpen} onClose={publishStoryOnClose}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Publish Story</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <div className="text-center mt-2">
+                <TextField
+                  style={{ width: "400px" }}
+                  value={imageUrl}
+                  variant="outlined"
+                  placeholder="Enter An Image URL To Represent Your Story"
+                  onChange={(e) => setImageUrl(e.currentTarget.value)}
+                />
+              </div>
+              <div className="text-center mt-3">
+                <TextField
+                  style={{ width: "400px" }}
+                  value={category}
+                  variant="outlined"
+                  placeholder="Enter Story Category"
+                  onChange={(e) => setCategory(e.currentTarget.value)}
+                />
+              </div>
+            </ModalBody>
+
+            <ModalFooter>
+              <div className="mx-auto">
+                <Button
+                  onClick={handlePublishStory}
+                  variant="outlined"
+                  color="secondary"
+                >
+                  Publish Story{" "}
                 </Button>
               </div>
             </ModalFooter>

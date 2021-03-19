@@ -64,7 +64,11 @@ export const MyStories = () => {
           <React.Fragment key={story.id}>
             <div
               className="container mt-5"
-              style={{ width: "20%", display: "inline-grid" }}
+              style={{
+                width: "10%",
+                display: "inline-grid",
+                marginRight: "-3%",
+              }}
             >
               <main>
                 <div className="hover">
