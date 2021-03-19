@@ -11,6 +11,8 @@ import { NotFound } from "./components/Not-Found";
 import { LandingPage } from "./components/LandingPage";
 import { SortByDrafts } from "./components/SortByDrafts";
 import { SortByPublished } from "./components/SortByPublished";
+import { ReadStory } from "./components/ReadStory";
+import { TodaysStories } from "./components/TodaysStories";
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
         <Route path="/create-story" exact component={CreateStory} />
         <Route path="/my-stories/all" exact component={MyStories} />
         <Route path="/signup" exact component={Signup} />
+        <Route path="/stories/today" exact component={TodaysStories} />
+        <Route path="/read/story/:id" exact component={ReadStory} />
         <Route path="/login" exact component={Login} />
         <Route path="/home" exact component={Home} />
         <Route path="/" exact component={LandingPage} />
