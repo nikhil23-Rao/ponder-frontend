@@ -73,7 +73,7 @@ export const CreateStory = () => {
     });
 
     draftOnClose();
-    history.replace("my-stories");
+    history.replace("my-stories/all");
   };
 
   const handlePublishStory = () => {
@@ -90,6 +90,7 @@ export const CreateStory = () => {
       },
     });
     publishStoryOnClose();
+    history.replace("my-stories/all");
   };
   // Return TinyMCE Editor
   return (
@@ -99,7 +100,8 @@ export const CreateStory = () => {
         <div style={{ top: -40, right: 8, position: "absolute" }}>
           <Button
             variant="outlined"
-            color="primary"
+            size="small"
+            color="secondary"
             onClick={() => {
               publishStoryOnOpen();
               setDraftSaved(true);
@@ -108,9 +110,10 @@ export const CreateStory = () => {
             Publish Story{" "}
           </Button>
         </div>
-        <div style={{ top: -40, right: 160, position: "absolute" }}>
+        <div style={{ top: -40, right: 140, position: "absolute" }}>
           <Button
             variant="outlined"
+            size="small"
             color="primary"
             onClick={() => {
               draftOnOpen();

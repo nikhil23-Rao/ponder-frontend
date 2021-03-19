@@ -8,11 +8,62 @@ import AddCircleIcon from "@material-ui/icons/AddCircle";
 import "../styles/Grid.css";
 import { getCurrentUser } from "../utils/getCurrentUser";
 import { Heading } from "@chakra-ui/layout";
+import Menu, { MenuProps } from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import InboxIcon from "@material-ui/icons/MoveToInbox";
+import DraftsIcon from "@material-ui/icons/Drafts";
+import SendIcon from "@material-ui/icons/Send";
+import { withStyles } from "@material-ui/core/styles";
+import { Button } from "@material-ui/core";
+import SortIcon from "@material-ui/icons/Sort";
 
 // My Stories Component
-export const MyStories = () => {
+export const MyStories = (props: any) => {
+  const StyledMenu = withStyles({
+    paper: {
+      border: "1px solid #d3d4d5",
+    },
+  })((props: MenuProps) => (
+    <Menu
+      elevation={0}
+      getContentAnchorEl={null}
+      anchorOrigin={{
+        vertical: "bottom",
+        horizontal: "center",
+      }}
+      transformOrigin={{
+        vertical: "top",
+        horizontal: "center",
+      }}
+      {...props}
+    />
+  ));
+
+  const StyledMenuItem = withStyles((theme) => ({
+    root: {
+      "&:focus": {
+        backgroundColor: theme.palette.primary.main,
+        "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
+          color: theme.palette.common.white,
+        },
+      },
+    },
+  }))(MenuItem);
+
   // Current User Id State
   const [user, setUser] = useState({});
+
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   // On Page Load Set User
   useEffect(() => {
@@ -63,11 +114,12 @@ export const MyStories = () => {
         return (
           <React.Fragment key={story.id}>
             <div
-              className="container mt-5"
+              className="container"
               style={{
                 width: "10%",
                 display: "inline-grid",
                 marginRight: "-3%",
+                marginTop: "8%",
               }}
             >
               <main>
@@ -128,6 +180,47 @@ export const MyStories = () => {
         >
           <AddCircleIcon />
         </Link>
+      </div>
+      <div style={{ position: "absolute", top: 2, left: 5 }}>
+        <Button
+          aria-controls="customized-menu"
+          aria-haspopup="true"
+          variant="contained"
+          color="primary"
+          onClick={handleClick}
+        >
+          <SortIcon />
+        </Button>
+        <StyledMenu
+          id="customized-menu"
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+        >
+          <StyledMenuItem onClick={() => window.location.reload()}>
+            <ListItemIcon>
+              <SendIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary="Show All" />
+          </StyledMenuItem>
+          <StyledMenuItem
+            onClick={() => (window.location.href = "sortby/published")}
+          >
+            <ListItemIcon>
+              <DraftsIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary="Show Published" />
+          </StyledMenuItem>
+          <StyledMenuItem
+            onClick={() => (window.location.href = "sortby/drafts")}
+          >
+            <ListItemIcon>
+              <InboxIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary="Show Drafts" />
+          </StyledMenuItem>
+        </StyledMenu>
       </div>
     </React.Fragment>
   );

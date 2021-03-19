@@ -86,7 +86,7 @@ function Sidebar(props: any) {
                   window.location.href = "/create-story";
                 }
                 if (text === "My Stories") {
-                  return history.push("/my-stories");
+                  return history.push("/my-stories/all");
                 }
                 if (text === "Create A Story") {
                   return history.push("/create-story");
