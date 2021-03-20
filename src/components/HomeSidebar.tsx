@@ -56,10 +56,12 @@ function Sidebar(props: any) {
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
+  // NOT MOBILE
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
+  // Drawer Info
   const drawer = (
     <div>
       <div className={classes.toolbar}>
@@ -78,10 +80,11 @@ function Sidebar(props: any) {
       <Divider />
       <List>
         {["Create A Story", "My Stories", "Search", "Today's Stories"].map(
-          (text, index) => (
+          (text) => (
             <ListItem
               button
               onClick={() => {
+                // Redirect To Specific Route
                 if (text === "Create A Story") {
                   window.location.href = "/create-story";
                 }

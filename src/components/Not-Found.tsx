@@ -1,6 +1,7 @@
 import * as React from "react";
 import "../styles/NotFound.css";
 
+// Not Found Component
 export const NotFound = () => {
   return (
     <React.Fragment>
