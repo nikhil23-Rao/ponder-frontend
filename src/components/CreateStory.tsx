@@ -11,6 +11,7 @@ import { GetDate } from "../utils/GetDate";
 import "../styles/Modal.css";
 import { Prompt } from "react-router-dom";
 import { history } from "../index";
+import { GenerateStoryID } from "../utils/GenerateStoryId";
 import {
   Modal,
   ModalOverlay,
@@ -68,23 +69,12 @@ export const CreateStory = () => {
     setContent(content);
   };
 
-  const makeid = (length: any) => {
-    var result = "";
-    var characters =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    var charactersLength = characters.length;
-    for (var i = 0; i < length; i++) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return result;
-  };
-
   // What To Do When Save Draft Is Clicked
   const handleSaveDraft = () => {
     // Get Current Date
     const date_created = GetDate();
     // Generate ID
-    const id = makeid(8);
+    const id = GenerateStoryID(24);
     // Save Draft With Variables Stored In State And Above
     SaveDraft({
       variables: {
@@ -109,7 +99,7 @@ export const CreateStory = () => {
     // Get Current Date
     const date_created = GetDate();
     // Generate ID
-    const id = makeid(8);
+    const id = GenerateStoryID(24);
 
     // Publish Story With Variables Stored In State And Above
     PublishStory({
