@@ -22,13 +22,17 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 
+// Create Story Function
 export const CreateStory = () => {
+  // Store All Properties In State
   const [imageUrl, setImageUrl] = useState("");
   const [category, setCategory] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [user, setUser] = useState({});
   const [draftSaved, setDraftSaved] = useState(false);
+
+  // Open/Close Modal
   const {
     isOpen: draftIsOpen,
     onOpen: draftOnOpen,
@@ -40,9 +44,18 @@ export const CreateStory = () => {
     onClose: publishStoryOnClose,
   } = useDisclosure();
 
+  // Apollo Mutations To Call
+  const [SaveDraft] = useMutation(SAVE_DRAFT);
+  const [PublishStory] = useMutation(PUBLISH_STORY);
+
+  // On Page Load
   useEffect(() => {
+    // Get Current User
     const currentUser: any = getCurrentUser();
+    // Set The User In State
     setUser(currentUser);
+
+    // If Draft Is Not Saved Warn User Before Close Tab
     if (!draftSaved) {
       window.onbeforeunload = () => true;
     } else {
@@ -50,15 +63,12 @@ export const CreateStory = () => {
     }
   }, [draftSaved]);
 
-  const [SaveDraft] = useMutation(SAVE_DRAFT);
-  const [PublishStory] = useMutation(PUBLISH_STORY);
-
-  const handleEditorChange = (content: string, editor: any) => {
-    console.log("Content was updated:", content);
+  // On Editor Change Set Current Content In State
+  const handleEditorChange = (content: string, _: any) => {
     setContent(content);
   };
 
-  function makeid(length: any) {
+  const makeid = (length: any) => {
     var result = "";
     var characters =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -67,14 +77,15 @@ export const CreateStory = () => {
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     return result;
-  }
+  };
 
-  console.log(makeid(5));
-
+  // What To Do When Save Draft Is Clicked
   const handleSaveDraft = () => {
+    // Get Current Date
     const date_created = GetDate();
+    // Generate ID
     const id = makeid(8);
-    console.log(date_created);
+    // Save Draft With Variables Stored In State And Above
     SaveDraft({
       variables: {
         title,
@@ -87,14 +98,20 @@ export const CreateStory = () => {
       },
     });
 
+    // Close Modal
     draftOnClose();
-    // history.replace("/my-stories/all");
+    // Take User To My Stories Page When Complete
+    history.replace("/my-stories/all");
   };
 
+  // What To Do When Publish Story Is Clicked
   const handlePublishStory = () => {
+    // Get Current Date
     const date_created = GetDate();
-    console.log(date_created);
+    // Generate ID
     const id = makeid(8);
+
+    // Publish Story With Variables Stored In State And Above
     PublishStory({
       variables: {
         title,
@@ -106,8 +123,10 @@ export const CreateStory = () => {
         authorid: (user as any).id,
       },
     });
+    // Close Modal
     publishStoryOnClose();
-    // history.replace("/my-stories/all");
+    // Take User To My Stories Page
+    history.replace("/my-stories/all");
   };
   // Return TinyMCE Editor
   return (
