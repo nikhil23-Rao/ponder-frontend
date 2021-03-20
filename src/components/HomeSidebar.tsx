@@ -122,7 +122,7 @@ function Sidebar(props: any) {
     screenWindow !== undefined ? () => screenWindow().document.body : undefined;
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} style={{ backgroundColor: "#fff" }}>
       <CssBaseline />
 
       <IconButton
