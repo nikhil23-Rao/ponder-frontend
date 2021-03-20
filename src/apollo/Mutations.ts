@@ -68,6 +68,7 @@ export const SAVE_DRAFT = gql`
     $image_url: String
     $category: String
     $date_created: [String]
+    $id: String
   ) {
     SaveDraft(
       title: $title
@@ -76,18 +77,20 @@ export const SAVE_DRAFT = gql`
       content: $content
       category: $category
       date_created: $date_created
+      id: $id
     )
   }
 `;
 
 export const PUBLISH_STORY = gql`
-  mutation SaveDraft(
+  mutation PublishStory(
     $title: String!
     $authorid: Int!
     $content: String!
     $image_url: String
     $category: String
     $date_created: [String]
+    $id: String
   ) {
     PublishStory(
       title: $title
@@ -96,6 +99,7 @@ export const PUBLISH_STORY = gql`
       content: $content
       category: $category
       date_created: $date_created
+      id: $id
     )
   }
 `;

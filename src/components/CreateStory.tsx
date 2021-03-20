@@ -58,8 +58,22 @@ export const CreateStory = () => {
     setContent(content);
   };
 
+  function makeid(length: any) {
+    var result = "";
+    var characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+  }
+
+  console.log(makeid(5));
+
   const handleSaveDraft = () => {
     const date_created = GetDate();
+    const id = makeid(8);
     console.log(date_created);
     SaveDraft({
       variables: {
@@ -69,16 +83,18 @@ export const CreateStory = () => {
         date_created,
         category,
         authorid: (user as any).id,
+        id,
       },
     });
 
     draftOnClose();
-    history.replace("my-stories/all");
+    // history.replace("/my-stories/all");
   };
 
   const handlePublishStory = () => {
     const date_created = GetDate();
     console.log(date_created);
+    const id = makeid(8);
     PublishStory({
       variables: {
         title,
@@ -86,11 +102,12 @@ export const CreateStory = () => {
         image_url: imageUrl,
         date_created,
         category,
+        id,
         authorid: (user as any).id,
       },
     });
     publishStoryOnClose();
-    history.replace("my-stories/all");
+    // history.replace("/my-stories/all");
   };
   // Return TinyMCE Editor
   return (

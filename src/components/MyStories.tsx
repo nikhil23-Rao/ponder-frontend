@@ -68,13 +68,23 @@ export const MyStories = (props: any) => {
   // On Page Load Set User
   useEffect(() => {
     const currentUser: any = getCurrentUser();
+    console.log(currentUser);
     setUser(currentUser);
   }, []);
 
   // Query The Stories
-  const { data, loading } = useQuery(GET_ALL_STORIES, {
-    variables: { authorid: (user as any).id },
+  const { data, loading, error } = useQuery(GET_ALL_STORIES, {
+    variables: { authorid: 1 },
   });
+
+  if (error) {
+    console.log(error.message);
+  }
+
+  if (data) {
+    console.log("this is the data we just got ->");
+    console.log(data);
+  }
 
   // If Loading Return To Client
   if (loading) {
@@ -107,6 +117,7 @@ export const MyStories = (props: any) => {
   return (
     <React.Fragment>
       {data.GetAllStories.map((story: any) => {
+        console.log(story);
         // Preview Text
         const previewText = story.content.replace(/<[^>]+>/g, "");
 

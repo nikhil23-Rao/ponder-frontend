@@ -28,8 +28,8 @@ export const GET_ALL_STORIES = gql`
       title
       id
       authorid
-      category
       date_created
+      category
     }
   }
 `;
