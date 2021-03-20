@@ -18,9 +18,11 @@ import SendIcon from "@material-ui/icons/Send";
 import { withStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import SortIcon from "@material-ui/icons/Sort";
+import { UserStateInt } from "../interfaces/UserStateInt";
 
 // My Stories Component
 export const MyStories = (props: any) => {
+  // Styles For Sort By Menu
   const StyledMenu = withStyles({
     paper: {
       border: "1px solid #d3d4d5",
@@ -41,6 +43,7 @@ export const MyStories = (props: any) => {
     />
   ));
 
+  // Styles For Sort By Menu Item
   const StyledMenuItem = withStyles((theme) => ({
     root: {
       "&:focus": {
@@ -53,14 +56,23 @@ export const MyStories = (props: any) => {
   }))(MenuItem);
 
   // Current User Id State
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState<UserStateInt>({
+    id: 0,
+    username: "",
+    email: "",
+    iat: "",
+    image_url: "",
+  });
 
+  // Menu Item State
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
+  // On Click Change Color Of Menu Item
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
+  // On Close Close Menu
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -73,24 +85,16 @@ export const MyStories = (props: any) => {
   }, []);
 
   // Query The Stories
-  const { data, loading, error } = useQuery(GET_ALL_STORIES, {
+  const { data, loading } = useQuery(GET_ALL_STORIES, {
     variables: { authorid: 1 },
   });
-
-  if (error) {
-    console.log(error.message);
-  }
-
-  if (data) {
-    console.log("this is the data we just got ->");
-    console.log(data);
-  }
 
   // If Loading Return To Client
   if (loading) {
     return <h1>LOADING...</h1>;
   }
 
+  // If 0 Stories Return Following
   if (data && data.GetAllStories.length === 0) {
     return (
       <React.Fragment>
@@ -163,7 +167,7 @@ export const MyStories = (props: any) => {
                         className="sub-title"
                         style={{ fontFamily: "sans-serif", color: "#232B2B" }}
                       >
-                        By: {(user as any).username}
+                        By: {user.username}{" "}
                       </h2>
                       <p
                         className="description"
