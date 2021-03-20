@@ -4,20 +4,26 @@ import { Editor } from "@tinymce/tinymce-react";
 import { useQuery } from "@apollo/client";
 import { READ_STORY } from "../apollo/Queries";
 
+// Read Story Component
 export const ReadStory: any = (props: any) => {
+  // Query The Story To Read
   const { data, loading } = useQuery(READ_STORY, {
     variables: { storyid: props.match.params.id },
   });
 
+  // If Story Loading Return To Client
   if (loading) {
     return <h1>STORY LOADING</h1>;
   }
 
+  // If Story ID Does Not Exist Redirect To Not Found
   if (data.ReadStory === null) {
     window.location.href = "/404-not-found";
   }
+
+  // If Data Then Return READ ONLY TinyMCE Editor With Data
   if (data) {
-    // Return TinyMCE Editor
+    // Return READONLY TinyMCE Editor
     return (
       <React.Fragment>
         <div className="mt-5">
