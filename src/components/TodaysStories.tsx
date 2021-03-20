@@ -6,7 +6,7 @@ import { GET_TODAYS_STORIES } from "../apollo/Queries";
 import "../styles/Grid.css";
 import { getCurrentUser } from "../utils/getCurrentUser";
 
-// My Stories Component
+// TodaysStories Component
 export const TodaysStories = (props: any) => {
   // Current User Id State
   const [user, setUser] = useState({});
