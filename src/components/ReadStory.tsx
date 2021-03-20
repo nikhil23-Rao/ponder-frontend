@@ -42,7 +42,7 @@ export const ReadStory: any = (props: any) => {
         </div>
         <div style={{ marginLeft: "13%", overflow: "hidden" }}>
           <Editor
-            initialValue={data.ReadStory.content}
+            initialValue={`<p>By:${data.ReadStory.authorid}</p>${data.ReadStory.content}`}
             disabled={true}
             init={{
               branding: false,
@@ -63,7 +63,7 @@ export const ReadStory: any = (props: any) => {
               skin: "borderless",
               width: "90%",
               content_style:
-                "@import url('https://fonts.googleapis.com/css2?family=Tinos&display=swap'); body { font-family: 'Tinos', serif; font-size: 16pt; color: #292929; }",
+                "@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap'); body { font-family: 'Oranienbaum', serif; font-size: 16pt; color: #292929; }",
               menubar: false,
               automatic_uploads: true,
               plugins: [
