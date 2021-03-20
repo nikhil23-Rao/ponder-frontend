@@ -265,6 +265,7 @@ export const CreateStory = () => {
             placeholder: "Write your story...",
             height: "100vh",
             skin: "borderless",
+            statusbar: false,
             width: "90%",
             content_style:
               "@import url('https://fonts.googleapis.com/css2?family=Tinos&display=swap'); body { font-family: 'Tinos', serif; font-size: 16pt; color: #292929; }",

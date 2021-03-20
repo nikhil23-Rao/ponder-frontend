@@ -6,6 +6,7 @@ import {
   Theme,
   createStyles,
 } from "@material-ui/core/styles";
+import logo from "../../src/img/litelogo.png";
 import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -18,8 +19,12 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
+import BookIcon from "@material-ui/icons/Book";
+import WhatshotIcon from "@material-ui/icons/Whatshot";
+import SearchIcon from "@material-ui/icons/Search";
+import AddCircleIcon from "@material-ui/icons/AddCircle";
+import HomeIcon from "@material-ui/icons/Home";
+import { history } from "../index";
 
 const drawerWidth = 240;
 
@@ -129,6 +134,17 @@ export default function ReadStorySideBar() {
           className={classes.drawerHeader}
           style={{ backgroundColor: "#fff" }}
         >
+          <img
+            src={logo}
+            className="undraggable"
+            style={{
+              width: "30%",
+              marginRight: "15%",
+              marginTop: "5%",
+              marginBottom: "5%",
+            }}
+            alt=""
+          />
           <IconButton
             style={{ backgroundColor: "#fff" }}
             onClick={handleDrawerClose}
@@ -142,21 +158,46 @@ export default function ReadStorySideBar() {
         </div>
         <Divider />
         <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem button key={text}>
+          {[
+            "Home",
+            "Create A Story",
+            "My Stories",
+            "Search",
+            "Today's Stories",
+          ].map((text) => (
+            <ListItem
+              button
+              onClick={() => {
+                // Redirect To Specific Route
+                if (text === "Home") {
+                  window.location.href = "/home";
+                }
+                if (text === "Create A Story") {
+                  window.location.href = "/create-story";
+                }
+                if (text === "My Stories") {
+                  return history.push("/my-stories/all");
+                }
+                if (text === "Create A Story") {
+                  return history.push("/create-story");
+                }
+                if (text === "Today's Stories") {
+                  return history.push("/stories/today");
+                }
+              }}
+            >
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {text === "Home" ? (
+                  <HomeIcon />
+                ) : text === "Create A Story" ? (
+                  <AddCircleIcon />
+                ) : text === "My Stories" ? (
+                  <BookIcon />
+                ) : text === "Search" ? (
+                  <SearchIcon />
+                ) : text === "Today's Stories" ? (
+                  <WhatshotIcon />
+                ) : null}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
