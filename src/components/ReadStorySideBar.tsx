@@ -49,6 +49,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     menuButton: {
       marginRight: theme.spacing(2),
+      marginLeft: "2%",
     },
     hide: {
       display: "none",
