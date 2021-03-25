@@ -103,3 +103,9 @@ export const PUBLISH_STORY = gql`
     )
   }
 `;
+
+export const LIKE_STORY = gql`
+  mutation LikeStory($storyid: String, $authorid: Int) {
+    LikeStory(storyid: $storyid, authorid: $authorid)
+  }
+`;

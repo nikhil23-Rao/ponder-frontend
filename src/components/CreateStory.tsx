@@ -114,9 +114,9 @@ export const CreateStory = () => {
       },
     });
     // Close Modal
-    publishStoryOnClose();
+    // publishStoryOnClose();
     // Take User To My Stories Page
-    history.replace("/my-stories/all");
+    // history.replace("/my-stories/all");
   };
   // Return TinyMCE Editor
   return (

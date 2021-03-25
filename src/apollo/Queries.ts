@@ -44,6 +44,7 @@ export const READ_STORY = gql`
       authorid
       category
       date_created
+      likedBy
     }
   }
 `;
