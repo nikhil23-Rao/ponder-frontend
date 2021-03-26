@@ -57,6 +57,7 @@ export const ReadStory: any = (props: any) => {
             }}
           >
             <input
+              disabled={true}
               style={{
                 width: "1000px",
                 outline: "none",
@@ -127,25 +128,25 @@ export const ReadStory: any = (props: any) => {
           </div>
           <ReadStorySideBar />
         </div>
-        <label>
-          <input
-            type="checkbox"
-            hidden
-            checked={data.ReadStory.likedBy.includes((user as any).id)}
-            onChange={async () => {
-              console.log("BEFORE:", data.ReadStory);
-              await HandleLikeStory({
-                variables: {
-                  authorid: (user as any).id,
-                  storyid: props.match.params.id,
-                },
-              });
-              await refetch();
-              console.log("After" + data.ReadStory);
-            }}
-          />
-          <div className="kalp"></div>
-        </label>
+        <div className="topright" style={{ backgroundColor: "#fff" }}>
+          <label>
+            <input
+              type="checkbox"
+              hidden
+              checked={data.ReadStory.likedBy.includes((user as any).id)}
+              onChange={async () => {
+                await HandleLikeStory({
+                  variables: {
+                    authorid: (user as any).id,
+                    storyid: props.match.params.id,
+                  },
+                });
+                await refetch();
+              }}
+            />
+            <div className="kalp"></div>
+          </label>
+        </div>
       </React.Fragment>
     );
   }
