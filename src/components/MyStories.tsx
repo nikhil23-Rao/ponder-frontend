@@ -21,7 +21,7 @@ import SortIcon from "@material-ui/icons/Sort";
 import { UserStateInt } from "../interfaces/UserStateInt";
 
 // My Stories Component
-export const MyStories = (props: any) => {
+export const MyStories: any = (props: any) => {
   // Styles For Sort By Menu
   const StyledMenu = withStyles({
     paper: {
@@ -135,6 +135,13 @@ export const MyStories = (props: any) => {
                 display: "inline-grid",
                 marginRight: "-3%",
                 marginTop: "8%",
+              }}
+              onClick={() => {
+                if (story.likes === null) {
+                  window.location.href = `/edit/draft/${story.id}`;
+                } else {
+                  window.location.href = `/read/story/${story.id}`;
+                }
               }}
             >
               <main>

@@ -13,6 +13,7 @@ import { SortByDrafts } from "./components/SortByDrafts";
 import { SortByPublished } from "./components/SortByPublished";
 import { ReadStory } from "./components/ReadStory";
 import { TodaysStories } from "./components/TodaysStories";
+import { EditDraft } from "./components/EditDraft";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path="/signup" exact component={Signup} />
         <Route path="/stories/today" exact component={TodaysStories} />
         <Route path="/read/story/:id" exact component={ReadStory} />
+        <Route path="/edit/draft/:id" exact component={EditDraft} />
         <Route path="/login" exact component={Login} />
         <Route path="/home" exact component={Home} />
         <Route path="/" exact component={LandingPage} />

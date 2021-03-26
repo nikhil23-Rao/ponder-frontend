@@ -109,3 +109,31 @@ export const LIKE_STORY = gql`
     LikeStory(storyid: $storyid, authorid: $authorid)
   }
 `;
+
+export const EDIT_DRAFT = gql`
+  mutation EditDraft(
+    $title: String!
+    $content: String!
+    $authorid: Int!
+    $image_url: String
+    $category: String
+    $date_created: [String]
+    $storyid: String
+  ) {
+    EditDraft(
+      title: $title
+      authorid: $authorid
+      image_url: $image_url
+      content: $content
+      category: $category
+      date_created: $date_created
+      storyid: $storyid
+    )
+  }
+`;
+
+export const DELETE_DRAFT_ONCE_PUBLISHED = gql`
+  mutation DeleteDraftOncePublished($storyid: String) {
+    DeleteDraftOncePublished(storyid: $storyid)
+  }
+`;
