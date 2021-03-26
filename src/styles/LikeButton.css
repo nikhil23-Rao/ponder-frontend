@@ -4,12 +4,12 @@
   cursor: pointer;
   top: 0;
   right: 0;
-  position: absolute;
+  position: fixed;
 }
 .kalp {
   background-image: url("http://i.resimyukle.xyz/aM8UN.png");
 }
 input:checked + .kalp {
   background-position: -2800px 0;
-  transition: background 0.8s steps(28);
+  transition: background 1s steps(28);
 }

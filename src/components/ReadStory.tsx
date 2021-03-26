@@ -14,7 +14,7 @@ export const ReadStory: any = (props: any) => {
   // Current User Id State
   const [user, setUser] = useState({});
   // Query The Story To Read
-  const { data, loading } = useQuery(READ_STORY, {
+  const { data, loading, refetch } = useQuery(READ_STORY, {
     variables: { storyid: props.match.params.id },
   });
 
@@ -132,14 +132,16 @@ export const ReadStory: any = (props: any) => {
             type="checkbox"
             hidden
             checked={data.ReadStory.likedBy.includes((user as any).id)}
-            onChange={() => {
-              console.log(data.ReadStory);
-              HandleLikeStory({
+            onChange={async () => {
+              console.log("BEFORE:", data.ReadStory);
+              await HandleLikeStory({
                 variables: {
                   authorid: (user as any).id,
                   storyid: props.match.params.id,
                 },
               });
+              await refetch();
+              console.log("After" + data.ReadStory);
             }}
           />
           <div className="kalp"></div>
