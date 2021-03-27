@@ -34,7 +34,7 @@ export const EditDraft: any = (props: any) => {
   const [imageUrl, setImageUrl] = useState("");
   const [category, setCategory] = useState("");
   const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [editorContent, setEditorContent] = useState("");
   const [user, setUser] = useState({});
   const [draftSaved, setDraftSaved] = useState(false);
 
@@ -74,15 +74,9 @@ export const EditDraft: any = (props: any) => {
       setImageUrl(data.GetEditDraft.image_url);
       setTitle(data.GetEditDraft.title);
       setCategory(data.GetEditDraft.category);
+      setEditorContent(data.GetEditDraft.content);
     }
-
-    // If Draft Is Not Saved Warn User Before Close Tab
-    if (!draftSaved) {
-      window.onbeforeunload = () => true;
-    } else {
-      (window.onbeforeunload as any) = undefined;
-    }
-  }, [draftSaved, data]);
+  }, [data]);
 
   if (loading) {
     return <h1>Loading</h1>;
@@ -90,22 +84,24 @@ export const EditDraft: any = (props: any) => {
 
   // On Editor Change Set Current Content In State
   const handleEditorChange = (content: string, _: any) => {
-    setContent(content);
+    console.log(data);
+    setEditorContent(content);
+    console.log(editorContent);
   };
 
   // What To Do When Save Draft Is Clicked
-  const handleSaveDraft = () => {
+  const handleSaveDraft = async () => {
+    console.log(editorContent);
     // Get Current Date
     const date_created = GetDate();
     // Save Draft With Variables Stored In State And Above
-    EditDraft({
+    await EditDraft({
       variables: {
         title,
-        content,
+        content: editorContent,
         image_url: imageUrl,
         date_created,
         category,
-        authorid: (user as any).id,
         storyid: props.match.params.id,
       },
     });
@@ -127,7 +123,7 @@ export const EditDraft: any = (props: any) => {
     PublishStory({
       variables: {
         title,
-        content,
+        content: editorContent,
         image_url: imageUrl,
         date_created,
         category,
@@ -277,7 +273,7 @@ export const EditDraft: any = (props: any) => {
         </div>
         <div style={{ marginLeft: "13%", overflow: "hidden" }}>
           <Editor
-            initialValue={data.GetEditDraft.content}
+            initialValue={editorContent}
             init={{
               branding: false,
               codesample_languages: [

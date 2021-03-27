@@ -114,7 +114,6 @@ export const EDIT_DRAFT = gql`
   mutation EditDraft(
     $title: String!
     $content: String!
-    $authorid: Int!
     $image_url: String
     $category: String
     $date_created: [String]
@@ -122,7 +121,6 @@ export const EDIT_DRAFT = gql`
   ) {
     EditDraft(
       title: $title
-      authorid: $authorid
       image_url: $image_url
       content: $content
       category: $category
