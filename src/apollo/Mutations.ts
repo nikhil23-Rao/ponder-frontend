@@ -29,37 +29,6 @@ export const OAUTH_LOGIN_USER = gql`
   }
 `;
 
-// Save Draft Mutation
-export const SAVE_DRAFT_CONTENT = gql`
-  mutation SaveDraftContent(
-    $content: String
-    $authorid: Int
-    $date_created: String
-  ) {
-    SaveDraftContent(
-      content: $content
-      authorid: $authorid
-      date_created: $date_created
-    )
-  }
-`;
-
-export const SAVE_DRAFT_TITLE_AND_IMAGEURL = gql`
-  mutation SaveDraftTitleAndImageUrl(
-    $id: Int!
-    $title: String
-    $image_url: String
-    $category: String
-  ) {
-    SaveDraftTitleAndImageUrl(
-      id: $id
-      title: $title
-      image_url: $image_url
-      category: $category
-    )
-  }
-`;
-
 export const SAVE_DRAFT = gql`
   mutation SaveDraft(
     $title: String!
