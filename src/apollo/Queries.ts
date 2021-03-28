@@ -18,7 +18,7 @@ export const GET_TODAYS_STORIES = gql`
 
 // Get All Stories Query
 export const GET_ALL_STORIES = gql`
-  query GetAllStories($authorid: Int) {
+  query GetAllStories($authorid: String) {
     GetAllStories(authorid: $authorid) {
       content
       image_url

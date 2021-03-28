@@ -3,6 +3,7 @@ import { useMutation } from "@apollo/client";
 import { GoogleLogin } from "react-google-login";
 import { OAUTH_REGISTER_USER } from "../apollo/Mutations";
 import { useToast } from "@chakra-ui/react";
+import { GenerateStoryID } from "../utils/GenerateStoryId";
 
 export const SignupWithGoogle = (props: any) => {
   const toast = useToast();
@@ -22,10 +23,12 @@ export const SignupWithGoogle = (props: any) => {
     },
   });
   const response = (res: any) => {
+    const id = GenerateStoryID(24);
     OAuthRegister({
       variables: {
         username: res.profileObj.name,
         email: res.profileObj.email,
+        id,
       },
     });
   };

@@ -4,6 +4,7 @@ import { useToast } from "@chakra-ui/react";
 import MicrosoftLogin from "react-microsoft-login";
 import { OAUTH_REGISTER_USER } from "../apollo/Mutations";
 import { MicrosoftSignupButton } from "../components/MicrosoftSignupButton";
+import { GenerateStoryID } from "../utils/GenerateStoryId";
 
 export const SignupWithMicrosoft = () => {
   const toast = useToast();
@@ -22,10 +23,12 @@ export const SignupWithMicrosoft = () => {
     },
   });
   const onSuccess = (err: any, data: any) => {
+    const id = GenerateStoryID(24);
     OAuthRegister({
       variables: {
         username: data.account.name,
         email: data.account.userName,
+        id,
       },
     });
   };

@@ -57,7 +57,7 @@ export const MyStories: any = () => {
 
   // Current User Id State
   const [user, setUser] = useState<UserStateInt>({
-    id: 0,
+    id: "",
     username: "",
     email: "",
     iat: "",
@@ -86,7 +86,7 @@ export const MyStories: any = () => {
 
   // Query The Stories
   const { data, loading } = useQuery(GET_ALL_STORIES, {
-    variables: { authorid: 1 },
+    variables: { authorid: (user as any).id },
   });
 
   // If Loading Return To Client

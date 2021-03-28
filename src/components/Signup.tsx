@@ -13,6 +13,7 @@ import { AccountExistsTextField } from "../validation/AccountExistsTextField";
 import { SignupWithGoogle } from "../oauth/SignupWithGoogle";
 import { SignupWithMicrosoft } from "../oauth/SignupWithMicrosoft";
 import "../styles/Register.css";
+import { GenerateStoryID } from "../utils/GenerateStoryId";
 
 // Signup Component
 export const Signup = (props: any) => {
@@ -36,12 +37,14 @@ export const Signup = (props: any) => {
         initialValues={{ Username: "", Email: "", Password: "" }}
         onSubmit={(values, { resetForm }) => {
           try {
+            const id = GenerateStoryID(24);
             // Try Registering If Error Log It
             Register({
               variables: {
                 username: values.Username,
                 password: values.Password,
                 email: values.Email,
+                id,
               },
             });
             // Reset Form When Done

@@ -3,15 +3,20 @@ import { gql } from "@apollo/client";
 
 // Register Mutation
 export const REGISTER_USER = gql`
-  mutation Register($username: String!, $email: String!, $password: String!) {
-    Register(username: $username, email: $email, password: $password)
+  mutation Register(
+    $username: String!
+    $email: String!
+    $password: String!
+    $id: String
+  ) {
+    Register(username: $username, email: $email, password: $password, id: $id)
   }
 `;
 
 // OAuthRegister Mutation
 export const OAUTH_REGISTER_USER = gql`
-  mutation OAuthRegister($username: String!, $email: String!) {
-    OAuthRegister(username: $username, email: $email)
+  mutation OAuthRegister($username: String!, $email: String!, $id: String) {
+    OAuthRegister(username: $username, email: $email, id: $id)
   }
 `;
 
@@ -33,7 +38,7 @@ export const OAUTH_LOGIN_USER = gql`
 export const SAVE_DRAFT = gql`
   mutation SaveDraft(
     $title: String!
-    $authorid: Int!
+    $authorid: String
     $content: String!
     $image_url: String
     $category: String
@@ -56,7 +61,7 @@ export const SAVE_DRAFT = gql`
 export const PUBLISH_STORY = gql`
   mutation PublishStory(
     $title: String!
-    $authorid: Int!
+    $authorid: String
     $content: String!
     $image_url: String
     $category: String
@@ -77,7 +82,7 @@ export const PUBLISH_STORY = gql`
 
 // Like Story Mutation
 export const LIKE_STORY = gql`
-  mutation LikeStory($storyid: String, $authorid: Int) {
+  mutation LikeStory($storyid: String, $authorid: String) {
     LikeStory(storyid: $storyid, authorid: $authorid)
   }
 `;

@@ -92,7 +92,7 @@ export const TodaysStories = (props: any) => {
                     }}
                   >
                     <i className="fa fa-heart"></i>
-                    <a href="#"> {story.likes}</a>
+                    <span> {story.likes}</span>
                   </div>
                 </div>
               </main>

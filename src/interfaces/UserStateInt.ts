@@ -1,5 +1,5 @@
 export interface UserStateInt {
-  id: number;
+  id: string;
   username: string;
   email: string;
   iat: string;
