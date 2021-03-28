@@ -1,5 +1,6 @@
 import { gql } from "@apollo/client";
 
+// Get Todays Stories Query
 export const GET_TODAYS_STORIES = gql`
   query GetTodaysStories {
     GetTodaysStories {
@@ -14,6 +15,7 @@ export const GET_TODAYS_STORIES = gql`
   }
 `;
 
+// Get All Stories Query
 export const GET_ALL_STORIES = gql`
   query GetAllStories($authorid: Int) {
     GetAllStories(authorid: $authorid) {
@@ -29,6 +31,7 @@ export const GET_ALL_STORIES = gql`
   }
 `;
 
+// Read Story Query
 export const READ_STORY = gql`
   query ReadStory($storyid: String) {
     ReadStory(storyid: $storyid) {
@@ -44,6 +47,7 @@ export const READ_STORY = gql`
   }
 `;
 
+// Get The Draft We Are Trying To Edit Query
 export const GET_EDIT_DRAFT = gql`
   query GetEditDraft($storyid: String) {
     GetEditDraft(storyid: $storyid) {
