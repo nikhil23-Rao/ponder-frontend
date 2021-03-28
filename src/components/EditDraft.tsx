@@ -69,7 +69,7 @@ export const EditDraft: any = (props: any) => {
     // Set The User In State
     setUser(currentUser);
 
-    // Set All Previous Properties In State
+    // Autocomplete And Set All Previous Properties In State
     if (data) {
       setImageUrl(data.GetEditDraft.image_url);
       setTitle(data.GetEditDraft.title);
@@ -78,6 +78,7 @@ export const EditDraft: any = (props: any) => {
     }
   }, [data]);
 
+  // When Loading Return Markup To Client
   if (loading) {
     return <h1>Loading</h1>;
   }
@@ -90,12 +91,11 @@ export const EditDraft: any = (props: any) => {
   };
 
   // What To Do When Save Draft Is Clicked
-  const handleSaveDraft = async () => {
-    console.log(editorContent);
+  const handleSaveDraft = () => {
     // Get Current Date
     const date_created = GetDate();
     // Save Draft With Variables Stored In State And Above
-    await EditDraft({
+    EditDraft({
       variables: {
         title,
         content: editorContent,
@@ -105,7 +105,6 @@ export const EditDraft: any = (props: any) => {
         storyid: props.match.params.id,
       },
     });
-
     // Close Modal
     draftOnClose();
     // Take User To My Stories Page When Complete
@@ -132,6 +131,7 @@ export const EditDraft: any = (props: any) => {
       },
     });
 
+    // After Story Published Delete Old Draft
     DeleteDraftOncePublished({
       variables: {
         storyid: props.match.params.id,
@@ -143,11 +143,14 @@ export const EditDraft: any = (props: any) => {
     // Take User To My Stories Page
     history.replace("/my-stories/all");
   };
-  // Return TinyMCE Editor
+  // Return TinyMCE Editor If We Have Data
   if (data) {
     return (
       <React.Fragment>
-        <Prompt when={!draftSaved} message="Are You Sure You Want To Leave" />
+        <Prompt
+          when={!draftSaved}
+          message="Are You Sure You Want To Leave? Your Changes Will Not Be Saved"
+        />
         <div>
           <div style={{ top: -40, right: 8, position: "absolute" }}>
             <Button
