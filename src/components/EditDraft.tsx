@@ -36,7 +36,7 @@ export const EditDraft: any = (props: any) => {
   const [title, setTitle] = useState("");
   const [editorContent, setEditorContent] = useState("");
   const [user, setUser] = useState({});
-  const [draftSaved, setDraftSaved] = useState(false);
+  const [draftSaved] = useState(false);
 
   // Open/Close Modal
   const {
@@ -76,7 +76,11 @@ export const EditDraft: any = (props: any) => {
       setCategory(data.GetEditDraft.category);
       setEditorContent(data.GetEditDraft.content);
     }
-  }, [data]);
+
+    if (!draftSaved) {
+      window.onbeforeunload = () => true;
+    }
+  }, [data, draftSaved]);
 
   // When Loading Return Markup To Client
   if (loading) {
@@ -85,13 +89,14 @@ export const EditDraft: any = (props: any) => {
 
   // On Editor Change Set Current Content In State
   const handleEditorChange = (content: string, _: any) => {
-    console.log(data);
     setEditorContent(content);
-    console.log(editorContent);
   };
 
   // What To Do When Save Draft Is Clicked
   const handleSaveDraft = () => {
+    // Remove Warning
+    window.onbeforeunload = null;
+
     // Get Current Date
     const date_created = GetDate();
     // Save Draft With Variables Stored In State And Above
@@ -107,12 +112,16 @@ export const EditDraft: any = (props: any) => {
     });
     // Close Modal
     draftOnClose();
+
     // Take User To My Stories Page When Complete
     history.replace("/my-stories/all");
   };
 
   // What To Do When Publish Story Is Clicked
   const handlePublishStory = () => {
+    // Remove Warning
+    window.onbeforeunload = null;
+
     // Get Current Date
     const date_created = GetDate();
     // Generate ID
@@ -159,7 +168,6 @@ export const EditDraft: any = (props: any) => {
               color="secondary"
               onClick={() => {
                 publishStoryOnOpen();
-                setDraftSaved(true);
               }}
             >
               Publish Story{" "}
@@ -172,7 +180,6 @@ export const EditDraft: any = (props: any) => {
               color="primary"
               onClick={() => {
                 draftOnOpen();
-                setDraftSaved(true);
               }}
             >
               Save As Draft{" "}

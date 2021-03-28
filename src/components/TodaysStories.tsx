@@ -84,6 +84,9 @@ export const TodaysStories = (props: any) => {
                       </p>
                     </div>
                   </div>
+                  <div>
+                    <p>Likes: {story.likes}</p>
+                  </div>
                 </div>
               </main>
             </div>
