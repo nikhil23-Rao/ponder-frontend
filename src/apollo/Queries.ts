@@ -1,11 +1,5 @@
 import { gql } from "@apollo/client";
 
-export const GET_ID_QUERY = gql`
-  query GetStoryDraftID {
-    GetStoryDraftID
-  }
-`;
-
 export const GET_TODAYS_STORIES = gql`
   query GetTodaysStories {
     GetTodaysStories {
