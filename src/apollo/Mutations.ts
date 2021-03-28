@@ -29,6 +29,7 @@ export const OAUTH_LOGIN_USER = gql`
   }
 `;
 
+// Save Draft Mutation
 export const SAVE_DRAFT = gql`
   mutation SaveDraft(
     $title: String!
@@ -51,6 +52,7 @@ export const SAVE_DRAFT = gql`
   }
 `;
 
+// Publish Story Mutation
 export const PUBLISH_STORY = gql`
   mutation PublishStory(
     $title: String!
@@ -73,12 +75,14 @@ export const PUBLISH_STORY = gql`
   }
 `;
 
+// Like Story Mutation
 export const LIKE_STORY = gql`
   mutation LikeStory($storyid: String, $authorid: Int) {
     LikeStory(storyid: $storyid, authorid: $authorid)
   }
 `;
 
+// Edit Draft Mutation
 export const EDIT_DRAFT = gql`
   mutation EditDraft(
     $title: String!
@@ -99,6 +103,7 @@ export const EDIT_DRAFT = gql`
   }
 `;
 
+// Delete Draft Once The Draft Was Published Mutation
 export const DELETE_DRAFT_ONCE_PUBLISHED = gql`
   mutation DeleteDraftOncePublished($storyid: String) {
     DeleteDraftOncePublished(storyid: $storyid)
