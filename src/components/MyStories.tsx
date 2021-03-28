@@ -99,7 +99,7 @@ export const MyStories: any = () => {
     return (
       <React.Fragment>
         <div className="text-center">
-          <Heading>You Currently Have No Stories</Heading>
+          <div style={{ fontSize: "36pt" }}>You Currently Have No Stories</div>
         </div>
         <div
           style={{
@@ -107,11 +107,16 @@ export const MyStories: any = () => {
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            cursor: "pointer",
           }}
-          onClick={() => (window.location.href = "/create-story")}
         >
-          <AddCircleIcon />
+          <img
+            style={{
+              width: 500,
+            }}
+            className="undraggable"
+            src="https://lh3.googleusercontent.com/-i0raiq7i2HA/YGEJppqrLNI/AAAAAAAAAnw/AD_tzhHmUdAaDLh8R08Pk3Ql_ZnKaBsHwCK8BGAsYHg/s0/2021-03-28.png?authuser=0"
+            alt=""
+          />
         </div>
       </React.Fragment>
     );
