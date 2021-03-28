@@ -121,7 +121,6 @@ export const MyStories: any = (props: any) => {
   return (
     <React.Fragment>
       {data.GetAllStories.map((story: any) => {
-        console.log(story);
         // Preview Text
         const previewText = story.content.replace(/<[^>]+>/g, "");
 
