@@ -84,8 +84,15 @@ export const TodaysStories = (props: any) => {
                       </p>
                     </div>
                   </div>
-                  <div>
-                    <p>Likes: {story.likes}</p>
+                  <div
+                    style={{
+                      marginLeft: "90%",
+                      position: "relative",
+                      bottom: 30,
+                    }}
+                  >
+                    <i className="fa fa-heart"></i>
+                    <a href="#"> {story.likes}</a>
                   </div>
                 </div>
               </main>

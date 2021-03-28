@@ -11,6 +11,7 @@ export const GET_TODAYS_STORIES = gql`
       authorid
       date_created
       category
+      likes
     }
   }
 `;
