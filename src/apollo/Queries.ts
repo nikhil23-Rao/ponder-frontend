@@ -12,6 +12,8 @@ export const GET_TODAYS_STORIES = gql`
       date_created
       category
       likes
+      authorName
+      authorImage
     }
   }
 `;
@@ -44,6 +46,8 @@ export const READ_STORY = gql`
       category
       date_created
       likedBy
+      authorName
+      authorImage
     }
   }
 `;

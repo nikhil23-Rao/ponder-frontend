@@ -78,7 +78,7 @@ export const ReadStory: any = (props: any) => {
             }}
           >
             <Editor
-              initialValue={`<p>By: Nikhil Rao</p>${data.ReadStory.content}`}
+              initialValue={`<p>By: ${data.ReadStory.authorName}</p>${data.ReadStory.content}`}
               disabled={true}
               init={{
                 branding: false,

@@ -74,7 +74,7 @@ export const TodaysStories = (props: any) => {
                         className="sub-title"
                         style={{ fontFamily: "sans-serif", color: "#232B2B" }}
                       >
-                        By: {(user as any).username}
+                        By: {story.authorName}
                       </h2>
                       <p
                         className="description"
