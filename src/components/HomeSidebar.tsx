@@ -91,8 +91,8 @@ function Sidebar(props: any) {
                 if (text === "My Stories") {
                   return history.push("/my-stories/all");
                 }
-                if (text === "Create A Story") {
-                  return history.push("/create-story");
+                if (text === "Search") {
+                  return history.push("/search");
                 }
                 if (text === "Today's Stories") {
                   return history.push("/stories/today");
