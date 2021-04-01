@@ -2,18 +2,33 @@ import * as React from "react";
 import "../styles/Search.css";
 import Downshift from "downshift";
 import { useQuery } from "@apollo/client";
-import { GET_TODAYS_STORIES } from "../apollo/Queries";
+import { GET_TODAYS_STORIES, SEARCH } from "../apollo/Queries";
 import { StoryArgsInt } from "../../../backend/server/src/interfaces/StoryArgsInt";
+const queryString = require("query-string");
 
-export const Search: any = () => {
+export const Search: any = (props: any) => {
+  const [searchQuery, setSearchQuery] = React.useState("");
+  const [searchUrl, setSearchUrl] = React.useState("");
+  const { data: searchData, loading: searchLoading } = useQuery(SEARCH, {
+    variables: {
+      query: searchQuery,
+    },
+  });
+  const obj = queryString.parse(props.location.search);
+  React.useEffect(() => {
+    window.onload = () => {
+      setSearchQuery(obj.q);
+      setSearchUrl(obj.q);
+    };
+  }, [obj.q]);
+
   const { data, loading } = useQuery(GET_TODAYS_STORIES);
-  if (loading) return <h1>Loading</h1>;
+  if (searchLoading || loading) return <h1>Loading</h1>;
   if (data) {
     const { GetTodaysStories } = data;
-    console.log(GetTodaysStories);
     return (
       <Downshift
-        onChange={(selected) => alert(selected ? `Selected` : "No Results")}
+        onChange={(selected) => setSearchUrl(selected.title)}
         itemToString={(item) => (item ? item.title : "")}
       >
         {({
@@ -38,6 +53,10 @@ export const Search: any = () => {
                   name="searchQueryInput"
                   placeholder="Search For Stories, Authors, And More..."
                   {...getInputProps({
+                    value: searchUrl,
+                    onChange: (e) => {
+                      setSearchUrl(e.currentTarget.value);
+                    },
                     style: {
                       width: "100%",
                       height: "2.8rem",
@@ -54,6 +73,9 @@ export const Search: any = () => {
                   id="searchQuerySubmit"
                   type="submit"
                   name="searchQuerySubmit"
+                  onClick={() => {
+                    window.location.href = `?q=${searchUrl}`;
+                  }}
                 >
                   <svg
                     style={{ width: "24px", height: "24px" }}
@@ -69,7 +91,13 @@ export const Search: any = () => {
             </div>
             <ul
               {...getMenuProps({
-                style: { textAlign: "center" },
+                className: "mx-auto",
+                style: {
+                  textAlign: "center",
+                  listStyleType: "none",
+                  marginTop: "-6%",
+                  borderRadius: 50,
+                },
               })}
             >
               {isOpen
@@ -80,29 +108,109 @@ export const Search: any = () => {
                         new RegExp(".*" + inputValue + ".*", "i")
                       )
                   )
-                    .slice(0, 10)
+                    .slice(0, 5)
                     .map((item: StoryArgsInt, index: any) => (
-                      <li
-                        {...getItemProps({
-                          key: item.id,
-                          index,
-                          item,
-                          style: {
-                            backgroundColor:
-                              highlightedIndex === index ? "gray" : "white",
-                            fontWeight:
-                              selectedItem === item ? "bold" : "normal",
-                            width: "20%",
-                            cursor: "pointer",
-                            display: "inline-block",
-                          },
-                        })}
-                      >
-                        {item.title}
-                      </li>
+                      <div>
+                        <li
+                          {...getItemProps({
+                            className: "mx-auto",
+                            key: item.id,
+                            index,
+                            item,
+                            style: {
+                              textAlign: "left",
+                              border: "1px solid #d4d4d4",
+                              padding: 15,
+                              backgroundColor:
+                                highlightedIndex === index
+                                  ? "#E3E3E3"
+                                  : "white",
+                              fontWeight:
+                                selectedItem === item ? "bold" : "normal",
+                              width: "33%",
+                              height: 70,
+                              cursor: "pointer",
+                            },
+                          })}
+                        >
+                          {item.title}
+                        </li>
+                      </div>
                     ))
                 : null}
             </ul>
+            {searchQuery !== undefined &&
+            searchData &&
+            searchData.Search.length !== 0
+              ? searchData.Search.map((story: StoryArgsInt) => {
+                  //Preview Text
+                  const previewText = story.content.replace(/<[^>]+>/g, "");
+
+                  // Return Article Cards
+                  return (
+                    <React.Fragment key={story.id}>
+                      <div
+                        className="container"
+                        style={{
+                          width: "10%",
+                          display: "inline-grid",
+                          marginRight: "-3%",
+                          marginTop: "8%",
+                        }}
+                        onClick={() => {
+                          window.location.href = `/read/story/${story.id}`;
+                        }}
+                      >
+                        <main>
+                          <div className="hover">
+                            <div className="module">
+                              <div className="thumbnail">
+                                <img src={story.image_url} alt="" />
+                                <div
+                                  className="date"
+                                  style={{ fontFamily: "sans-serif" }}
+                                >
+                                  <div>{story.date_created[1]}</div>
+                                  <div>{story.date_created[0]}</div>
+                                </div>
+                              </div>
+                              <div className="content">
+                                <div
+                                  className="category"
+                                  style={{ fontFamily: "sans-serif" }}
+                                >
+                                  {story.category}
+                                </div>
+                                <h1
+                                  className="title"
+                                  style={{ fontFamily: "sans-serif" }}
+                                >
+                                  {story.title}
+                                </h1>
+                                <h2
+                                  className="sub-title"
+                                  style={{
+                                    fontFamily: "sans-serif",
+                                    color: "#232B2B",
+                                  }}
+                                >
+                                  By: {story.authorName}{" "}
+                                </h2>
+                                <p
+                                  className="description"
+                                  style={{ fontFamily: "sans-serif" }}
+                                >
+                                  {previewText}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </main>
+                      </div>
+                    </React.Fragment>
+                  );
+                })
+              : null}
           </>
         )}
       </Downshift>

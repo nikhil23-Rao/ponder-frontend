@@ -66,3 +66,21 @@ export const GET_EDIT_DRAFT = gql`
     }
   }
 `;
+
+// Search Query
+export const SEARCH = gql`
+  query Search($query: String) {
+    Search(query: $query) {
+      content
+      image_url
+      title
+      id
+      authorid
+      category
+      date_created
+      likedBy
+      authorName
+      authorImage
+    }
+  }
+`;
