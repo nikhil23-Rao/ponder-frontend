@@ -88,7 +88,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function ReadStorySideBar() {
+export default function Sidebar() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -179,8 +179,8 @@ export default function ReadStorySideBar() {
                 if (text === "My Stories") {
                   return history.push("/my-stories/all");
                 }
-                if (text === "Create A Story") {
-                  return history.push("/create-story");
+                if (text === "Search") {
+                  return history.push("/search");
                 }
                 if (text === "Today's Stories") {
                   return history.push("/stories/today");

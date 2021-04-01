@@ -6,6 +6,7 @@ import { GET_TODAYS_STORIES } from "../apollo/Queries";
 import "../styles/Grid.css";
 import { getCurrentUser } from "../utils/getCurrentUser";
 import "../styles/LikeButton.css";
+import Sidebar from "./Sidebar";
 
 // TodaysStories Component
 export const TodaysStories = (props: any) => {
@@ -35,12 +36,14 @@ export const TodaysStories = (props: any) => {
         // Return Article Cards
         return (
           <React.Fragment key={story.id}>
+            <Sidebar />
             <div
-              className="container mt-5"
+              className="container"
               style={{
                 width: "10%",
                 display: "inline-grid",
                 marginRight: "-3%",
+                marginTop: "6%",
               }}
               onClick={() => (window.location.href = `/read/story/${story.id}`)}
             >

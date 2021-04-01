@@ -84,3 +84,32 @@ export const SEARCH = gql`
     }
   }
 `;
+
+export const SORT_BY_DRAFTS = gql`
+  query SortByDraft($authorid: String) {
+    SortByDraft(authorid: $authorid) {
+      content
+      image_url
+      title
+      id
+      authorid
+      date_created
+      category
+    }
+  }
+`;
+
+export const SORT_BY_PUBLISHED = gql`
+  query SortByPublished($authorid: String) {
+    SortByPublished(authorid: $authorid) {
+      content
+      image_url
+      title
+      id
+      authorid
+      date_created
+      category
+      likes
+    }
+  }
+`;

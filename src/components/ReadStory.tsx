@@ -4,7 +4,7 @@ import { Editor } from "@tinymce/tinymce-react";
 import { useQuery } from "@apollo/client";
 import { READ_STORY } from "../apollo/Queries";
 import { useMutation } from "@apollo/client";
-import ReadStorySideBar from "./ReadStorySideBar";
+import Sidebar from "./Sidebar";
 import "../styles/LikeButton.css";
 import { LIKE_STORY } from "../apollo/Mutations";
 import { getCurrentUser } from "../utils/getCurrentUser";
@@ -126,7 +126,7 @@ export const ReadStory: any = (props: any) => {
               apiKey={"ilz513cziydz1sp6f5za1c1ggtokkpr0txis91czgb6tvtx2"}
             />
           </div>
-          <ReadStorySideBar />
+          <Sidebar />
         </div>
         <div className="topright" style={{ backgroundColor: "#fff" }}>
           <label>

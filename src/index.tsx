@@ -27,7 +27,9 @@ ReactDOM.render(
     <ApolloProvider client={client}>
       <ChakraProvider>
         <Router>
-          <App />
+          <div style={{ backgroundColor: "#fff" }}>
+            <App />
+          </div>
         </Router>
       </ChakraProvider>
     </ApolloProvider>

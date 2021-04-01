@@ -3,11 +3,8 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import "../styles/MyStories.css";
 import { GET_ALL_STORIES } from "../apollo/Queries";
-import { Link } from "react-router-dom";
-import AddCircleIcon from "@material-ui/icons/AddCircle";
 import "../styles/Grid.css";
 import { getCurrentUser } from "../utils/getCurrentUser";
-import { Heading } from "@chakra-ui/layout";
 import Menu, { MenuProps } from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
@@ -19,6 +16,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import SortIcon from "@material-ui/icons/Sort";
 import { UserStateInt } from "../interfaces/UserStateInt";
+import Sidebar from "./Sidebar";
 
 // My Stories Component
 export const MyStories: any = () => {
@@ -194,20 +192,8 @@ export const MyStories: any = () => {
           </React.Fragment>
         );
       })}
-      <div>
-        <Link
-          to="/create-story"
-          style={{
-            top: 0,
-            right: 5,
-            position: "absolute",
-            textDecoration: "none",
-          }}
-        >
-          <AddCircleIcon />
-        </Link>
-      </div>
-      <div style={{ position: "absolute", top: 2, left: 5 }}>
+
+      <div style={{ position: "absolute", top: 2, right: 5 }}>
         <Button
           aria-controls="customized-menu"
           aria-haspopup="true"
@@ -247,6 +233,11 @@ export const MyStories: any = () => {
             <ListItemText primary="Show Drafts" />
           </StyledMenuItem>
         </StyledMenu>
+      </div>
+      <div
+        style={{ backgroundColor: "#fff", position: "fixed", width: "100%" }}
+      >
+        <Sidebar />
       </div>
     </React.Fragment>
   );
