@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import "../styles/MyStories.css";
-import { SORT_BY_DRAFTS } from "../apollo/Queries";
 import "../styles/Grid.css";
 import { getCurrentUser } from "../utils/getCurrentUser";
 import Menu, { MenuProps } from "@material-ui/core/Menu";
@@ -16,10 +15,11 @@ import { withStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import SortIcon from "@material-ui/icons/Sort";
 import { UserStateInt } from "../interfaces/UserStateInt";
-import Sidebar from "./Sidebar";
+import Sidebar from "../components/Sidebar";
+import { SORT_BY_PUBLISHED } from "../apollo/Queries";
 
-// My Stories Component
-export const SortByDrafts: any = () => {
+// Sort By Published Component
+export const SortByPublished: any = () => {
   // Styles For Sort By Menu
   const StyledMenu = withStyles({
     paper: {
@@ -83,7 +83,7 @@ export const SortByDrafts: any = () => {
   }, []);
 
   // Query The Stories
-  const { data, loading } = useQuery(SORT_BY_DRAFTS, {
+  const { data, loading } = useQuery(SORT_BY_PUBLISHED, {
     variables: { authorid: (user as any).id },
   });
 
@@ -93,11 +93,13 @@ export const SortByDrafts: any = () => {
   }
 
   // If 0 Stories Return Following
-  if (data && data.SortByDraft.length === 0) {
+  if (data && data.SortByPublished.length === 0) {
     return (
       <React.Fragment>
         <div className="text-center">
-          <div style={{ fontSize: "36pt" }}>You Currently Have No Drafts</div>
+          <div style={{ fontSize: "36pt" }}>
+            You Currently Have No Published Stories
+          </div>
         </div>
         <div
           style={{
@@ -120,10 +122,10 @@ export const SortByDrafts: any = () => {
     );
   }
 
-  // Return MyStories Markup
+  // Return Published Stories Markup
   return (
     <React.Fragment>
-      {data.SortByDraft.map((story: any) => {
+      {data.SortByPublished.map((story: any) => {
         // Preview Text
         const previewText = story.content.replace(/<[^>]+>/g, "");
 
@@ -218,17 +220,15 @@ export const SortByDrafts: any = () => {
             </ListItemIcon>
             <ListItemText primary="Show All" />
           </StyledMenuItem>
-          <StyledMenuItem
-            onClick={() =>
-              (window.location.href = "/my-stories/sortby/published")
-            }
-          >
+          <StyledMenuItem onClick={() => window.location.reload()}>
             <ListItemIcon>
               <DraftsIcon fontSize="small" />
             </ListItemIcon>
             <ListItemText primary="Show Published" />
           </StyledMenuItem>
-          <StyledMenuItem onClick={() => window.location.reload()}>
+          <StyledMenuItem
+            onClick={() => (window.location.href = "/my-stories/sortby/drafts")}
+          >
             <ListItemIcon>
               <InboxIcon fontSize="small" />
             </ListItemIcon>

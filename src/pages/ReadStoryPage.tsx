@@ -4,7 +4,7 @@ import { Editor } from "@tinymce/tinymce-react";
 import { useQuery } from "@apollo/client";
 import { READ_STORY } from "../apollo/Queries";
 import { useMutation } from "@apollo/client";
-import Sidebar from "./Sidebar";
+import Sidebar from "../components/Sidebar";
 import "../styles/LikeButton.css";
 import { LIKE_STORY } from "../apollo/Mutations";
 import { getCurrentUser } from "../utils/getCurrentUser";

@@ -2,9 +2,9 @@ import React from "react";
 import { useMutation } from "@apollo/client";
 import { useToast } from "@chakra-ui/react";
 import MicrosoftLogin from "react-microsoft-login";
-import { OAUTH_REGISTER_USER } from "../apollo/Mutations";
-import { MicrosoftSignupButton } from "../components/MicrosoftSignupButton";
-import { GenerateStoryID } from "../utils/GenerateStoryId";
+import { OAUTH_REGISTER_USER } from "../../apollo/Mutations";
+import { MicrosoftSignupButton } from "./MicrosoftSignupButton";
+import { GenerateStoryID } from "../../utils/GenerateStoryId";
 
 export const SignupWithMicrosoft = () => {
   const toast = useToast();

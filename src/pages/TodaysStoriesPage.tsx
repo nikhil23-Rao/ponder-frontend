@@ -6,7 +6,7 @@ import { GET_TODAYS_STORIES } from "../apollo/Queries";
 import "../styles/Grid.css";
 import { getCurrentUser } from "../utils/getCurrentUser";
 import "../styles/LikeButton.css";
-import Sidebar from "./Sidebar";
+import Sidebar from "../components/Sidebar";
 import { readingTime } from "../utils/ReadingTime";
 
 // TodaysStories Component

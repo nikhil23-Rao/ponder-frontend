@@ -1,9 +1,9 @@
 import React from "react";
 import { useMutation } from "@apollo/client";
 import { GoogleLogin } from "react-google-login";
-import { OAUTH_REGISTER_USER } from "../apollo/Mutations";
+import { OAUTH_REGISTER_USER } from "../../apollo/Mutations";
 import { useToast } from "@chakra-ui/react";
-import { GenerateStoryID } from "../utils/GenerateStoryId";
+import { GenerateStoryID } from "../../utils/GenerateStoryId";
 
 export const SignupWithGoogle = (props: any) => {
   const toast = useToast();

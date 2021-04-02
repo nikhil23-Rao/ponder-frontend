@@ -10,8 +10,8 @@ import { LoginValidationPasswordTextField } from "../validation/LoginValidationP
 import { LoginValidationSchema } from "../validation/LoginValidationSchema";
 import { Link } from "react-router-dom";
 import { InvalidTextField } from "../validation/InvalidTextField";
-import { LoginWithGoogle } from "../oauth/LoginWithGoogle";
-import { LoginWithMicrosoft } from "../oauth/LoginWithMicrosoft";
+import { LoginWithGoogle } from "../components/oauth/LoginWithGoogle";
+import { LoginWithMicrosoft } from "../components/oauth/LoginWithMicrosoft";
 
 // Login Component
 export const Login = (props: any) => {

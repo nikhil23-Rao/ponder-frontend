@@ -1,6 +1,6 @@
 // Modules Imported For Use
 import React from "react";
-import "../styles/MicrosoftButton.css";
+import "../../styles/MicrosoftButton.css";
 
 // Render Microsoft Login Button
 export const MicrosoftLoginButton = () => {

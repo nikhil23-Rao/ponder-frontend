@@ -1,7 +1,7 @@
 import React from "react";
 import { useMutation } from "@apollo/client";
 import { GoogleLogin } from "react-google-login";
-import { OAUTH_LOGIN_USER } from "../apollo/Mutations";
+import { OAUTH_LOGIN_USER } from "../../apollo/Mutations";
 import { useToast } from "@chakra-ui/react";
 
 export const LoginWithGoogle = (props: any) => {

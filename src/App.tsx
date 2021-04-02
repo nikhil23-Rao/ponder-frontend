@@ -2,19 +2,19 @@ import React from "react";
 import "./App.css";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import { Home } from "./components/Home";
-import { Login } from "./components/Login";
-import { Signup } from "./components/Signup";
-import { CreateStory } from "./components/CreateStory";
-import { MyStories } from "./components/MyStories";
-import { NotFound } from "./components/Not-Found";
-import { LandingPage } from "./components/LandingPage";
-import { SortByDrafts } from "./components/SortByDrafts";
-import { SortByPublished } from "./components/SortByPublished";
-import { ReadStory } from "./components/ReadStory";
-import { TodaysStories } from "./components/TodaysStories";
-import { EditDraft } from "./components/EditDraft";
-import { Search } from "./components/Search";
+import { Home } from "./pages/HomePage";
+import { Login } from "./pages/LoginPage";
+import { Signup } from "./pages/SignupPage";
+import { CreateStory } from "./pages/CreateStoryPage";
+import { MyStories } from "./pages/MyStoriesPage";
+import { NotFound } from "./pages/NotFoundPage";
+import { LandingPage } from "./pages/LandingPage";
+import { SortByDrafts } from "./pages/SortByDraftsPage";
+import { SortByPublished } from "./pages/SortByPublishedPage";
+import { ReadStory } from "./pages/ReadStoryPage";
+import { TodaysStories } from "./pages/TodaysStoriesPage";
+import { EditDraft } from "./pages/EditDraftPage";
+import { Search } from "./pages/SearchPage";
 
 function App() {
   return (

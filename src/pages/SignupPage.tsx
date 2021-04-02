@@ -10,8 +10,8 @@ import { SignupValidationPasswordTextField } from "../validation/SignUpValidatio
 import { REGISTER_USER } from "../apollo/Mutations";
 import { Link } from "react-router-dom";
 import { AccountExistsTextField } from "../validation/AccountExistsTextField";
-import { SignupWithGoogle } from "../oauth/SignupWithGoogle";
-import { SignupWithMicrosoft } from "../oauth/SignupWithMicrosoft";
+import { SignupWithGoogle } from "../components/oauth/SignupWithGoogle";
+import { SignupWithMicrosoft } from "../components/oauth/SignupWithMicrosoft";
 import "../styles/Register.css";
 import { GenerateStoryID } from "../utils/GenerateStoryId";
 

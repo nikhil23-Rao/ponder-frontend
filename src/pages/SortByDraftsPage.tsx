@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import "../styles/MyStories.css";
-import { GET_ALL_STORIES } from "../apollo/Queries";
+import { SORT_BY_DRAFTS } from "../apollo/Queries";
 import "../styles/Grid.css";
 import { getCurrentUser } from "../utils/getCurrentUser";
 import Menu, { MenuProps } from "@material-ui/core/Menu";
@@ -16,12 +16,10 @@ import { withStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import SortIcon from "@material-ui/icons/Sort";
 import { UserStateInt } from "../interfaces/UserStateInt";
-import Sidebar from "./Sidebar";
-import { readingTime } from "../utils/ReadingTime";
-import { history } from "../index";
+import Sidebar from "../components/Sidebar";
 
 // My Stories Component
-export const MyStories: any = () => {
+export const SortByDrafts: any = () => {
   // Styles For Sort By Menu
   const StyledMenu = withStyles({
     paper: {
@@ -85,7 +83,7 @@ export const MyStories: any = () => {
   }, []);
 
   // Query The Stories
-  const { data, loading } = useQuery(GET_ALL_STORIES, {
+  const { data, loading } = useQuery(SORT_BY_DRAFTS, {
     variables: { authorid: (user as any).id },
   });
 
@@ -95,19 +93,11 @@ export const MyStories: any = () => {
   }
 
   // If 0 Stories Return Following
-  if (data && data.GetAllStories.length === 0) {
+  if (data && data.SortByDraft.length === 0) {
     return (
       <React.Fragment>
         <div className="text-center">
-          <div style={{ fontSize: "36pt" }}>You Currently Have No Stories</div>
-          <div>
-            <Button
-              style={{ outline: "none" }}
-              onClick={() => history.push("/create-story")}
-            >
-              + Create One Here
-            </Button>
-          </div>
+          <div style={{ fontSize: "36pt" }}>You Currently Have No Drafts</div>
         </div>
         <div
           style={{
@@ -133,11 +123,9 @@ export const MyStories: any = () => {
   // Return MyStories Markup
   return (
     <React.Fragment>
-      {data.GetAllStories.map((story: any) => {
+      {data.SortByDraft.map((story: any) => {
         // Preview Text
         const previewText = story.content.replace(/<[^>]+>/g, "");
-
-        const mins = readingTime(previewText);
 
         // Return Article Cards
         return (
@@ -184,8 +172,6 @@ export const MyStories: any = () => {
                       >
                         {story.title}
                       </h1>
-                      <h1 style={{ fontFamily: "inherit" }}>{mins}</h1>
-                      <br />
                       <h2
                         className="sub-title"
                         style={{ fontFamily: "sans-serif", color: "#232B2B" }}
@@ -224,23 +210,25 @@ export const MyStories: any = () => {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          <StyledMenuItem onClick={() => window.location.reload()}>
+          <StyledMenuItem
+            onClick={() => (window.location.href = "/my-stories/all")}
+          >
             <ListItemIcon>
               <SendIcon fontSize="small" />
             </ListItemIcon>
             <ListItemText primary="Show All" />
           </StyledMenuItem>
           <StyledMenuItem
-            onClick={() => (window.location.href = "sortby/published")}
+            onClick={() =>
+              (window.location.href = "/my-stories/sortby/published")
+            }
           >
             <ListItemIcon>
               <DraftsIcon fontSize="small" />
             </ListItemIcon>
             <ListItemText primary="Show Published" />
           </StyledMenuItem>
-          <StyledMenuItem
-            onClick={() => (window.location.href = "sortby/drafts")}
-          >
+          <StyledMenuItem onClick={() => window.location.reload()}>
             <ListItemIcon>
               <InboxIcon fontSize="small" />
             </ListItemIcon>

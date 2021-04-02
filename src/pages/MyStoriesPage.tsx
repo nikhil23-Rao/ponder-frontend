@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import "../styles/MyStories.css";
+import { GET_ALL_STORIES } from "../apollo/Queries";
 import "../styles/Grid.css";
 import { getCurrentUser } from "../utils/getCurrentUser";
 import Menu, { MenuProps } from "@material-ui/core/Menu";
@@ -15,11 +16,12 @@ import { withStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import SortIcon from "@material-ui/icons/Sort";
 import { UserStateInt } from "../interfaces/UserStateInt";
-import Sidebar from "./Sidebar";
-import { SORT_BY_PUBLISHED } from "../apollo/Queries";
+import Sidebar from "../components/Sidebar";
+import { readingTime } from "../utils/ReadingTime";
+import { history } from "../index";
 
-// Sort By Published Component
-export const SortByPublished: any = () => {
+// My Stories Component
+export const MyStories: any = () => {
   // Styles For Sort By Menu
   const StyledMenu = withStyles({
     paper: {
@@ -83,7 +85,7 @@ export const SortByPublished: any = () => {
   }, []);
 
   // Query The Stories
-  const { data, loading } = useQuery(SORT_BY_PUBLISHED, {
+  const { data, loading } = useQuery(GET_ALL_STORIES, {
     variables: { authorid: (user as any).id },
   });
 
@@ -93,12 +95,18 @@ export const SortByPublished: any = () => {
   }
 
   // If 0 Stories Return Following
-  if (data && data.SortByPublished.length === 0) {
+  if (data && data.GetAllStories.length === 0) {
     return (
       <React.Fragment>
         <div className="text-center">
-          <div style={{ fontSize: "36pt" }}>
-            You Currently Have No Published Stories
+          <div style={{ fontSize: "36pt" }}>You Currently Have No Stories</div>
+          <div>
+            <Button
+              style={{ outline: "none" }}
+              onClick={() => history.push("/create-story")}
+            >
+              + Create One Here
+            </Button>
           </div>
         </div>
         <div
@@ -122,12 +130,14 @@ export const SortByPublished: any = () => {
     );
   }
 
-  // Return Published Stories Markup
+  // Return MyStories Markup
   return (
     <React.Fragment>
-      {data.SortByPublished.map((story: any) => {
+      {data.GetAllStories.map((story: any) => {
         // Preview Text
         const previewText = story.content.replace(/<[^>]+>/g, "");
+
+        const mins = readingTime(previewText);
 
         // Return Article Cards
         return (
@@ -174,6 +184,8 @@ export const SortByPublished: any = () => {
                       >
                         {story.title}
                       </h1>
+                      <h1 style={{ fontFamily: "inherit" }}>{mins}</h1>
+                      <br />
                       <h2
                         className="sub-title"
                         style={{ fontFamily: "sans-serif", color: "#232B2B" }}
@@ -212,22 +224,22 @@ export const SortByPublished: any = () => {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          <StyledMenuItem
-            onClick={() => (window.location.href = "/my-stories/all")}
-          >
+          <StyledMenuItem onClick={() => window.location.reload()}>
             <ListItemIcon>
               <SendIcon fontSize="small" />
             </ListItemIcon>
             <ListItemText primary="Show All" />
           </StyledMenuItem>
-          <StyledMenuItem onClick={() => window.location.reload()}>
+          <StyledMenuItem
+            onClick={() => (window.location.href = "sortby/published")}
+          >
             <ListItemIcon>
               <DraftsIcon fontSize="small" />
             </ListItemIcon>
             <ListItemText primary="Show Published" />
           </StyledMenuItem>
           <StyledMenuItem
-            onClick={() => (window.location.href = "/my-stories/sortby/drafts")}
+            onClick={() => (window.location.href = "sortby/drafts")}
           >
             <ListItemIcon>
               <InboxIcon fontSize="small" />

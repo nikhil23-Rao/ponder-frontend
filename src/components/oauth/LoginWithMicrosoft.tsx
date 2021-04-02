@@ -1,8 +1,8 @@
 import React from "react";
 import { useMutation } from "@apollo/client";
 import MicrosoftLogin from "react-microsoft-login";
-import { OAUTH_LOGIN_USER } from "../apollo/Mutations";
-import { MicrosoftLoginButton } from "../components/MicrosoftLoginButton";
+import { OAUTH_LOGIN_USER } from "../../apollo/Mutations";
+import { MicrosoftLoginButton } from "./MicrosoftLoginButton";
 import { useToast } from "@chakra-ui/react";
 
 export const LoginWithMicrosoft = () => {
