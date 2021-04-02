@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import "../styles/MyStories.css";
-import { GET_ALL_STORIES } from "../apollo/Queries";
 import "../styles/Grid.css";
 import { getCurrentUser } from "../utils/getCurrentUser";
 import Menu, { MenuProps } from "@material-ui/core/Menu";
@@ -19,7 +18,7 @@ import { UserStateInt } from "../interfaces/UserStateInt";
 import Sidebar from "./Sidebar";
 import { SORT_BY_PUBLISHED } from "../apollo/Queries";
 
-// My Stories Component
+// Sort By Published Component
 export const SortByPublished: any = () => {
   // Styles For Sort By Menu
   const StyledMenu = withStyles({
@@ -98,7 +97,9 @@ export const SortByPublished: any = () => {
     return (
       <React.Fragment>
         <div className="text-center">
-          <div style={{ fontSize: "36pt" }}>You Currently Have No Stories</div>
+          <div style={{ fontSize: "36pt" }}>
+            You Currently Have No Published Stories
+          </div>
         </div>
         <div
           style={{
@@ -121,7 +122,7 @@ export const SortByPublished: any = () => {
     );
   }
 
-  // Return MyStories Markup
+  // Return Published Stories Markup
   return (
     <React.Fragment>
       {data.SortByPublished.map((story: any) => {
