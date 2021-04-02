@@ -1,3 +1,4 @@
+// Modules Imported For Use
 import React from "react";
 import clsx from "clsx";
 import {
@@ -26,8 +27,10 @@ import AddCircleIcon from "@material-ui/icons/AddCircle";
 import HomeIcon from "@material-ui/icons/Home";
 import { history } from "../index";
 
+// Width Of Open Drawer
 const drawerWidth = 240;
 
+// Custom Styles
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -88,19 +91,26 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function Sidebar() {
+// Sidebar Component
+const Sidebar = () => {
+  // Get Styles
   const classes = useStyles();
+  // Get Theme
   const theme = useTheme();
+  // Open or Close Sidebar
   const [open, setOpen] = React.useState(false);
 
+  // Open Sidebar
   const handleDrawerOpen = () => {
     setOpen(true);
   };
 
+  // Close Sidebar
   const handleDrawerClose = () => {
     setOpen(false);
   };
 
+  // Return Sidebar
   return (
     <div
       className={classes.root}
@@ -218,4 +228,6 @@ export default function Sidebar() {
       </main>
     </div>
   );
-}
+};
+
+export default Sidebar;
