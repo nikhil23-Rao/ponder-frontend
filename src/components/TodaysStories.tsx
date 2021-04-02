@@ -7,6 +7,7 @@ import "../styles/Grid.css";
 import { getCurrentUser } from "../utils/getCurrentUser";
 import "../styles/LikeButton.css";
 import Sidebar from "./Sidebar";
+import { readingTime } from "../utils/ReadingTime";
 
 // TodaysStories Component
 export const TodaysStories = (props: any) => {
@@ -32,6 +33,7 @@ export const TodaysStories = (props: any) => {
       {data.GetTodaysStories.map((story: any) => {
         // Preview Text
         const previewText = story.content.replace(/<[^>]+>/g, "");
+        const mins = readingTime(previewText);
 
         // Return Article Cards
         return (
@@ -73,6 +75,8 @@ export const TodaysStories = (props: any) => {
                       >
                         {story.title}
                       </h1>
+                      <h1 style={{ fontFamily: "inherit" }}>{mins}</h1>
+                      <br />
                       <h2
                         className="sub-title"
                         style={{ fontFamily: "sans-serif", color: "#232B2B" }}

@@ -18,6 +18,7 @@ import SortIcon from "@material-ui/icons/Sort";
 import { UserStateInt } from "../interfaces/UserStateInt";
 import Sidebar from "./Sidebar";
 import { readingTime } from "../utils/ReadingTime";
+import { history } from "../index";
 
 // My Stories Component
 export const MyStories: any = () => {
@@ -99,6 +100,14 @@ export const MyStories: any = () => {
       <React.Fragment>
         <div className="text-center">
           <div style={{ fontSize: "36pt" }}>You Currently Have No Stories</div>
+          <div>
+            <Button
+              style={{ outline: "none" }}
+              onClick={() => history.push("/create-story")}
+            >
+              + Create One Here
+            </Button>
+          </div>
         </div>
         <div
           style={{
@@ -175,11 +184,7 @@ export const MyStories: any = () => {
                       >
                         {story.title}
                       </h1>
-                      <h1
-                        style={{ fontFamily: "sans-serif", fontWeight: "bold" }}
-                      >
-                        {mins}
-                      </h1>
+                      <h1 style={{ fontFamily: "inherit" }}>{mins}</h1>
                       <br />
                       <h2
                         className="sub-title"

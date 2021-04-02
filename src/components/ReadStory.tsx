@@ -40,7 +40,8 @@ export const ReadStory: any = (props: any) => {
 
   // If Data Then Return READ ONLY TinyMCE Editor With Data
   if (data) {
-    const time = readingTime(data.ReadStory.content);
+    const text = data.ReadStory.content.replace(/<[^>]+>/g, "");
+    const time = readingTime(text);
     // Return READONLY TinyMCE Editor
     return (
       <React.Fragment>
