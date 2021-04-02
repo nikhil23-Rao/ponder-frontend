@@ -33,6 +33,7 @@ export const TodaysStories = (props: any) => {
       {data.GetTodaysStories.map((story: any) => {
         // Preview Text
         const previewText = story.content.replace(/<[^>]+>/g, "");
+        // Get Story Reading Time
         const mins = readingTime(previewText);
 
         // Return Article Cards
