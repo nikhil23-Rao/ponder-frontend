@@ -11,7 +11,7 @@ import Sidebar from "./Sidebar";
 // TodaysStories Component
 export const TodaysStories = (props: any) => {
   // Current User Id State
-  const [user, setUser] = useState({});
+  const [, setUser] = useState({});
   // Query The Stories
   const { data, loading } = useQuery(GET_TODAYS_STORIES);
 

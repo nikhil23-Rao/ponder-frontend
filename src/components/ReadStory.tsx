@@ -8,6 +8,7 @@ import Sidebar from "./Sidebar";
 import "../styles/LikeButton.css";
 import { LIKE_STORY } from "../apollo/Mutations";
 import { getCurrentUser } from "../utils/getCurrentUser";
+import { readingTime } from "../utils/ReadingTime";
 
 // Read Story Component
 export const ReadStory: any = (props: any) => {
@@ -39,6 +40,7 @@ export const ReadStory: any = (props: any) => {
 
   // If Data Then Return READ ONLY TinyMCE Editor With Data
   if (data) {
+    const time = readingTime(data.ReadStory.content);
     // Return READONLY TinyMCE Editor
     return (
       <React.Fragment>
@@ -78,7 +80,7 @@ export const ReadStory: any = (props: any) => {
             }}
           >
             <Editor
-              initialValue={`<p>By: ${data.ReadStory.authorName}</p>${data.ReadStory.content}`}
+              initialValue={`<p>By: ${data.ReadStory.authorName}</p><p style="color:gray">${time}</p>${data.ReadStory.content}`}
               disabled={true}
               init={{
                 branding: false,

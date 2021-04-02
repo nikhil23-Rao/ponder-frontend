@@ -17,6 +17,7 @@ import { Button } from "@material-ui/core";
 import SortIcon from "@material-ui/icons/Sort";
 import { UserStateInt } from "../interfaces/UserStateInt";
 import Sidebar from "./Sidebar";
+import { readingTime } from "../utils/ReadingTime";
 
 // My Stories Component
 export const MyStories: any = () => {
@@ -127,6 +128,8 @@ export const MyStories: any = () => {
         // Preview Text
         const previewText = story.content.replace(/<[^>]+>/g, "");
 
+        const mins = readingTime(previewText);
+
         // Return Article Cards
         return (
           <React.Fragment key={story.id}>
@@ -172,6 +175,12 @@ export const MyStories: any = () => {
                       >
                         {story.title}
                       </h1>
+                      <h1
+                        style={{ fontFamily: "sans-serif", fontWeight: "bold" }}
+                      >
+                        {mins}
+                      </h1>
+                      <br />
                       <h2
                         className="sub-title"
                         style={{ fontFamily: "sans-serif", color: "#232B2B" }}
