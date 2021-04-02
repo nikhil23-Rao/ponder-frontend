@@ -6,6 +6,7 @@ import { useQuery } from "@apollo/client";
 import { GET_TODAYS_STORIES, SEARCH } from "../apollo/Queries";
 import { StoryArgsInt } from "../../../backend/server/src/interfaces/StoryArgsInt";
 import Sidebar from "../components/Sidebar";
+import { ArticleCard } from "../components/ArticleCard";
 const queryString = require("query-string");
 
 // Search Component
@@ -156,71 +157,18 @@ export const Search: any = (props: any) => {
               searchData &&
               searchData.Search.length !== 0
                 ? searchData.Search.map((story: StoryArgsInt) => {
-                    //Preview Text
-                    const previewText = story.content.replace(/<[^>]+>/g, "");
-
                     // Return Article Cards
                     return (
-                      <React.Fragment key={story.id}>
-                        <div
-                          className="container"
-                          style={{
-                            width: "10%",
-                            display: "inline-grid",
-                            marginRight: "-3%",
-                            marginTop: "8%",
-                          }}
-                          onClick={() => {
-                            window.location.href = `/read/story/${story.id}`;
-                          }}
-                        >
-                          <main>
-                            <div className="hover">
-                              <div className="module">
-                                <div className="thumbnail">
-                                  <img src={story.image_url} alt="" />
-                                  <div
-                                    className="date"
-                                    style={{ fontFamily: "sans-serif" }}
-                                  >
-                                    <div>{story.date_created[1]}</div>
-                                    <div>{story.date_created[0]}</div>
-                                  </div>
-                                </div>
-                                <div className="content">
-                                  <div
-                                    className="category"
-                                    style={{ fontFamily: "sans-serif" }}
-                                  >
-                                    {story.category}
-                                  </div>
-                                  <h1
-                                    className="title"
-                                    style={{ fontFamily: "sans-serif" }}
-                                  >
-                                    {story.title}
-                                  </h1>
-                                  <h2
-                                    className="sub-title"
-                                    style={{
-                                      fontFamily: "sans-serif",
-                                      color: "#232B2B",
-                                    }}
-                                  >
-                                    By: {story.authorName}{" "}
-                                  </h2>
-                                  <p
-                                    className="description"
-                                    style={{ fontFamily: "sans-serif" }}
-                                  >
-                                    {previewText}
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                          </main>
-                        </div>
-                      </React.Fragment>
+                      <ArticleCard
+                        category={story.category}
+                        title={story.title}
+                        content={story.content}
+                        date_created={story.date_created}
+                        id={story.id}
+                        image_url={story.image_url}
+                        likes={story.likes}
+                        authorName={story.authorName}
+                      />
                     );
                   })
                 : null}
