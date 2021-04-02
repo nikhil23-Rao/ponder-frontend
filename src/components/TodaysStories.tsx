@@ -45,7 +45,7 @@ export const TodaysStories = (props: any) => {
                 width: "10%",
                 display: "inline-grid",
                 marginRight: "-3%",
-                marginTop: "6%",
+                marginTop: "10%",
               }}
               onClick={() => (window.location.href = `/read/story/${story.id}`)}
             >

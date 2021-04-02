@@ -110,6 +110,7 @@ export const EditDraft: any = (props: any) => {
         storyid: props.match.params.id,
       },
     });
+
     // Close Modal
     draftOnClose();
 
@@ -149,9 +150,11 @@ export const EditDraft: any = (props: any) => {
 
     // Close Modal
     publishStoryOnClose();
+
     // Take User To My Stories Page
     history.replace("/my-stories/all");
   };
+
   // Return TinyMCE Editor If We Have Data
   if (data) {
     return (
