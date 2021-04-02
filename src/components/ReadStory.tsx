@@ -40,7 +40,9 @@ export const ReadStory: any = (props: any) => {
 
   // If Data Then Return READ ONLY TinyMCE Editor With Data
   if (data) {
+    // Get Text Of Article
     const text = data.ReadStory.content.replace(/<[^>]+>/g, "");
+    // Estimate Reading Time Of Article
     const time = readingTime(text);
     // Return READONLY TinyMCE Editor
     return (

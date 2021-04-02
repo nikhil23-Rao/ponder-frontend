@@ -1,3 +1,4 @@
+// Modules Imported For Use
 import * as React from "react";
 import "../styles/Search.css";
 import Downshift from "downshift";
@@ -7,25 +8,35 @@ import { StoryArgsInt } from "../../../backend/server/src/interfaces/StoryArgsIn
 import Sidebar from "./Sidebar";
 const queryString = require("query-string");
 
+// Search Component
 export const Search: any = (props: any) => {
+  // Search Query User Types
   const [searchQuery, setSearchQuery] = React.useState("");
+  // URL Of Search
   const [searchUrl, setSearchUrl] = React.useState("");
+  // Call Backend With Query In State
   const { data: searchData, loading: searchLoading } = useQuery(SEARCH, {
     variables: {
       query: searchQuery,
     },
   });
-  const obj = queryString.parse(props.location.search);
+
+  // Destructre Data From URL
+  const { q } = queryString.parse(props.location.search);
 
   React.useEffect(() => {
     window.onload = () => {
-      setSearchQuery(obj.q);
-      setSearchUrl(obj.q);
+      // On Window Load Set State
+      setSearchQuery(q);
+      setSearchUrl(q);
     };
-  }, [obj.q]);
+  }, [q]);
 
+  // Get All Stories Query
   const { data, loading } = useQuery(GET_TODAYS_STORIES);
+  // If Loading Return To Client
   if (searchLoading || loading) return <h1>Loading</h1>;
+  // When Data Build Search Box With Downshift.js Autocomplete
   if (data) {
     const { GetTodaysStories } = data;
     return (
