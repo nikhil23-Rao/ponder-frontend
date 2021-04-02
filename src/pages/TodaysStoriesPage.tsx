@@ -7,7 +7,7 @@ import "../styles/Grid.css";
 import { getCurrentUser } from "../utils/getCurrentUser";
 import "../styles/LikeButton.css";
 import Sidebar from "../components/Sidebar";
-import { readingTime } from "../utils/ReadingTime";
+import { ArticleCard } from "../components/ArticleCard";
 
 // TodaysStories Component
 export const TodaysStories = (props: any) => {
@@ -30,81 +30,21 @@ export const TodaysStories = (props: any) => {
   // Return MyStories Markup
   return (
     <React.Fragment>
+      <Sidebar />
       {data.GetTodaysStories.map((story: any) => {
-        // Preview Text
-        const previewText = story.content.replace(/<[^>]+>/g, "");
-        // Get Story Reading Time
-        const mins = readingTime(previewText);
-
         // Return Article Cards
         return (
-          <React.Fragment key={story.id}>
-            <Sidebar />
-            <div
-              className="container"
-              style={{
-                width: "10%",
-                display: "inline-grid",
-                marginRight: "-3%",
-                marginTop: "10%",
-              }}
-              onClick={() => (window.location.href = `/read/story/${story.id}`)}
-            >
-              <main>
-                <div className="hover">
-                  <div className="module">
-                    <div className="thumbnail">
-                      <img src={story.image_url} alt="" />
-                      <div
-                        className="date"
-                        style={{ fontFamily: "sans-serif" }}
-                      >
-                        <div>{story.date_created[1]}</div>
-                        <div>{story.date_created[0]}</div>
-                      </div>
-                    </div>
-                    <div className="content">
-                      <div
-                        className="category"
-                        style={{ fontFamily: "sans-serif" }}
-                      >
-                        {story.category}
-                      </div>
-                      <h1
-                        className="title"
-                        style={{ fontFamily: "sans-serif" }}
-                      >
-                        {story.title}
-                      </h1>
-                      <h1 style={{ fontFamily: "inherit" }}>{mins}</h1>
-                      <br />
-                      <h2
-                        className="sub-title"
-                        style={{ fontFamily: "sans-serif", color: "#232B2B" }}
-                      >
-                        By: {story.authorName}
-                      </h2>
-                      <p
-                        className="description"
-                        style={{ fontFamily: "sans-serif" }}
-                      >
-                        {previewText}
-                      </p>
-                    </div>
-                  </div>
-                  <div
-                    style={{
-                      marginLeft: "90%",
-                      position: "relative",
-                      bottom: 30,
-                    }}
-                  >
-                    <i className="fa fa-heart"></i>
-                    <span> {story.likes}</span>
-                  </div>
-                </div>
-              </main>
-            </div>
+          <React.Fragment>
+            <ArticleCard
+              category={story.category}
+              title={story.title}
+              content={story.content}
+              date_created={story.date_created}
+              id={story.id}
+              image_url={story.image_url}
+              likes={story.likes}
+              authorName={story.authorName}
+            />
           </React.Fragment>
         );
       })}

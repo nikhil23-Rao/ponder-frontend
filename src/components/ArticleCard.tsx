@@ -10,7 +10,8 @@ interface IProps {
   date_created: Array<string>;
   category: string;
   likes: number;
-  user: UserStateInt;
+  user?: UserStateInt;
+  authorName?: string;
 }
 
 export const ArticleCard = ({
@@ -22,6 +23,7 @@ export const ArticleCard = ({
   date_created,
   user,
   image_url,
+  authorName,
 }: IProps) => {
   // Preview Text
   const previewText = content.replace(/<[^>]+>/g, "");
@@ -68,7 +70,7 @@ export const ArticleCard = ({
                   className="sub-title"
                   style={{ fontFamily: "sans-serif", color: "#232B2B" }}
                 >
-                  By: {user.username}{" "}
+                  By: {user ? user.username : authorName}{" "}
                 </h2>
                 <p className="description" style={{ fontFamily: "sans-serif" }}>
                   {previewText}
