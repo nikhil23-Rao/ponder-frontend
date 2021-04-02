@@ -2,14 +2,14 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { Formik, Form, Field } from "formik";
-import { SignupValidationTextField } from "../validation/SignupValidationTextField";
+import { SignupValidationTextField } from "../components/validation/SignupValidationTextField";
 import "../styles/Field.css";
 import "../styles/HorizontalLine.css";
-import { SignupValidationSchema } from "../validation/SignupValidationSchema";
-import { SignupValidationPasswordTextField } from "../validation/SignUpValidationPasswordTextField";
+import { SignupValidationSchema } from "../components/validation/SignupValidationSchema";
+import { SignupValidationPasswordTextField } from "../components/validation/SignUpValidationPasswordTextField";
 import { REGISTER_USER } from "../apollo/Mutations";
 import { Link } from "react-router-dom";
-import { AccountExistsTextField } from "../validation/AccountExistsTextField";
+import { AccountExistsTextField } from "../components/validation/AccountExistsTextField";
 import { SignupWithGoogle } from "../components/oauth/SignupWithGoogle";
 import { SignupWithMicrosoft } from "../components/oauth/SignupWithMicrosoft";
 import "../styles/Register.css";

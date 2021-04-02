@@ -5,11 +5,11 @@ import { Formik, Form, Field } from "formik";
 import "../styles/Field.css";
 import "../styles/HorizontalLine.css";
 import { LOGIN_USER } from "../apollo/Mutations";
-import { LoginValidationTextField } from "../validation/LoginValidationTextField";
-import { LoginValidationPasswordTextField } from "../validation/LoginValidationPasswordTextField";
-import { LoginValidationSchema } from "../validation/LoginValidationSchema";
+import { LoginValidationTextField } from "../components/validation/LoginValidationTextField";
+import { LoginValidationPasswordTextField } from "../components/validation/LoginValidationPasswordTextField";
+import { LoginValidationSchema } from "../components/validation/LoginValidationSchema";
 import { Link } from "react-router-dom";
-import { InvalidTextField } from "../validation/InvalidTextField";
+import { InvalidTextField } from "../components/validation/InvalidTextField";
 import { LoginWithGoogle } from "../components/oauth/LoginWithGoogle";
 import { LoginWithMicrosoft } from "../components/oauth/LoginWithMicrosoft";
 
