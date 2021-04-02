@@ -27,27 +27,25 @@ export const TodaysStories = (props: any) => {
     return <h1>LOADING...</h1>;
   }
 
-  // Return MyStories Markup
+  // Return TodaysStories Markup
   return (
     <React.Fragment>
-      <Sidebar />
       {data.GetTodaysStories.map((story: any) => {
         // Return Article Cards
         return (
-          <React.Fragment>
-            <ArticleCard
-              category={story.category}
-              title={story.title}
-              content={story.content}
-              date_created={story.date_created}
-              id={story.id}
-              image_url={story.image_url}
-              likes={story.likes}
-              authorName={story.authorName}
-            />
-          </React.Fragment>
+          <ArticleCard
+            category={story.category}
+            title={story.title}
+            content={story.content}
+            date_created={story.date_created}
+            id={story.id}
+            image_url={story.image_url}
+            likes={story.likes}
+            authorName={story.authorName}
+          />
         );
       })}
+      <Sidebar />
     </React.Fragment>
   );
 };

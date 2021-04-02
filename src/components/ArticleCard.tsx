@@ -1,7 +1,9 @@
+// Modules Imported For Use
 import * as React from "react";
 import { readingTime } from "../utils/ReadingTime";
 import { UserStateInt } from "../interfaces/UserStateInt";
 
+// Props
 interface IProps {
   content: string;
   image_url: string;
@@ -14,6 +16,7 @@ interface IProps {
   authorName?: string;
 }
 
+// Card Component
 export const ArticleCard = ({
   content,
   likes,
@@ -25,10 +28,12 @@ export const ArticleCard = ({
   image_url,
   authorName,
 }: IProps) => {
-  // Preview Text
+  // Get Preview Text
   const previewText = content.replace(/<[^>]+>/g, "");
 
+  // Get Reading Time
   const mins = readingTime(previewText);
+
   return (
     <React.Fragment>
       <div
