@@ -133,6 +133,7 @@ export const MyStories: any = () => {
   // Return MyStories Markup
   return (
     <React.Fragment>
+      <br />
       {data.GetAllStories.map((story: any) => {
         // Return Article Cards
         return (
@@ -153,7 +154,7 @@ export const MyStories: any = () => {
         <Button
           aria-controls="customized-menu"
           aria-haspopup="true"
-          color="inherit"
+          color="primary"
           variant="contained"
           onClick={handleClick}
         >
