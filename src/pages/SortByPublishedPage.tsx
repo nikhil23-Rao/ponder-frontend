@@ -17,6 +17,7 @@ import SortIcon from "@material-ui/icons/Sort";
 import { UserStateInt } from "../interfaces/UserStateInt";
 import Sidebar from "../components/Sidebar";
 import { SORT_BY_PUBLISHED } from "../apollo/Queries";
+import { ArticleCard } from "../components/ArticleCard";
 
 // Sort By Published Component
 export const SortByPublished: any = () => {
@@ -84,7 +85,7 @@ export const SortByPublished: any = () => {
 
   // Query The Stories
   const { data, loading } = useQuery(SORT_BY_PUBLISHED, {
-    variables: { authorid: (user as any).id },
+    variables: { authorid: user.id },
   });
 
   // If Loading Return To Client
@@ -126,72 +127,18 @@ export const SortByPublished: any = () => {
   return (
     <React.Fragment>
       {data.SortByPublished.map((story: any) => {
-        // Preview Text
-        const previewText = story.content.replace(/<[^>]+>/g, "");
-
         // Return Article Cards
         return (
-          <React.Fragment key={story.id}>
-            <div
-              className="container"
-              style={{
-                width: "10%",
-                display: "inline-grid",
-                marginRight: "-3%",
-                marginTop: "8%",
-              }}
-              onClick={() => {
-                if (story.likes === null) {
-                  window.location.href = `/edit/draft/${story.id}`;
-                } else {
-                  window.location.href = `/read/story/${story.id}`;
-                }
-              }}
-            >
-              <main>
-                <div className="hover">
-                  <div className="module">
-                    <div className="thumbnail">
-                      <img src={story.image_url} alt="" />
-                      <div
-                        className="date"
-                        style={{ fontFamily: "sans-serif" }}
-                      >
-                        <div>{story.date_created[1]}</div>
-                        <div>{story.date_created[0]}</div>
-                      </div>
-                    </div>
-                    <div className="content">
-                      <div
-                        className="category"
-                        style={{ fontFamily: "sans-serif" }}
-                      >
-                        {story.category}
-                      </div>
-                      <h1
-                        className="title"
-                        style={{ fontFamily: "sans-serif" }}
-                      >
-                        {story.title}
-                      </h1>
-                      <h2
-                        className="sub-title"
-                        style={{ fontFamily: "sans-serif", color: "#232B2B" }}
-                      >
-                        By: {user.username}{" "}
-                      </h2>
-                      <p
-                        className="description"
-                        style={{ fontFamily: "sans-serif" }}
-                      >
-                        {previewText}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </main>
-            </div>
-          </React.Fragment>
+          <ArticleCard
+            category={story.category}
+            title={story.title}
+            content={story.content}
+            date_created={story.date_created}
+            id={story.id}
+            image_url={story.image_url}
+            likes={story.likes}
+            user={user}
+          />
         );
       })}
 
