@@ -42,6 +42,7 @@ export const Search: any = (props: any) => {
     const { GetTodaysStories } = data;
     return (
       <React.Fragment>
+        <Sidebar />;
         <Downshift
           onChange={(selected) => setSearchUrl(selected.title)}
           itemToString={(item) => (item ? item.title : "")}
@@ -175,7 +176,6 @@ export const Search: any = (props: any) => {
             </>
           )}
         </Downshift>
-        <Sidebar />;
       </React.Fragment>
     );
   }
