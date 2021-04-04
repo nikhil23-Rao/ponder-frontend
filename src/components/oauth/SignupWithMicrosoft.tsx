@@ -22,15 +22,23 @@ export const SignupWithMicrosoft = () => {
       });
     },
   });
-  const onSuccess = (err: any, data: any) => {
-    const id = GenerateStoryID(24);
-    OAuthRegister({
-      variables: {
-        username: data.account.name,
-        email: data.account.userName,
-        id,
-      },
-    });
+  const onSuccess = async (err: any, data: any) => {
+    try {
+      const id = GenerateStoryID(24);
+      await OAuthRegister({
+        variables: {
+          username: data.account.name,
+          email: data.account.userName,
+          id,
+        },
+      });
+    } catch (err) {
+      return toast({
+        title: "Oops! Something Went Wrong...",
+        status: "error",
+        position: "top-right",
+      });
+    }
   };
 
   return (

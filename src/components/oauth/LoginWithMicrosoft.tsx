@@ -22,12 +22,20 @@ export const LoginWithMicrosoft = () => {
     },
   });
   const onSuccess = (_: any, data: any) => {
-    OAuthLogin({
-      variables: {
-        username: data.account.name,
-        email: data.account.userName,
-      },
-    });
+    try {
+      OAuthLogin({
+        variables: {
+          username: data.account.name,
+          email: data.account.userName,
+        },
+      });
+    } catch (err) {
+      return toast({
+        title: "Oops! Something Went Wrong...",
+        status: "error",
+        position: "top-right",
+      });
+    }
   };
 
   return (
