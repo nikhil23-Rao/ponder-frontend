@@ -8,10 +8,10 @@ import { getCurrentUser } from "../utils/getCurrentUser";
 import Menu, { MenuProps } from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
+import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
+import ReceiptIcon from "@material-ui/icons/Receipt";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
 import DraftsIcon from "@material-ui/icons/Drafts";
-import SendIcon from "@material-ui/icons/Send";
 import { withStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import SortIcon from "@material-ui/icons/Sort";
@@ -160,7 +160,7 @@ export const SortByDrafts: any = () => {
             onClick={() => (window.location.href = "/my-stories/all")}
           >
             <ListItemIcon>
-              <SendIcon fontSize="small" />
+              <LibraryBooksIcon fontSize="small" />
             </ListItemIcon>
             <ListItemText primary="Show All" />
           </StyledMenuItem>
@@ -170,13 +170,13 @@ export const SortByDrafts: any = () => {
             }
           >
             <ListItemIcon>
-              <DraftsIcon fontSize="small" />
+              <ReceiptIcon fontSize="small" />
             </ListItemIcon>
             <ListItemText primary="Show Published" />
           </StyledMenuItem>
           <StyledMenuItem onClick={() => window.location.reload()}>
             <ListItemIcon>
-              <InboxIcon fontSize="small" />
+              <DraftsIcon fontSize="small" />
             </ListItemIcon>
             <ListItemText primary="Show Drafts" />
           </StyledMenuItem>
