@@ -3,14 +3,11 @@ import * as React from "react";
 import "../styles/Search.css";
 import Downshift from "downshift";
 import { useQuery } from "@apollo/client";
-import {
-  GET_SEARCHABLE_STORIES,
-  GET_TODAYS_STORIES,
-  SEARCH,
-} from "../apollo/Queries";
+import { GET_SEARCHABLE_STORIES, SEARCH } from "../apollo/Queries";
 import { StoryArgsInt } from "../../../backend/server/src/interfaces/StoryArgsInt";
 import Sidebar from "../components/Sidebar";
 import { ArticleCard } from "../components/ArticleCard";
+import { GenerateStoryID } from "../utils/GenerateStoryId";
 const queryString = require("query-string");
 
 // Search Component
@@ -69,8 +66,13 @@ export const Search: any = (props: any) => {
                   <input
                     id="searchQueryInput"
                     type="text"
+                    onKeyPress={(e) => {
+                      if (e.key === "Enter") {
+                        window.location.href = `?q=${searchUrl}`;
+                      }
+                    }}
                     name="searchQueryInput"
-                    placeholder="Search For Stories By Content, Title, Authors..."
+                    placeholder="Search For Stories By Title, Category, or Authors..."
                     {...getInputProps({
                       value: searchUrl,
                       onChange: (e) => {
@@ -114,7 +116,7 @@ export const Search: any = (props: any) => {
                   style: {
                     textAlign: "center",
                     listStyleType: "none",
-                    marginTop: "-4.5%",
+                    marginTop: "-93px",
                     borderRadius: 50,
                   },
                 })}
@@ -132,14 +134,11 @@ export const Search: any = (props: any) => {
                         ) ||
                         story.authorName.match(
                           new RegExp(".*" + inputValue + ".*", "i")
-                        ) ||
-                        story.content.match(
-                          new RegExp(".*" + inputValue + ".*", "i")
                         )
                     )
                       .slice(0, 5)
                       .map((item: StoryArgsInt, index: any) => (
-                        <div>
+                        <div key={item.id}>
                           <li
                             {...getItemProps({
                               className: "mx-auto",
@@ -156,7 +155,7 @@ export const Search: any = (props: any) => {
                                     ? "#E3E3E3"
                                     : "white",
                                 fontWeight: "bold",
-                                width: "28%",
+                                width: "400px",
                                 height: 70,
                                 cursor: "pointer",
                               },
@@ -175,6 +174,7 @@ export const Search: any = (props: any) => {
                     // Return Article Cards
                     return (
                       <ArticleCard
+                        key={story.id}
                         category={story.category}
                         title={story.title}
                         content={story.content}
