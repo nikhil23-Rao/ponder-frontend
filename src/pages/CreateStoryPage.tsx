@@ -11,7 +11,9 @@ import { getCurrentUser } from "../utils/getCurrentUser";
 import { GetDate } from "../utils/GetDate";
 import "../styles/Modal.css";
 import { Prompt } from "react-router-dom";
+import { SelectCategory } from "../components/SelectCategory";
 import { history } from "../index";
+import { CATEGORIES } from "../constants/Categories";
 import { GenerateStoryID } from "../utils/GenerateStoryId";
 import {
   Modal,
@@ -28,7 +30,6 @@ import {
 export const CreateStory = () => {
   // Store All Properties In State
   const [imageUrl, setImageUrl] = useState("");
-  const [category, setCategory] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [user, setUser] = useState({});
@@ -74,6 +75,8 @@ export const CreateStory = () => {
   const handleSaveDraft = () => {
     // Get Current Date
     const date_created = GetDate();
+    const e: any = document.getElementById("selectCat");
+    const category = e.value;
     // Generate ID
     const id = GenerateStoryID(24);
     // Save Draft With Variables Stored In State And Above
@@ -97,6 +100,8 @@ export const CreateStory = () => {
 
   // What To Do When Publish Story Is Clicked
   const handlePublishStory = () => {
+    const e: any = document.getElementById("selectCatPub");
+    const category = e.value;
     // Get Current Date
     const date_created = GetDate();
     // Generate ID
@@ -166,13 +171,7 @@ export const CreateStory = () => {
                 />
               </div>
               <div className="text-center mt-3">
-                <TextField
-                  style={{ width: "400px" }}
-                  value={category}
-                  variant="outlined"
-                  placeholder="Enter Story Category"
-                  onChange={(e) => setCategory(e.currentTarget.value)}
-                />
+                <SelectCategory options={CATEGORIES} id="selectCat" />
               </div>
             </ModalBody>
 
@@ -205,13 +204,7 @@ export const CreateStory = () => {
                 />
               </div>
               <div className="text-center mt-3">
-                <TextField
-                  style={{ width: "400px" }}
-                  value={category}
-                  variant="outlined"
-                  placeholder="Enter Story Category"
-                  onChange={(e) => setCategory(e.currentTarget.value)}
-                />
+                <SelectCategory options={CATEGORIES} id="selectCatPub" />
               </div>
             </ModalBody>
 

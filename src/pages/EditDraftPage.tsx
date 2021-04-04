@@ -4,6 +4,8 @@ import { Editor } from "@tinymce/tinymce-react";
 import { content_style } from "../constants/ContentStyle";
 import "../styles/editor.css";
 import Button from "@material-ui/core/Button";
+import { SelectCategory } from "../components/SelectCategory";
+import { CATEGORIES } from "../constants/Categories";
 import {
   EDIT_DRAFT,
   PUBLISH_STORY,
@@ -205,12 +207,11 @@ export const EditDraft: any = (props: any) => {
                   />
                 </div>
                 <div className="text-center mt-3">
-                  <TextField
-                    style={{ width: "400px" }}
+                  <SelectCategory
+                    options={CATEGORIES}
+                    id="selectCat"
                     value={category}
-                    variant="outlined"
-                    placeholder="Enter Story Category"
-                    onChange={(e) => setCategory(e.currentTarget.value)}
+                    onChange={(e: any) => setCategory(e.currentTarget.value)}
                   />
                 </div>
               </ModalBody>
@@ -244,12 +245,11 @@ export const EditDraft: any = (props: any) => {
                   />
                 </div>
                 <div className="text-center mt-3">
-                  <TextField
-                    style={{ width: "400px" }}
+                  <SelectCategory
+                    options={CATEGORIES}
+                    id="selectCatPub"
                     value={category}
-                    variant="outlined"
-                    placeholder="Enter Story Category"
-                    onChange={(e) => setCategory(e.currentTarget.value)}
+                    onChange={(e: any) => setCategory(e.currentTarget.value)}
                   />
                 </div>
               </ModalBody>

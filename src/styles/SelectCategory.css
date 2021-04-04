@@ -1,0 +1,91 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.my-dropdown {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  height: 30px;
+  width: 300px;
+  background: #f2f2f2;
+  border: 1px solid;
+  border-color: #fff #f7f7f7 #f5f5f5;
+  border-radius: 3px;
+  background-image: -webkit-linear-gradient(
+    top,
+    transparent,
+    rgba(0, 0, 0, 0.06)
+  );
+  background-image: -moz-linear-gradient(top, transparent, rgba(0, 0, 0, 0.06));
+  background-image: -o-linear-gradient(top, transparent, rgba(0, 0, 0, 0.06));
+  background-image: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(0, 0, 0, 0.06)
+  );
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
+}
+.nav .my-dropdown {
+  margin-top: 6px;
+  margin-right: 12px;
+}
+.my-dropdown-dark {
+  background: #444;
+  border-color: #111 #0a0a0a #000;
+  background: -webkit-linear-gradient(top, transparent, rgba(0, 0, 0, 0.4)) #444;
+  background: -moz-linear-gradient(top, transparent, rgba(0, 0, 0, 0.4)) #444;
+  background: -o-linear-gradient(top, transparent, rgba(0, 0, 0, 0.4)) #444;
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.4)) #444;
+  -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.1),
+    0 1px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.1), 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+.my-dropdown-dark .my-dropdown-select {
+  color: #aaa;
+  text-shadow: 0 1px #000;
+  background: #444;
+}
+.my-dropdown-select {
+  position: relative;
+  width: 130%;
+  margin: 0;
+  padding: 6px 8px 6px 10px;
+  height: 28px;
+  line-height: 14px;
+  font-size: 12px;
+  color: #62717a;
+  text-shadow: 0 1px #fff;
+  background: 0 0 !important;
+  border: 0;
+  border-radius: 0;
+  -webkit-appearance: none;
+  outline: none;
+}
+
+.my-dropdown:after,
+.my-dropdown:before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: 9px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 4px dashed;
+  border-color: #888 transparent;
+  pointer-events: none;
+}
+.my-dropdown:before {
+  border-bottom-style: solid;
+  border-top: none;
+}
+.my-dropdown:after {
+  margin-top: 7px;
+  border-top-style: solid;
+  border-bottom: none;
+}
