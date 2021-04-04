@@ -3,7 +3,11 @@ import * as React from "react";
 import "../styles/Search.css";
 import Downshift from "downshift";
 import { useQuery } from "@apollo/client";
-import { GET_TODAYS_STORIES, SEARCH } from "../apollo/Queries";
+import {
+  GET_SEARCHABLE_STORIES,
+  GET_TODAYS_STORIES,
+  SEARCH,
+} from "../apollo/Queries";
 import { StoryArgsInt } from "../../../backend/server/src/interfaces/StoryArgsInt";
 import Sidebar from "../components/Sidebar";
 import { ArticleCard } from "../components/ArticleCard";
@@ -34,12 +38,12 @@ export const Search: any = (props: any) => {
   }, [q]);
 
   // Get All Stories Query
-  const { data, loading } = useQuery(GET_TODAYS_STORIES);
+  const { data, loading } = useQuery(GET_SEARCHABLE_STORIES);
   // If Loading Return To Client
   if (searchLoading || loading) return <h1>Loading</h1>;
   // When Data Build Search Box With Downshift.js Autocomplete
   if (data) {
-    const { GetTodaysStories } = data;
+    const { GetSearchableStories } = data;
     return (
       <React.Fragment>
         <Sidebar />;
@@ -116,7 +120,7 @@ export const Search: any = (props: any) => {
                 })}
               >
                 {isOpen
-                  ? GetTodaysStories.filter(
+                  ? GetSearchableStories.filter(
                       (story: StoryArgsInt) =>
                         !inputValue ||
                         // Filter By Multiple Columns

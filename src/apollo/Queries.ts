@@ -113,3 +113,20 @@ export const SORT_BY_PUBLISHED = gql`
     }
   }
 `;
+
+export const GET_SEARCHABLE_STORIES = gql`
+  query GetSearchableStories {
+    GetSearchableStories {
+      content
+      image_url
+      title
+      id
+      authorid
+      category
+      date_created
+      likedBy
+      authorName
+      authorImage
+    }
+  }
+`;
