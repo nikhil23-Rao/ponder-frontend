@@ -7,7 +7,6 @@ import { GET_SEARCHABLE_STORIES, SEARCH } from "../apollo/Queries";
 import { StoryArgsInt } from "../../../backend/server/src/interfaces/StoryArgsInt";
 import Sidebar from "../components/Sidebar";
 import { ArticleCard } from "../components/ArticleCard";
-import { GenerateStoryID } from "../utils/GenerateStoryId";
 const queryString = require("query-string");
 
 // Search Component
