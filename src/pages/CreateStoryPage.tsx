@@ -5,6 +5,7 @@ import "../styles/editor.css";
 import Button from "@material-ui/core/Button";
 import { PUBLISH_STORY, SAVE_DRAFT } from "../apollo/Mutations";
 import { TextField } from "@material-ui/core";
+import { content_style } from "../constants/ContentStyle";
 import { useMutation } from "@apollo/client";
 import { getCurrentUser } from "../utils/getCurrentUser";
 import { GetDate } from "../utils/GetDate";
@@ -267,26 +268,7 @@ export const CreateStory = () => {
             skin: "borderless",
             statusbar: false,
             width: "90%",
-            content_style: `@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap'); body { font-family: 'Oranienbaum', serif; font-size: 16pt; color: #292929; background-color: #fff;} html {
-                    --scrollbarBG: #fff;
-                    --thumbBG: #fff;
-                  }
-                  body::-webkit-scrollbar {
-                    width: 11px;
-                  }
-                  body {
-                    scrollbar-width: thin;
-                    scrollbar-color: var(--thumbBG) var(--scrollbarBG);
-                  }
-                  body::-webkit-scrollbar-track {
-                    background: var(--scrollbarBG);
-                  }
-                  body::-webkit-scrollbar-thumb {
-                    background-color: var(--thumbBG) ;
-                    border-radius: 6px;
-                    border: 3px solid var(--scrollbarBG);
-                  }
-                  `,
+            content_style,
             menubar: false,
             automatic_uploads: true,
             plugins: [

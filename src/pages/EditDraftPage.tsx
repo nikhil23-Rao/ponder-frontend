@@ -1,6 +1,7 @@
 // Modules Imported For Use
 import React, { useState, useEffect } from "react";
 import { Editor } from "@tinymce/tinymce-react";
+import { content_style } from "../constants/ContentStyle";
 import "../styles/editor.css";
 import Button from "@material-ui/core/Button";
 import {
@@ -306,27 +307,7 @@ export const EditDraft: any = (props: any) => {
               skin: "borderless",
               statusbar: false,
               width: "90%",
-              content_style: `@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap'); body { font-family: 'Oranienbaum', serif; font-size: 16pt; color: #292929; background-color: #fff;} html {
-                    --scrollbarBG: #fff;
-                    --thumbBG: #fff;
-                  }
-                  body::-webkit-scrollbar {
-                    width: 11px;
-                  }
-                  body {
-                    scrollbar-width: thin;
-                    scrollbar-color: var(--thumbBG) var(--scrollbarBG);
-                  }
-                  body::-webkit-scrollbar-track {
-                    background: var(--scrollbarBG);
-                  }
-                  body::-webkit-scrollbar-thumb {
-                    background-color: var(--thumbBG) ;
-                    border-radius: 6px;
-                    border: 3px solid var(--scrollbarBG);
-                  }
-                  `,
-
+              content_style,
               menubar: false,
               automatic_uploads: true,
               plugins: [

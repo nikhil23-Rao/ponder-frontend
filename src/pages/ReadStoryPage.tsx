@@ -7,6 +7,7 @@ import { useMutation } from "@apollo/client";
 import Sidebar from "../components/Sidebar";
 import "../styles/LikeButton.css";
 import "../styles/AuthorImage.css";
+import { content_style } from "../constants/ContentStyle";
 import { LIKE_STORY } from "../apollo/Mutations";
 import { getCurrentUser } from "../utils/getCurrentUser";
 import { readingTime } from "../utils/ReadingTime";
@@ -109,26 +110,7 @@ export const ReadStory: any = (props: any) => {
                 height: "100vh",
                 skin: "borderless",
                 width: "90%",
-                content_style: `@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap'); body { font-family: 'Oranienbaum', serif; font-size: 16pt; color: #292929; background-color: #fff;} html {
-                    --scrollbarBG: #fff;
-                    --thumbBG: #fff;
-                  }
-                  body::-webkit-scrollbar {
-                    width: 11px;
-                  }
-                  body {
-                    scrollbar-width: thin;
-                    scrollbar-color: var(--thumbBG) var(--scrollbarBG);
-                  }
-                  body::-webkit-scrollbar-track {
-                    background: var(--scrollbarBG);
-                  }
-                  body::-webkit-scrollbar-thumb {
-                    background-color: var(--thumbBG) ;
-                    border-radius: 6px;
-                    border: 3px solid var(--scrollbarBG);
-                  }
-                  `,
+                content_style,
                 menubar: false,
                 automatic_uploads: true,
                 plugins: [
