@@ -66,7 +66,7 @@ export const Search: any = (props: any) => {
                     id="searchQueryInput"
                     type="text"
                     name="searchQueryInput"
-                    placeholder="Search For Stories, Authors, And More..."
+                    placeholder="Search For Stories By Content, Title, Authors..."
                     {...getInputProps({
                       value: searchUrl,
                       onChange: (e) => {
@@ -120,6 +120,15 @@ export const Search: any = (props: any) => {
                       (story: StoryArgsInt) =>
                         !inputValue ||
                         story.title.match(
+                          new RegExp(".*" + inputValue + ".*", "i")
+                        ) ||
+                        story.category.match(
+                          new RegExp(".*" + inputValue + ".*", "i")
+                        ) ||
+                        story.authorName.match(
+                          new RegExp(".*" + inputValue + ".*", "i")
+                        ) ||
+                        story.content.match(
                           new RegExp(".*" + inputValue + ".*", "i")
                         )
                     )
