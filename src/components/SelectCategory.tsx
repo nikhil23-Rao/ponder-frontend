@@ -15,12 +15,6 @@ export const SelectCategory = ({ options, value, ...rest }: any) => {
             {value ? value : "Select A Category"}{" "}
           </option>
           {options.map((o: { value: string }) => {
-            if (value) {
-              const idx = options.indexOf(value);
-              if (idx > -1) {
-                options.splice(idx, 1);
-              }
-            }
             return (
               <option {...rest} value={o.value || value}>
                 {o.value}
