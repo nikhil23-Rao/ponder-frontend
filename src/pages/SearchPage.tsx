@@ -119,6 +119,7 @@ export const Search: any = (props: any) => {
                   ? GetTodaysStories.filter(
                       (story: StoryArgsInt) =>
                         !inputValue ||
+                        // Filter By Multiple Columns
                         story.title.match(
                           new RegExp(".*" + inputValue + ".*", "i")
                         ) ||
