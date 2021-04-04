@@ -26,7 +26,10 @@ export const ReadStory: any = (props: any) => {
   useEffect(() => {
     const currentUser: any = getCurrentUser();
     setUser(currentUser);
-  }, []);
+    if (data) {
+      document.title = data.ReadStory.title;
+    }
+  }, [data]);
 
   // If Story Loading Return To Client
   if (loading) {
