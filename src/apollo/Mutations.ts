@@ -114,3 +114,10 @@ export const DELETE_DRAFT_ONCE_PUBLISHED = gql`
     DeleteDraftOncePublished(storyid: $storyid)
   }
 `;
+
+// Update Profile
+export const UPDATE_PROFILE = gql`
+  mutation UpdateProfile($authorid: String, $bio: String, $image_url: String) {
+    UpdateProfile(authorid: $authorid, bio: $bio, image_url: $image_url)
+  }
+`;
