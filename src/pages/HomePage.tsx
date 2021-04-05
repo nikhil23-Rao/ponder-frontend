@@ -52,7 +52,6 @@ export const Home = () => {
             >
               Profile
             </Dropdown.Item>
-            <Dropdown.Item href="#/action-2">Settings</Dropdown.Item>
             <Dropdown.Item
               onClick={() => {
                 logout();
