@@ -2,10 +2,29 @@ import * as React from "react";
 import "../styles/Profile.css";
 import Avatar from "react-avatar-edit";
 import { getCurrentUser } from "../utils/getCurrentUser";
+import EditIcon from "@material-ui/icons/Edit";
+import { IconButton } from "@material-ui/core";
+import { useMutation } from "@apollo/client";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+  Button,
+  Textarea,
+} from "@chakra-ui/react";
+import { UPDATE_PROFILE } from "../apollo/Mutations";
 
 export const Profile = () => {
   const [preview, setPreview] = React.useState<any>(null);
-  const [src, setSrc] = React.useState("");
+  const [, setSrc] = React.useState("");
+  const [bio, setBio] = React.useState("");
+  const { isOpen, onOpen, onClose: onModalClose } = useDisclosure();
+  const [UpdateProfile] = useMutation(UPDATE_PROFILE);
 
   // State For User
   const [user, setUser] = React.useState<any>({});
@@ -33,10 +52,86 @@ export const Profile = () => {
     }
   };
 
+  const handleSave = async () => {
+    console.log(user.image_url);
+    await UpdateProfile({
+      variables: {
+        authorid: user.id,
+        bio,
+        image_url: preview ? preview : user.image_url,
+      },
+    });
+  };
+
   return (
     <>
+      <Modal isOpen={isOpen} onClose={onModalClose} size="3xl">
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Update Profile</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Avatar
+              width={380}
+              height={295}
+              onCrop={onCrop}
+              onClose={onClose}
+              label="Pick A Picture"
+              onBeforeFileLoad={onBeforeFileLoad}
+              src={user.image_url}
+            />
+            {preview && (
+              <div
+                style={{
+                  marginLeft: "35%",
+                  width: "100%",
+                  position: "fixed",
+                  top: 150,
+                }}
+              >
+                <h1
+                  style={{
+                    marginLeft: "2%",
+                    fontSize: "24pt",
+                    fontWeight: "bold",
+                    textDecoration: "underline",
+                  }}
+                >
+                  Preview
+                </h1>
+                <br />
+                <img src={preview} alt="" />
+              </div>
+            )}
+            <br />
+            <Textarea
+              placeholder="Update Your Bio Here..."
+              onChange={(e) => setBio(e.currentTarget.value)}
+              value={bio}
+            />
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={onModalClose}>
+              Close
+            </Button>
+            <Button
+              variant="outline"
+              colorScheme="twitter"
+              onClick={handleSave}
+            >
+              Save Profile
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
       <div className="wrapper">
         <div className="profile-card js-profile-card">
+          <div className="topright">
+            <IconButton>
+              <EditIcon fontSize="large" onClick={onOpen} />
+            </IconButton>
+          </div>
           <div className="profile-card__img">
             <img src={user.image_url} alt="profile card" />
           </div>
@@ -89,29 +184,14 @@ export const Profile = () => {
           </symbol>
         </defs>
       </svg>
-      {/* <div
-      style={{
-        position: "fixed",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-      }}
-    >
-      <Avatar
-        width={390}
-        height={295}
-        onCrop={onCrop}
-        onClose={onClose}
-        label="Pick A Picture"
-        onBeforeFileLoad={onBeforeFileLoad}
-        src={
-          "http://static1.squarespace.com/static/54b7b93ce4b0a3e130d5d232/54e20ebce4b014cdbc3fd71b/5a992947e2c48320418ae5e0/1519987239570/icon.png?format=1500w"
-        }
-      />
-      <div style={{ marginLeft: 50, width: "100%" }}>
-        <img src={preview} alt="" />
-      </div>
-    </div> */}
+      <div
+        style={{
+          position: "fixed",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+        }}
+      ></div>
     </>
   );
 };
