@@ -12,6 +12,7 @@ interface IProps {
   date_created: Array<string>;
   category: string;
   likes: number;
+  showLikes?: boolean;
   user?: UserStateInt;
   authorName?: string;
 }
@@ -26,6 +27,7 @@ export const ArticleCard = ({
   date_created,
   user,
   image_url,
+  showLikes,
   authorName,
 }: IProps) => {
   // Get Preview Text
@@ -82,6 +84,18 @@ export const ArticleCard = ({
                 </p>
               </div>
             </div>
+            {showLikes && (
+              <div
+                style={{
+                  marginLeft: "90%",
+                  position: "relative",
+                  bottom: 30,
+                }}
+              >
+                <i className="fa fa-heart"></i>
+                <span> {likes}</span>
+              </div>
+            )}
           </div>
         </main>
       </div>

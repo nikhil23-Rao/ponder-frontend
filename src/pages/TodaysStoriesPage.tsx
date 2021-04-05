@@ -42,6 +42,7 @@ export const TodaysStories = (props: any) => {
             image_url={story.image_url}
             likes={story.likes}
             authorName={story.authorName}
+            showLikes={true}
           />
         );
       })}

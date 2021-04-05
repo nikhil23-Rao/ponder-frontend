@@ -130,3 +130,20 @@ export const GET_SEARCHABLE_STORIES = gql`
     }
   }
 `;
+
+export const GET_STORIES_HOME = gql`
+  query GetStoriesHome {
+    GetStoriesHome {
+      content
+      image_url
+      title
+      id
+      authorid
+      date_created
+      category
+      likes
+      authorName
+      authorImage
+    }
+  }
+`;

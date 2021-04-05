@@ -8,11 +8,18 @@ import Sidebar from "../components/Sidebar";
 import { Dropdown } from "react-bootstrap";
 import { logout } from "../utils/logout";
 import { history } from "../index";
+import { useQuery } from "@apollo/client";
+import { GET_STORIES_HOME } from "../apollo/Queries";
+import { ArticleCard } from "../components/ArticleCard";
+import { StoryArgsInt } from "../../../backend/server/src/interfaces/StoryArgsInt";
+import { Heading } from "@chakra-ui/layout";
 
 // Home Component (Renders What Is On The Home Page)
 export const Home = () => {
   // State For User
   const [user, setUser] = useState<any>({});
+
+  const { data, loading } = useQuery(GET_STORIES_HOME);
 
   useEffect(() => {
     // Get User
@@ -22,9 +29,15 @@ export const Home = () => {
     console.log(user);
   }, []);
 
+  if (loading) {
+    return <p>LOADING</p>;
+  }
+
   return (
     <React.Fragment>
-      <Sidebar />
+      <Heading style={{ textAlign: "center" }}>
+        Stories Recommended For You...
+      </Heading>
       <div className="topright">
         <Dropdown>
           <Dropdown.Toggle
@@ -62,6 +75,21 @@ export const Home = () => {
           </Dropdown.Menu>
         </Dropdown>
       </div>
+      {data &&
+        data.GetStoriesHome.map((story: StoryArgsInt) => (
+          <ArticleCard
+            category={story.category}
+            title={story.title}
+            content={story.content}
+            date_created={story.date_created}
+            id={story.id}
+            image_url={story.image_url}
+            showLikes={true}
+            likes={story.likes}
+            authorName={story.authorName}
+          />
+        ))}
+      <Sidebar />
     </React.Fragment>
   );
 };
