@@ -116,7 +116,16 @@ export const Profile = () => {
                   Preview
                 </h1>
                 <br />
-                <img src={preview} alt="" />
+                <div
+                  style={{
+                    width: 200,
+                    height: 200,
+                    position: "fixed",
+                    right: 377,
+                  }}
+                >
+                  <img src={preview} alt="" />
+                </div>
               </div>
             )}
             <br />
