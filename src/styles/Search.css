@@ -2,13 +2,13 @@ body {
   font-family: "Roboto", Arial, sans-serif;
 }
 
-.wrapper {
+.search-wrapper {
   width: 100%;
   max-width: 31.25rem;
   margin: 6rem auto;
 }
 
-.label {
+.search-label {
   font-size: 0.625rem;
   font-weight: 400;
   text-transform: uppercase;

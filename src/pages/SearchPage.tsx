@@ -57,7 +57,7 @@ export const Search: any = (props: any) => {
             getRootProps,
           }) => (
             <>
-              <div className="wrapper">
+              <div className="search-wrapper">
                 <div
                   className="searchBar"
                   {...getRootProps({} as any, { suppressRefError: true })}

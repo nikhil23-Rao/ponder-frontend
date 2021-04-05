@@ -7,6 +7,7 @@ import "../styles/logo.css";
 import Sidebar from "../components/Sidebar";
 import { Dropdown } from "react-bootstrap";
 import { logout } from "../utils/logout";
+import { history } from "../index";
 
 // Home Component (Renders What Is On The Home Page)
 export const Home = () => {
@@ -45,7 +46,12 @@ export const Home = () => {
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
-            <Dropdown.Item href="#/action-1">Profile</Dropdown.Item>
+            <Dropdown.Item
+              href="#/action-1"
+              onClick={() => history.push("/profile/me")}
+            >
+              Profile
+            </Dropdown.Item>
             <Dropdown.Item href="#/action-2">Settings</Dropdown.Item>
             <Dropdown.Item
               onClick={() => {
