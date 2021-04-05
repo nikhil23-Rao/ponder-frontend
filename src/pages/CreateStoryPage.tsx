@@ -15,6 +15,7 @@ import { SelectCategory } from "../components/SelectCategory";
 import { history } from "../index";
 import { CATEGORIES } from "../constants/Categories";
 import { GenerateStoryID } from "../utils/GenerateStoryId";
+import Sidebar from "../components/Sidebar";
 import {
   Modal,
   ModalOverlay,
@@ -287,6 +288,7 @@ export const CreateStory = () => {
           onEditorChange={handleEditorChange}
         />
       </div>
+      <Sidebar />
     </React.Fragment>
   );
 };
