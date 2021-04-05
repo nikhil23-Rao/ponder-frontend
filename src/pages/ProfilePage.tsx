@@ -16,6 +16,7 @@ import {
   useDisclosure,
   Button,
   Textarea,
+  useToast,
 } from "@chakra-ui/react";
 import { UPDATE_PROFILE } from "../apollo/Mutations";
 
@@ -23,6 +24,7 @@ export const Profile = () => {
   const [preview, setPreview] = React.useState<any>(null);
   const [, setSrc] = React.useState("");
   const [bio, setBio] = React.useState("");
+  const toast = useToast();
   const { isOpen, onOpen, onClose: onModalClose } = useDisclosure();
   const [UpdateProfile] = useMutation(UPDATE_PROFILE);
 
@@ -35,6 +37,12 @@ export const Profile = () => {
     // Store User In State
     setUser(user);
     setSrc(user.image_url);
+
+    if (user) {
+      setBio(user.bio);
+    }
+
+    console.log(user);
   }, []);
 
   const onClose = () => {
@@ -54,12 +62,20 @@ export const Profile = () => {
 
   const handleSave = async () => {
     console.log(user.image_url);
+    console.log(user.bio);
     await UpdateProfile({
       variables: {
         authorid: user.id,
         bio,
         image_url: preview ? preview : user.image_url,
       },
+    });
+    onModalClose();
+    toast({
+      title: "Updated Profile. Changes May Take Some Time To Update.",
+      status: "success",
+      position: "top-right",
+      isClosable: true,
     });
   };
 
@@ -128,8 +144,8 @@ export const Profile = () => {
       <div className="wrapper">
         <div className="profile-card js-profile-card">
           <div className="topright">
-            <IconButton>
-              <EditIcon fontSize="large" onClick={onOpen} />
+            <IconButton onClick={onOpen}>
+              <EditIcon fontSize="large" />
             </IconButton>
           </div>
           <div className="profile-card__img">
@@ -138,18 +154,10 @@ export const Profile = () => {
 
           <div className="profile-card__cnt js-profile-cnt">
             <div className="profile-card__name">{user.username}</div>
-            <div className="profile-card__txt">
-              Full-Stack Developer from <strong>California</strong>
-            </div>
+            <div className="profile-card__txt">{user.bio}</div>
             <div className="profile-card-loc">
               <span className="profile-card-loc__icon">
-                <svg className="icon">
-                  <use xlinkHref="#icon-location"></use>
-                </svg>
-              </span>
-
-              <span className="profile-card-loc__txt">
-                San Ramon, California
+                <svg className="icon"></svg>
               </span>
             </div>
 
