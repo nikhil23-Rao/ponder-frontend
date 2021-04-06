@@ -35,8 +35,13 @@ export const Home = () => {
 
   return (
     <React.Fragment>
-      <Heading style={{ textAlign: "center" }}>
-        Stories Recommended For You...
+      <Heading
+        className="text-center"
+        style={{
+          fontWeight: "lighter",
+        }}
+      >
+        Trending Stories
       </Heading>
       <div className="topright">
         <Dropdown>
