@@ -6,11 +6,13 @@ import { READ_STORY } from "../apollo/Queries";
 import { useMutation } from "@apollo/client";
 import Sidebar from "../components/Sidebar";
 import "../styles/LikeButton.css";
+import "../styles/Text.css";
 import "../styles/AuthorImage.css";
 import { content_style } from "../constants/ContentStyle";
 import { LIKE_STORY } from "../apollo/Mutations";
 import { getCurrentUser } from "../utils/getCurrentUser";
 import { readingTime } from "../utils/ReadingTime";
+import { history } from "../index";
 
 // Read Story Component
 export const ReadStory: any = (props: any) => {
@@ -87,8 +89,35 @@ export const ReadStory: any = (props: any) => {
               backgroundColor: "#fff",
             }}
           >
+            <img
+              src={data.ReadStory.authorImage}
+              alt=""
+              onClick={() =>
+                history.push(`/profile/${data.ReadStory.authorid}`)
+              }
+              style={{
+                marginLeft: 7,
+                width: "40px",
+                height: "40px",
+                position: "relative",
+                top: "13px",
+                cursor: "pointer",
+              }}
+            />
+            <br />
+            <p
+              style={{
+                marginLeft: "4%",
+                top: 126,
+                left: 170,
+                position: "absolute",
+              }}
+              className="text"
+            >
+              {data.ReadStory.authorName}
+            </p>
             <Editor
-              initialValue={`<p><img src=${data.ReadStory.authorImage} style= "width: 40px; height: 40px; position:relative; top:13px; cursor:pointer;" />   ${data.ReadStory.authorName}</p><p style="color:gray">${time}</p>${data.ReadStory.content}`}
+              initialValue={`<p style="color:gray">${time}</p>${data.ReadStory.content}`}
               disabled={true}
               init={{
                 branding: false,
