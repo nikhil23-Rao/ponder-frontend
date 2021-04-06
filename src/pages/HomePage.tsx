@@ -26,7 +26,6 @@ export const Home = () => {
     const user = getCurrentUser();
     // Store User In State
     setUser(user);
-    console.log(user);
   }, []);
 
   if (loading) {
@@ -83,6 +82,7 @@ export const Home = () => {
       {data &&
         data.GetStoriesHome.map((story: StoryArgsInt) => (
           <ArticleCard
+            key={story.id}
             category={story.category}
             title={story.title}
             content={story.content}
