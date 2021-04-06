@@ -159,3 +159,9 @@ export const GET_PROFILE = gql`
     }
   }
 `;
+
+export const GET_PROFILE_INFO = gql`
+  query GetProfileInfo($authorid: String) {
+    GetProfileInfo(authorid: $authorid)
+  }
+`;

@@ -1,7 +1,6 @@
 // Modules Imported For Use
 import React, { useState, useEffect } from "react";
 import { Editor } from "@tinymce/tinymce-react";
-import "../styles/editor.css";
 import Button from "@material-ui/core/Button";
 import { PUBLISH_STORY, SAVE_DRAFT } from "../apollo/Mutations";
 import { TextField } from "@material-ui/core";
@@ -9,7 +8,6 @@ import { content_style } from "../constants/ContentStyle";
 import { useMutation } from "@apollo/client";
 import { getCurrentUser } from "../utils/getCurrentUser";
 import { GetDate } from "../utils/GetDate";
-import "../styles/Modal.css";
 import { Prompt } from "react-router-dom";
 import { SelectCategory } from "../components/SelectCategory";
 import { history } from "../index";
@@ -244,6 +242,7 @@ export const CreateStory = () => {
         <Editor
           initialValue=""
           init={{
+            skin: "borderless",
             branding: false,
             codesample_languages: [
               { text: "HTML/XML", value: "markup" },
@@ -259,10 +258,9 @@ export const CreateStory = () => {
             ],
             placeholder: "Write your story...",
             height: "100vh",
-            skin: "borderless",
             statusbar: false,
             width: "90%",
-            content_style,
+            content_style: content_style,
             menubar: false,
             automatic_uploads: true,
             plugins: [

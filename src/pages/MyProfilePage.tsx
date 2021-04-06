@@ -4,7 +4,7 @@ import Avatar from "react-avatar-edit";
 import { getCurrentUser } from "../utils/getCurrentUser";
 import EditIcon from "@material-ui/icons/Edit";
 import { IconButton } from "@material-ui/core";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import {
   Modal,
   ModalOverlay,
@@ -20,6 +20,7 @@ import {
 } from "@chakra-ui/react";
 import { UPDATE_PROFILE } from "../apollo/Mutations";
 import Sidebar from "../components/Sidebar";
+import { GET_PROFILE_INFO } from "../apollo/Queries";
 
 export const MyProfile = () => {
   const [preview, setPreview] = React.useState<any>(null);
@@ -42,9 +43,19 @@ export const MyProfile = () => {
     if (user) {
       setBio(user.bio);
     }
-
-    console.log(user);
   }, []);
+
+  const currentUser: any = getCurrentUser();
+  const { data: storyData, loading: storyLoading } = useQuery(
+    GET_PROFILE_INFO,
+    {
+      variables: {
+        authorid: currentUser.id,
+      },
+    }
+  );
+
+  if (storyLoading) return <h1>LOADING...</h1>;
 
   const onClose = () => {
     setPreview(null);
@@ -174,17 +185,23 @@ export const MyProfile = () => {
 
             <div className="profile-card-inf">
               <div className="profile-card-inf__item">
-                <div className="profile-card-inf__title">1598</div>
-                <div className="profile-card-inf__txt">Followers</div>
+                <div className="profile-card-inf__title">
+                  {storyData.GetProfileInfo[2]}
+                </div>
+                <div className="profile-card-inf__txt">Has Liked</div>
               </div>
 
               <div className="profile-card-inf__item">
-                <div className="profile-card-inf__title">65</div>
-                <div className="profile-card-inf__txt">Following</div>
+                <div className="profile-card-inf__title">
+                  {storyData.GetProfileInfo[1]}
+                </div>
+                <div className="profile-card-inf__txt">Total Likes</div>
               </div>
 
               <div className="profile-card-inf__item">
-                <div className="profile-card-inf__title">123</div>
+                <div className="profile-card-inf__title">
+                  {storyData.GetProfileInfo[0]}
+                </div>
                 <div className="profile-card-inf__txt">Stories</div>
               </div>
             </div>

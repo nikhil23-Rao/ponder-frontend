@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
@@ -19,6 +19,11 @@ import { MyProfile } from "./pages/MyProfilePage";
 import { Profile } from "./pages/ProfilePage";
 
 function App() {
+  const [jwt, setJwt] = useState<any>();
+  useEffect(() => {
+    const jwt = localStorage.getItem("token");
+    setJwt(jwt);
+  }, []);
   return (
     <React.Fragment>
       <ToastContainer draggable={true} />
@@ -26,26 +31,112 @@ function App() {
         <Route
           path="/my-stories/sortby/drafts"
           exact
-          component={SortByDrafts}
+          render={(props) => {
+            if (jwt === null) return <Redirect to="/login" />;
+            return <SortByDrafts {...props} />;
+          }}
         />
         <Route
           path="/my-stories/sortby/published"
           exact
-          component={SortByPublished}
+          render={(props) => {
+            if (jwt === null) return <Redirect to="/login" />;
+            return <SortByPublished {...props} />;
+          }}
         />
         <Route path="/404-not-found" component={NotFound} />
-        <Route path="/create-story" exact component={CreateStory} />
-        <Route path="/my-stories/all" exact component={MyStories} />
-        <Route path="/signup" exact component={Signup} />
-        <Route path="/stories/today" exact component={TodaysStories} />
-        <Route path="/read/story/:id" exact component={ReadStory} />
-        <Route path="/profile/:id" exact component={Profile} />
-        <Route path="/edit/draft/:id" exact component={EditDraft} />
-        <Route path="/me" exact component={MyProfile} />
-        <Route path="/search" exact component={Search} />
-        <Route path="/login" exact component={Login} />
-        <Route path="/home" exact component={Home} />
-        <Route path="/" exact component={LandingPage} />
+        <Route
+          path="/create-story"
+          exact
+          render={() => {
+            if (jwt === null) return <Redirect to="/login" />;
+            return <CreateStory />;
+          }}
+        />
+        <Route
+          path="/my-stories/all"
+          exact
+          render={(props) => {
+            if (jwt === null) return <Redirect to="/login" />;
+            return <MyStories {...props} />;
+          }}
+        />
+        <Route
+          path="/signup"
+          exact
+          render={(props) => {
+            if (jwt !== null) return <Redirect to="/home" />;
+            if (jwt === null) {
+              return <Signup {...props} />;
+            }
+          }}
+        />
+        <Route
+          path="/stories/today"
+          exact
+          render={(props) => {
+            if (jwt === null) return <Redirect to="/login" />;
+            return <TodaysStories {...props} />;
+          }}
+        />
+        <Route
+          path="/read/story/:id"
+          exact
+          render={(props) => {
+            if (jwt === null) return <Redirect to="/login" />;
+            return <ReadStory {...props} />;
+          }}
+        />
+        <Route
+          path="/profile/:id"
+          exact
+          render={(props) => {
+            if (jwt === null) return <Redirect to="/login" />;
+            return <Profile {...props} />;
+          }}
+        />
+        <Route
+          path="/edit/draft/:id"
+          exact
+          render={(props) => {
+            if (jwt === null) return <Redirect to="/login" />;
+            return <EditDraft {...props} />;
+          }}
+        />
+        <Route
+          path="/me"
+          exact
+          component={MyProfile}
+          render={() => {
+            if (jwt === null) return <Redirect to="/login" />;
+            return <MyProfile />;
+          }}
+        />
+        <Route
+          path="/search"
+          exact
+          render={(props) => {
+            if (jwt === null) return <Redirect to="/login" />;
+            return <Search {...props} />;
+          }}
+        />
+        <Route
+          path="/login"
+          exact
+          render={(props) => {
+            if (jwt !== null) return <Redirect to="/home" />;
+            return <Login {...props} />;
+          }}
+        />
+        <Route
+          path="/home"
+          exact
+          render={() => {
+            if (jwt === null) return <Redirect to="/login" />;
+            return <Home />;
+          }}
+        />
+        <Route path="/" component={LandingPage} />
         <Redirect to="/404-not-found" />
       </Switch>
     </React.Fragment>

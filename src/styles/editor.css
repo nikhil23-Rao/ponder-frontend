@@ -1,3 +1,6 @@
-.mceContentBody{
-    overflow-y:hidden!important;
- }
+.mce-container {
+  border: 0px !important;
+}
+.tox .tox-tinymce {
+  border-width: 0px;
+}
