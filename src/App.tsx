@@ -15,6 +15,7 @@ import { ReadStory } from "./pages/ReadStoryPage";
 import { TodaysStories } from "./pages/TodaysStoriesPage";
 import { EditDraft } from "./pages/EditDraftPage";
 import { Search } from "./pages/SearchPage";
+import { MyProfile } from "./pages/MyProfilePage";
 import { Profile } from "./pages/ProfilePage";
 
 function App() {
@@ -38,8 +39,9 @@ function App() {
         <Route path="/signup" exact component={Signup} />
         <Route path="/stories/today" exact component={TodaysStories} />
         <Route path="/read/story/:id" exact component={ReadStory} />
+        <Route path="/profile/:id" exact component={Profile} />
         <Route path="/edit/draft/:id" exact component={EditDraft} />
-        <Route path="/profile/me" exact component={Profile} />
+        <Route path="/me" exact component={MyProfile} />
         <Route path="/search" exact component={Search} />
         <Route path="/login" exact component={Login} />
         <Route path="/home" exact component={Home} />
