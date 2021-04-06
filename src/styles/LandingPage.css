@@ -1,36 +1,99 @@
-body {
-  min-height: 100%;
-}
-.intro {
-  background: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full%20page/img%20%283%29.jpg")
-    no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* font-family: Montserrat; */
 }
 
-.top-nav-collapse {
-  background-color: #24355c;
-}
-@media (max-width: 768px) {
-  .navbar:not(.top-nav-collapse) {
-    background-color: #24355c;
-  }
-}
-@media (min-width: 800px) and (max-width: 850px) {
-  .navbar:not(.top-nav-collapse) {
-    background-color: #24355c;
-  }
+.landing-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-.btn-hover {
-  color: black;
-  border-color: lightblue;
+.landing-card {
+  width: 280px;
+  cursor: pointer;
+  height: 360px;
+  background: linear-gradient(45deg, #ffcc00 0%, #ff0058 100%);
+  margin: 40px 30px;
+  padding: 5px;
+  position: relative;
+  transition: 0.5s;
 }
 
-.btn-hover:hover {
-  color: black;
-  border-color: lightblue;
-  background-color: #24355c;
+.landing-card:hover {
+  transform: translatey(-20px);
+}
+
+.landing-card::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: inherit;
+  top: 0;
+  left: 0;
+  filter: blur(30px);
+}
+
+.landing-card:nth-child(1)::before,
+.landing-card:nth-child(1) {
+  background: linear-gradient(45deg, #ffcc00 0%, #ff0058 100%);
+}
+
+.landing-card:nth-child(2)::before,
+.landing-card:nth-child(2) {
+  background: linear-gradient(315deg, #03a9f4 0%, #ff0058 100%);
+}
+
+.landing-card:nth-child(3)::before,
+.landing-card:nth-child(3) {
+  background: linear-gradient(315deg, #4dff03 0%, #00d0ff 100%);
+}
+
+.landing-card span {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  background: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+.landing-content {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(0, 0, 0, 0.05) 50%
+  );
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  padding: 40px 20px;
+}
+
+.landing-content h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.landing-content p {
+  margin-bottom: 20px;
+}
+
+.landing-content a {
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
+  background: #fff;
+  color: #121214;
+  padding: 10px 5px;
+  font-weight: 600;
 }
