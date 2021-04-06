@@ -15,8 +15,18 @@ export const REGISTER_USER = gql`
 
 // OAuthRegister Mutation
 export const OAUTH_REGISTER_USER = gql`
-  mutation OAuthRegister($username: String!, $email: String!, $id: String) {
-    OAuthRegister(username: $username, email: $email, id: $id)
+  mutation OAuthRegister(
+    $username: String!
+    $email: String!
+    $image_url: String
+    $id: String
+  ) {
+    OAuthRegister(
+      username: $username
+      email: $email
+      id: $id
+      image_url: $image_url
+    )
   }
 `;
 
