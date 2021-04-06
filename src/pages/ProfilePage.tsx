@@ -1,162 +1,30 @@
 import * as React from "react";
 import "../styles/Profile.css";
-import Avatar from "react-avatar-edit";
+import { useQuery } from "@apollo/client";
+import { GET_PROFILE } from "../apollo/Queries";
 import { getCurrentUser } from "../utils/getCurrentUser";
-import EditIcon from "@material-ui/icons/Edit";
-import { IconButton } from "@material-ui/core";
-import { useMutation } from "@apollo/client";
-import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  useDisclosure,
-  Button,
-  Textarea,
-  useToast,
-} from "@chakra-ui/react";
-import { UPDATE_PROFILE } from "../apollo/Mutations";
 
-export const Profile = () => {
-  const [preview, setPreview] = React.useState<any>(null);
-  const [, setSrc] = React.useState("");
-  const [bio, setBio] = React.useState("");
-  const toast = useToast();
-  const { isOpen, onOpen, onClose: onModalClose } = useDisclosure();
-  const [UpdateProfile] = useMutation(UPDATE_PROFILE);
-
+export const Profile: any = (props: any) => {
   // State For User
   const [user, setUser] = React.useState<any>({});
+  const { data, loading } = useQuery(GET_PROFILE, {
+    variables: { authorid: props.match.params.id },
+  });
 
   React.useEffect(() => {
-    // Get User
-    const user: any = getCurrentUser();
-    // Store User In State
-    setUser(user);
-    setSrc(user.image_url);
-
-    if (user) {
-      setBio(user.bio);
+    const currentUser: any = getCurrentUser();
+    if (data && data.GetProfile.id === currentUser.id) {
+      window.location.href = "/me";
     }
-
-    console.log(user);
-  }, []);
-
-  const onClose = () => {
-    setPreview(null);
-  };
-
-  const onCrop = (preview: any) => {
-    setPreview(preview);
-  };
-
-  const onBeforeFileLoad = (elem: any) => {
-    if (elem.target.files[0].size > 71680) {
-      alert("File is too big!");
-      elem.target.value = "";
+    if (data) {
+      setUser(data.GetProfile);
     }
-  };
-
-  const handleSave = async () => {
-    console.log(user.image_url);
-    console.log(user.bio);
-    await UpdateProfile({
-      variables: {
-        authorid: user.id,
-        bio,
-        image_url: preview ? preview : user.image_url,
-      },
-    });
-    onModalClose();
-    toast({
-      title: "Updated Profile. Changes May Take Some Time To Update.",
-      status: "success",
-      position: "top-right",
-      isClosable: true,
-    });
-  };
-
+  }, [data]);
+  if (loading) return <h1>LOADING</h1>;
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onModalClose} size="3xl">
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Update Profile</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Avatar
-              width={380}
-              height={295}
-              onCrop={onCrop}
-              onClose={onClose}
-              label="Pick A Picture"
-              onBeforeFileLoad={onBeforeFileLoad}
-              src={user.image_url}
-            />
-            {preview && (
-              <div
-                style={{
-                  marginLeft: "35%",
-                  width: "100%",
-                  position: "fixed",
-                  top: 150,
-                }}
-              >
-                <h1
-                  style={{
-                    marginLeft: "2%",
-                    fontSize: "24pt",
-                    fontWeight: "bold",
-                    textDecoration: "underline",
-                  }}
-                >
-                  Preview
-                </h1>
-                <br />
-                <div
-                  style={{
-                    width: 200,
-                    height: 200,
-                    position: "fixed",
-                    right: 377,
-                  }}
-                >
-                  <img src={preview} alt="" />
-                </div>
-              </div>
-            )}
-            <br />
-            <Textarea
-              placeholder="Update Your Bio Here..."
-              onChange={(e) => setBio(e.currentTarget.value)}
-              value={bio}
-            />
-          </ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onModalClose}>
-              Close
-            </Button>
-            <Button
-              variant="outline"
-              colorScheme="twitter"
-              onClick={handleSave}
-            >
-              Save Profile
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
       <div className="wrapper">
         <div className="profile-card js-profile-card">
-          <div className="topright">
-            <IconButton onClick={onOpen}>
-              <EditIcon fontSize="large" />
-            </IconButton>
-          </div>
           <div className="profile-card__img">
             <img src={user.image_url} alt="profile card" />
           </div>
