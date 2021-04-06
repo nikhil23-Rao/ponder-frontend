@@ -147,3 +147,15 @@ export const GET_STORIES_HOME = gql`
     }
   }
 `;
+
+export const GET_PROFILE = gql`
+  query GetProfile($authorid: String) {
+    GetProfile(authorid: $authorid) {
+      id
+      username
+      email
+      bio
+      image_url
+    }
+  }
+`;
