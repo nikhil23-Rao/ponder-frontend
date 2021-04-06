@@ -24,10 +24,12 @@ export const SignupWithGoogle = (props: any) => {
   });
   const response = (res: any) => {
     const id = GenerateStoryID(24);
+    console.log(res.profileObj);
     OAuthRegister({
       variables: {
         username: res.profileObj.name,
         email: res.profileObj.email,
+        image_url: res.profileObj.imageUrl,
         id,
       },
     });

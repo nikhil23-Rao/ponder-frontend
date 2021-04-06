@@ -19,6 +19,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { UPDATE_PROFILE } from "../apollo/Mutations";
+import Sidebar from "../components/Sidebar";
 
 export const MyProfile = () => {
   const [preview, setPreview] = React.useState<any>(null);
@@ -51,13 +52,6 @@ export const MyProfile = () => {
 
   const onCrop = (preview: any) => {
     setPreview(preview);
-  };
-
-  const onBeforeFileLoad = (elem: any) => {
-    if (elem.target.files[0].size > 71680) {
-      alert("File is too big!");
-      elem.target.value = "";
-    }
   };
 
   const handleSave = async () => {
@@ -93,7 +87,6 @@ export const MyProfile = () => {
               onCrop={onCrop}
               onClose={onClose}
               label="Pick A Picture"
-              onBeforeFileLoad={onBeforeFileLoad}
               src={user.image_url}
             />
             {preview && (
@@ -209,6 +202,7 @@ export const MyProfile = () => {
           transform: "translate(-50%, -50%)",
         }}
       ></div>
+      <Sidebar />
     </>
   );
 };

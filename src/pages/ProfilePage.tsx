@@ -3,6 +3,7 @@ import "../styles/Profile.css";
 import { useQuery } from "@apollo/client";
 import { GET_PROFILE } from "../apollo/Queries";
 import { getCurrentUser } from "../utils/getCurrentUser";
+import Sidebar from "../components/Sidebar";
 
 export const Profile: any = (props: any) => {
   // State For User
@@ -77,6 +78,7 @@ export const Profile: any = (props: any) => {
           transform: "translate(-50%, -50%)",
         }}
       ></div>
+      <Sidebar />
     </>
   );
 };
