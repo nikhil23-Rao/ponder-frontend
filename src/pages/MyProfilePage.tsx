@@ -55,40 +55,49 @@ export const MyProfile = () => {
   };
 
   const handleSave = async () => {
-    console.log(user.image_url);
-    console.log(user.bio);
-    await UpdateProfile({
-      variables: {
-        authorid: user.id,
-        bio,
-        image_url: preview ? preview : user.image_url,
-      },
-    });
-    onModalClose();
-    toast({
-      title: "Updated Profile. Changes May Take Some Time To Update.",
-      status: "success",
-      position: "top-right",
-      isClosable: true,
-    });
+    try {
+      await UpdateProfile({
+        variables: {
+          authorid: user.id,
+          bio,
+          image_url: preview ? preview : user.image_url,
+        },
+      });
+      onModalClose();
+      toast({
+        title: "Updated Profile. Changes May Take Some Time To Update.",
+        status: "success",
+        position: "top-right",
+        isClosable: true,
+      });
+    } catch (err) {
+      toast({
+        title: "Oops! Something Failed...",
+        status: "error",
+        position: "top-right",
+        isClosable: true,
+      });
+    }
   };
 
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onModalClose} size="3xl">
+      <Modal isOpen={isOpen} onClose={onModalClose} size="5xl">
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Update Profile</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Avatar
-              width={380}
-              height={295}
-              onCrop={onCrop}
-              onClose={onClose}
-              label="Pick A Picture"
-              src={user.image_url}
-            />
+            <div style={{ marginLeft: "9%" }}>
+              <Avatar
+                width={380}
+                height={295}
+                onCrop={onCrop}
+                onClose={onClose}
+                label="Pick A Picture"
+                src={user.image_url}
+              />
+            </div>
             {preview && (
               <div
                 style={{
@@ -100,7 +109,7 @@ export const MyProfile = () => {
               >
                 <h1
                   style={{
-                    marginLeft: "2%",
+                    marginLeft: "11%",
                     fontSize: "24pt",
                     fontWeight: "bold",
                     textDecoration: "underline",
