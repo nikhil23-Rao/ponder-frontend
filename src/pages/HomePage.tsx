@@ -61,7 +61,7 @@ export const Home = () => {
           <Dropdown.Menu>
             <Dropdown.Item
               href="#/action-1"
-              onClick={() => history.push("/profile/me")}
+              onClick={() => history.push("/me")}
             >
               Profile
             </Dropdown.Item>
