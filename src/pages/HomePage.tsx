@@ -11,7 +11,6 @@ import { history } from "../index";
 import { useQuery } from "@apollo/client";
 import { GET_STORIES_HOME } from "../apollo/Queries";
 import { ArticleCard } from "../components/ArticleCard";
-import { StoryArgsInt } from "../../../backend/server/src/interfaces/StoryArgsInt";
 import { Heading } from "@chakra-ui/layout";
 import { Loader } from "../components/Loader";
 
@@ -81,7 +80,7 @@ export const Home = () => {
         </Dropdown>
       </div>
       {data &&
-        data.GetStoriesHome.map((story: StoryArgsInt) => (
+        data.GetStoriesHome.map((story: any) => (
           <ArticleCard
             key={story.id}
             category={story.category}
