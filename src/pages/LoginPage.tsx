@@ -103,11 +103,11 @@ export const Login = (props: any) => {
                           </Link>
                         </p>
                       </div>
-                      <hr className="my-4" />
+                      {/* <hr className="my-4" /> */}
 
-                      <LoginWithGoogle />
+                      {/* <LoginWithGoogle /> */}
                       <br />
-                      <LoginWithMicrosoft />
+                      {/* <LoginWithMicrosoft /> */}
                     </Form>
                   </div>
                 </div>
