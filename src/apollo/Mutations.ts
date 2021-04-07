@@ -125,6 +125,13 @@ export const DELETE_DRAFT_ONCE_PUBLISHED = gql`
   }
 `;
 
+// Delete Published Story
+export const DELETE = gql`
+  mutation Delete($storyid: String) {
+    Delete(storyid: $storyid)
+  }
+`;
+
 // Update Profile
 export const UPDATE_PROFILE = gql`
   mutation UpdateProfile($authorid: String, $bio: String, $image_url: String) {

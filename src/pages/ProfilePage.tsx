@@ -4,6 +4,7 @@ import { useQuery } from "@apollo/client";
 import { GET_PROFILE, GET_PROFILE_INFO } from "../apollo/Queries";
 import { getCurrentUser } from "../utils/getCurrentUser";
 import Sidebar from "../components/Sidebar";
+import { Loader } from "../components/Loader";
 
 export const Profile: any = (props: any) => {
   // State For User
@@ -30,7 +31,7 @@ export const Profile: any = (props: any) => {
       setUser(data.GetProfile);
     }
   }, [data]);
-  if (loading || storyLoading) return <h1>LOADING</h1>;
+  if (loading || storyLoading) return <Loader />;
 
   return (
     <>

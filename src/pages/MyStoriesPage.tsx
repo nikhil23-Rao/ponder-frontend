@@ -19,6 +19,7 @@ import { UserStateInt } from "../interfaces/UserStateInt";
 import Sidebar from "../components/Sidebar";
 import { history } from "../index";
 import { ArticleCard } from "../components/ArticleCard";
+import { Loader } from "../components/Loader";
 
 // My Stories Component
 export const MyStories: any = () => {
@@ -91,7 +92,7 @@ export const MyStories: any = () => {
 
   // If Loading Return To Client
   if (loading) {
-    return <h1>LOADING...</h1>;
+    return <Loader />;
   }
 
   // If 0 Stories Return Following
@@ -138,6 +139,7 @@ export const MyStories: any = () => {
         // Return Article Cards
         return (
           <ArticleCard
+            showDelete={true}
             category={story.category}
             title={story.title}
             content={story.content}

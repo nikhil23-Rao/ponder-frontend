@@ -21,6 +21,7 @@ import {
 import { UPDATE_PROFILE } from "../apollo/Mutations";
 import Sidebar from "../components/Sidebar";
 import { GET_PROFILE_INFO } from "../apollo/Queries";
+import { Loader } from "../components/Loader";
 
 export const MyProfile = () => {
   const [preview, setPreview] = React.useState<any>(null);
@@ -55,7 +56,7 @@ export const MyProfile = () => {
     }
   );
 
-  if (storyLoading) return <h1>LOADING...</h1>;
+  if (storyLoading) return <Loader />;
 
   const onClose = () => {
     setPreview(null);

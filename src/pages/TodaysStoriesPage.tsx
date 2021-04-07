@@ -8,6 +8,7 @@ import { getCurrentUser } from "../utils/getCurrentUser";
 import "../styles/LikeButton.css";
 import Sidebar from "../components/Sidebar";
 import { ArticleCard } from "../components/ArticleCard";
+import { Loader } from "../components/Loader";
 
 // TodaysStories Component
 export const TodaysStories = (props: any) => {
@@ -24,7 +25,7 @@ export const TodaysStories = (props: any) => {
 
   // If Loading Return To Client
   if (loading) {
-    return <h1>LOADING...</h1>;
+    return <Loader />;
   }
 
   // Return TodaysStories Markup

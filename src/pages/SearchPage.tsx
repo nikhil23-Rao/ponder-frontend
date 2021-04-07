@@ -7,6 +7,7 @@ import { GET_SEARCHABLE_STORIES, SEARCH } from "../apollo/Queries";
 import { StoryArgsInt } from "../../../backend/server/src/interfaces/StoryArgsInt";
 import Sidebar from "../components/Sidebar";
 import { ArticleCard } from "../components/ArticleCard";
+import { Loader } from "../components/Loader";
 const queryString = require("query-string");
 
 // Search Component
@@ -36,7 +37,7 @@ export const Search: any = (props: any) => {
   // Get All Stories Query
   const { data, loading } = useQuery(GET_SEARCHABLE_STORIES);
   // If Loading Return To Client
-  if (searchLoading || loading) return <h1>Loading</h1>;
+  if (searchLoading || loading) return <Loader />;
   // When Data Build Search Box With Downshift.js Autocomplete
   if (data) {
     const { GetSearchableStories } = data;

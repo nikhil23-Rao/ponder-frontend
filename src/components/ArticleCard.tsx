@@ -2,18 +2,22 @@
 import * as React from "react";
 import { readingTime } from "../utils/ReadingTime";
 import { UserStateInt } from "../interfaces/UserStateInt";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import { DELETE } from "../apollo/Mutations";
+import { useMutation } from "@apollo/client";
 
 // Props
 interface IProps {
   content: string;
   image_url: string;
   title: string;
-  id: string;
+  id: any;
   date_created: Array<string>;
   category: string;
   likes: number;
   showLikes?: boolean;
   user?: UserStateInt;
+  showDelete?: boolean;
   authorName?: string;
 }
 
@@ -26,10 +30,12 @@ export const ArticleCard = ({
   category,
   date_created,
   user,
+  showDelete,
   image_url,
   showLikes,
   authorName,
 }: IProps) => {
+  const [Delete] = useMutation(DELETE);
   // Get Preview Text
   const previewText = content.replace(/<[^>]+>/g, "");
 
@@ -97,6 +103,25 @@ export const ArticleCard = ({
               </div>
             )}
           </div>
+          {showDelete && (
+            <div
+              style={{
+                marginLeft: "90%",
+                position: "relative",
+                bottom: 30,
+              }}
+              onClick={(e) => {
+                if (id) {
+                  e.preventDefault();
+                  console.log(id);
+                  Delete({ variables: { storyid: id } });
+                  window.location.reload();
+                }
+              }}
+            >
+              <DeleteForeverIcon />
+            </div>
+          )}
         </main>
       </div>
     </React.Fragment>

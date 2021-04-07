@@ -71,7 +71,7 @@ export const CreateStory = () => {
   };
 
   // What To Do When Save Draft Is Clicked
-  const handleSaveDraft = () => {
+  const handleSaveDraft = async () => {
     // Get Current Date
     const date_created = GetDate();
     const e: any = document.getElementById("selectCat");
@@ -79,7 +79,7 @@ export const CreateStory = () => {
     // Generate ID
     const id = GenerateStoryID(24);
     // Save Draft With Variables Stored In State And Above
-    SaveDraft({
+    await SaveDraft({
       variables: {
         title,
         content,
@@ -98,7 +98,7 @@ export const CreateStory = () => {
   };
 
   // What To Do When Publish Story Is Clicked
-  const handlePublishStory = () => {
+  const handlePublishStory = async () => {
     const e: any = document.getElementById("selectCatPub");
     const category = e.value;
     // Get Current Date
@@ -107,7 +107,7 @@ export const CreateStory = () => {
     const id = GenerateStoryID(24);
 
     // Publish Story With Variables Stored In State And Above
-    PublishStory({
+    await PublishStory({
       variables: {
         title,
         content,

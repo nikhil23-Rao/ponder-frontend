@@ -5,6 +5,7 @@ import { useQuery } from "@apollo/client";
 import { READ_STORY } from "../apollo/Queries";
 import { useMutation } from "@apollo/client";
 import Sidebar from "../components/Sidebar";
+import { Loader } from "../components/Loader";
 import "../styles/LikeButton.css";
 import "../styles/Text.css";
 import "../styles/AuthorImage.css";
@@ -37,7 +38,7 @@ export const ReadStory: any = (props: any) => {
 
   // If Story Loading Return To Client
   if (loading) {
-    return <h1>STORY LOADING</h1>;
+    return <Loader />;
   }
 
   // If Story ID Does Not Exist Redirect To Not Found

@@ -13,6 +13,7 @@ import { GET_STORIES_HOME } from "../apollo/Queries";
 import { ArticleCard } from "../components/ArticleCard";
 import { StoryArgsInt } from "../../../backend/server/src/interfaces/StoryArgsInt";
 import { Heading } from "@chakra-ui/layout";
+import { Loader } from "../components/Loader";
 
 // Home Component (Renders What Is On The Home Page)
 export const Home = () => {
@@ -29,7 +30,7 @@ export const Home = () => {
   }, []);
 
   if (loading) {
-    return <p>LOADING</p>;
+    return <Loader />;
   }
 
   return (

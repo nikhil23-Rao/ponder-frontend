@@ -6,6 +6,7 @@ import "../styles/editor.css";
 import Button from "@material-ui/core/Button";
 import { SelectCategory } from "../components/SelectCategory";
 import { CATEGORIES } from "../constants/Categories";
+import { Loader } from "../components/Loader";
 import {
   EDIT_DRAFT,
   PUBLISH_STORY,
@@ -87,23 +88,23 @@ export const EditDraft: any = (props: any) => {
 
   // When Loading Return Markup To Client
   if (loading) {
-    return <h1>Loading</h1>;
+    return <Loader />;
   }
 
   // On Editor Change Set Current Content In State
-  const handleEditorChange = (content: string, _: any) => {
+  const handleEditorChange = async (content: string, _: any) => {
     setEditorContent(content);
   };
 
   // What To Do When Save Draft Is Clicked
-  const handleSaveDraft = () => {
+  const handleSaveDraft = async () => {
     // Remove Warning
     window.onbeforeunload = null;
 
     // Get Current Date
     const date_created = GetDate();
     // Save Draft With Variables Stored In State And Above
-    EditDraft({
+    await EditDraft({
       variables: {
         title,
         content: editorContent,
@@ -122,7 +123,7 @@ export const EditDraft: any = (props: any) => {
   };
 
   // What To Do When Publish Story Is Clicked
-  const handlePublishStory = () => {
+  const handlePublishStory = async () => {
     // Remove Warning
     window.onbeforeunload = null;
 
@@ -132,7 +133,7 @@ export const EditDraft: any = (props: any) => {
     const id = GenerateStoryID(24);
 
     // Publish Story With Variables Stored In State And Above
-    PublishStory({
+    await PublishStory({
       variables: {
         title,
         content: editorContent,
