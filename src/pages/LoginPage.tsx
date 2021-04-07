@@ -52,7 +52,7 @@ export const Login = (props: any) => {
               <div className="col-lg-10 col-xl-9 mx-auto">
                 <div className="card card-signin flex-row my-5">
                   <div className="card-img-left d-none d-md-flex"></div>
-                  <div className="card-body">
+                  <div className="card-body" style={{ width: "100%" }}>
                     <h5 className="card-title text-center">Login</h5>
                     <Form className="form-signin" onSubmit={handleSubmit}>
                       <div style={{ textAlign: "center" }}>
