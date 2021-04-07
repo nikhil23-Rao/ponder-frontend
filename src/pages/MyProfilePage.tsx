@@ -171,7 +171,11 @@ export const MyProfile = () => {
             </IconButton>
           </div>
           <div className="profile-card__img">
-            <img src={user.image_url} alt="profile card" />
+            <img
+              src={user.image_url}
+              className="undraggable"
+              alt="profile card"
+            />
           </div>
 
           <div className="profile-card__cnt js-profile-cnt">
