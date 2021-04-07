@@ -4,7 +4,6 @@ import "../styles/Search.css";
 import Downshift from "downshift";
 import { useQuery } from "@apollo/client";
 import { GET_SEARCHABLE_STORIES, SEARCH } from "../apollo/Queries";
-import { StoryArgsInt } from "../../../backend/server/src/interfaces/StoryArgsInt";
 import Sidebar from "../components/Sidebar";
 import { ArticleCard } from "../components/ArticleCard";
 import { Loader } from "../components/Loader";
@@ -123,7 +122,7 @@ export const Search: any = (props: any) => {
               >
                 {isOpen
                   ? GetSearchableStories.filter(
-                      (story: StoryArgsInt) =>
+                      (story: any) =>
                         !inputValue ||
                         // Filter By Multiple Columns
                         story.title.match(
@@ -137,7 +136,7 @@ export const Search: any = (props: any) => {
                         )
                     )
                       .slice(0, 5)
-                      .map((item: StoryArgsInt, index: any) => (
+                      .map((item: any, index: any) => (
                         <div key={item.id}>
                           <li
                             {...getItemProps({
@@ -170,7 +169,7 @@ export const Search: any = (props: any) => {
               {searchQuery !== undefined &&
               searchData &&
               searchData.Search.length !== 0
-                ? searchData.Search.map((story: StoryArgsInt) => {
+                ? searchData.Search.map((story: any) => {
                     // Return Article Cards
                     return (
                       <ArticleCard
