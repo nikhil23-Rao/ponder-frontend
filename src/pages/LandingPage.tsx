@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/LandingPage.css";
+import logo from "../../src/img/litelogo.png";
 import { history } from "../index";
 
 export const LandingPage: React.FC<{}> = () => {
@@ -13,7 +14,7 @@ export const LandingPage: React.FC<{}> = () => {
           marginRight: "auto",
         }}
         className="undraggable"
-        src="https://lite-dev.netlify.app/static/media/litelogo.b99945e8.png"
+        src={logo}
         alt=""
       />
       <div className="landing-container" style={{ marginTop: "2%" }}>

@@ -7,6 +7,7 @@ import {
   Theme,
   createStyles,
 } from "@material-ui/core/styles";
+import logo from "../../src/img/litelogo.png";
 import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -144,7 +145,7 @@ const Sidebar = () => {
           style={{ backgroundColor: "#fff" }}
         >
           <img
-            src="https://lite-dev.netlify.app/static/media/litelogo.b99945e8.png"
+            src={logo}
             className="undraggable"
             style={{
               width: "30%",
