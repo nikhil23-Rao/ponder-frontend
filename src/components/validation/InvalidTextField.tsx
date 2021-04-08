@@ -9,7 +9,7 @@ export const InvalidTextField: React.FC<FieldAttributes<{}>> = ({
   const [field] = useField(props);
   return (
     <TextField
-      style={{ width: "350px" }}
+      style={{ width: "300px" }}
       placeholder={placeholder}
       {...field}
       variant="outlined"
