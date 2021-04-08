@@ -1,7 +1,6 @@
 // Modules Imported For Use
 import React, { useState, useEffect } from "react";
 import { getCurrentUser } from "../utils/getCurrentUser";
-import "../styles/HomePage.css";
 import "../styles/Positions.css";
 import "../styles/logo.css";
 import Sidebar from "../components/Sidebar";

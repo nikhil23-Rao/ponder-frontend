@@ -8,7 +8,6 @@ import Sidebar from "../components/Sidebar";
 import { Loader } from "../components/Loader";
 import "../styles/LikeButton.css";
 import "../styles/Text.css";
-import "../styles/AuthorImage.css";
 import { content_style } from "../constants/ContentStyle";
 import { LIKE_STORY } from "../apollo/Mutations";
 import { getCurrentUser } from "../utils/getCurrentUser";
