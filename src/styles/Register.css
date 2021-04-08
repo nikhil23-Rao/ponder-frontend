@@ -17,11 +17,6 @@
 }
 
 .card-signin .card-img-left {
-  width: 45%;
-  /* Link to your background image using in the property below! */
-  background: scroll center
-    url("https://images.pexels.com/photos/1704120/pexels-photo-1704120.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500");
-  background-size: cover;
 }
 
 .card-signin .card-body {
