@@ -1,6 +1,5 @@
 import React from "react";
 import "../styles/LandingPage.css";
-import logo from "../../src/img/litelogo.png";
 import { history } from "../index";
 
 export const LandingPage: React.FC<{}> = () => {
