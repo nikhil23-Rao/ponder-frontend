@@ -9,7 +9,7 @@ export const LoginValidationPasswordTextField: React.FC<
   const errTxt = meta.error && meta.touched ? meta.error : "";
   return (
     <TextField
-      style={{ width: "350px" }}
+      style={{ width: "280px" }}
       placeholder={placeholder}
       type="password"
       variant="outlined"

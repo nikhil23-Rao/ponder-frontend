@@ -47,7 +47,7 @@ export const Login = (props: any) => {
         validationSchema={LoginValidationSchema}
       >
         {({ handleSubmit }) => (
-          <div className="container">
+          <div className="container" style={{ width: "100%" }}>
             <div className="row">
               <div className="col-lg-10 col-xl-9 mx-auto">
                 <div className="card card-signin flex-row my-5">

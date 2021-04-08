@@ -10,7 +10,7 @@ export const LoginValidationTextField: React.FC<FieldAttributes<{}>> = ({
   const errTxt = meta.error && meta.touched ? meta.error : "";
   return (
     <TextField
-      style={{ width: "350px" }}
+      style={{ width: "280px" }}
       placeholder={placeholder}
       {...field}
       variant="outlined"

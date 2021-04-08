@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import "../styles/MyStories.css";
-import "../styles/Grid.css";
 import { getCurrentUser } from "../utils/getCurrentUser";
 import Menu, { MenuProps } from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";

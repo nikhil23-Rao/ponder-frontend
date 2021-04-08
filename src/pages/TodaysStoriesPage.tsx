@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import "../styles/MyStories.css";
 import { GET_TODAYS_STORIES } from "../apollo/Queries";
-import "../styles/Grid.css";
 import { getCurrentUser } from "../utils/getCurrentUser";
 import "../styles/LikeButton.css";
 import Sidebar from "../components/Sidebar";

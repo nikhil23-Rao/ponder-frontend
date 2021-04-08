@@ -9,7 +9,7 @@ export const AccountExistsTextField: React.FC<FieldAttributes<{}>> = ({
   const [field] = useField(props);
   return (
     <TextField
-      style={{ width: "350px" }}
+      style={{ width: "280px" }}
       placeholder={placeholder}
       {...field}
       variant="outlined"
