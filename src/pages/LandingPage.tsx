@@ -14,7 +14,7 @@ export const LandingPage: React.FC<{}> = () => {
           marginRight: "auto",
         }}
         className="undraggable"
-        src={logo}
+        src="https://lite-dev.netlify.app/static/media/litelogo.b99945e8.png"
         alt=""
       />
       <div className="landing-container" style={{ marginTop: "2%" }}>

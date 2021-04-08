@@ -145,7 +145,7 @@ const Sidebar = () => {
           style={{ backgroundColor: "#fff" }}
         >
           <img
-            src={logo}
+            src="https://lite-dev.netlify.app/static/media/litelogo.b99945e8.png"
             className="undraggable"
             style={{
               width: "30%",
