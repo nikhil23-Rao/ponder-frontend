@@ -12,7 +12,7 @@ const createHistory = require("history").createBrowserHistory;
 
 // Create New Apollo Client
 const client: ApolloClient<object> = new ApolloClient({
-  uri: "https://liteserver.herokuapp.com/graphql",
+  uri: "http://liteserver.herokuapp.com/graphql",
   cache: new InMemoryCache({
     dataIdFromObject: (o) =>
       o.id ? `${o.__typename}-${o.id}` : `${o.__typename}-${o.cursor}`,
